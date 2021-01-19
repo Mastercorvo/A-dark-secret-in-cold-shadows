@@ -5,7 +5,9 @@ function Zone1({inputText}) {
 
     function cajasHandler() {
 
-      inputText([{text:['— Selena: ','Haa... ¿Dónde estoy?'], img: 'SelenaHablaTriste'}])
+      inputText([{text:['— Selena: ','Encontre un destornillador pero huele feo y raro.'], img: 'SelenaHablaSeria'},
+      {text:['— Selena: ','Espera creo que sé dónde estuvo este destornillador'], img: 'SelenaAvergonzada'}
+    ])
         
     }
 

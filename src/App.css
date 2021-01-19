@@ -19,6 +19,24 @@
 
 }
 
+.App .inventario-icon{
+
+  position: absolute;
+
+  z-index: 1000;
+
+  width: 70px;
+
+  height: 70px;
+
+  background-color: black;
+
+  top: 50px;
+
+  right: 50px;
+
+}
+
 .App .texto{
 
   width: 70%;

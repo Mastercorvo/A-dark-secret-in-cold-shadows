@@ -53,7 +53,7 @@ function App() {
       setTimeout(() => {
         
         setNewFoto(()=>true);
-        
+
       }, 0);
       animationAvatarStart.current = true;
 
@@ -157,7 +157,7 @@ function App() {
 
     inputText([{text:['— Selena: ','Haa... ¿Dónde estoy?'], img: 'SelenaHablaTriste'},
     {text:['— Selena: ','Haa... ¿Dónde232323 estoy?'], img: 'SelenaHablaTriste'},
-  {text:['— Selena: ','No sé como llegue aquí pero debo salir rapido.'], img: 'SelenaHablaSeria'}])
+  {text:['— Selena: ','No sé como llegue aquí pero debo salir rapido.'], img: 'SelenaHablaSeria'}]);
 
   }, []);
 
@@ -182,6 +182,8 @@ function App() {
       return false;
 
     }
+
+    if(arrayTexts.current.length === 0) count.current = 1
     
     const Element = arrayTexts.current.shift();
     
@@ -196,16 +198,17 @@ function App() {
       writing.current = false;
 
       currentText.current = '';
+
+      count.current = 0;
     
     }
-
-    if(arrayTexts.current.length === 0) count.current = 1
 
   }
 
   return (
 
       <div className="App">
+        <div className="inventario-icon"></div>
         <Zone1 inputText={inputText}/>
         <div className="texto" onClick={textHandler} style={{display:showText?'block':'none'}}>
         {TEXT}
@@ -216,6 +219,7 @@ function App() {
           animationAvatarStart.current = false;
           
           }} style={{backgroundImage: `url(${avatar})`} }></div>
+
         </div>
 
       </div>
