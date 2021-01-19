@@ -3,6 +3,8 @@ import './App.css';
 
 import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 
+import ReactPlayer from 'react-player';
+
 import Zone1 from "./zona 1/Zone1";
 
 const SelenaHabla = 'https://i.ibb.co/rGM9kQR/Selena-Stickers1.png';
@@ -102,6 +104,13 @@ function App() {
     function later(_DATA){
 
       // Animation code
+
+      setAvatar(()=>{
+
+        return ObjetSelenas[img]
+      
+      });
+
       setTimeout(() => {
         
         setNewFoto(()=>true);
@@ -130,13 +139,6 @@ function App() {
         setTEXT(()=>'');
 
       }
-
-      setAvatar(()=>{
-
-        return ObjetSelenas[img]
-      
-      });
-
       if(wait === undefined) wait = 0;
       
       currentText.current = text.join``;
@@ -212,14 +214,23 @@ function App() {
     function first(){
 
       inputText([{text:['— Selena: ','Haaaa... ¿Dónde estoy?'], img: 'SelenaHablaTriste'},
-      {text:['— Selena: ','No sé como llegue aquí pero debo salir rapido.'], img: 'SelenaHablaSeria'},
+      {text:['— Selena: ','No sé como llegue aquí, pero debo salir rápido.'], img: 'SelenaHablaSeria'},
       {text:['[SYSTEM] ','Ayuda a Selena a salir de aquí.']}]);
 
     }
 
   const count = useRef(0);
 
+    const [AA, setAA] = useState(true);
+
   function textHandler(){
+
+    setAA(false);
+    setTimeout(()=>{
+
+      setAA(true);
+
+    }, 0)
 
     if(currentNowWriting.current){
 
@@ -264,6 +275,8 @@ function App() {
   }
 
   const [textPlay, setTextPlay] = useState('READY?');
+  const [FINAL, setFINAL] = useState(false);
+  const [menuMusic, setMenuMusic] = useState(false);
 
   if(isLoad){
 
@@ -286,13 +299,18 @@ function App() {
   return (
 
       <div className="App">
+        <ReactPlayer url="https://www.youtube.com/watch?v=PAb74twuW58" loop playing={!showPlayScreen && !FINAL} width="0" height="0"/>
+
         <div className="play"style={{display:showPlayScreen?'flex':'none'}} onClick={()=>{
 
           setShowPlayScreen(false)
           
           first()
 
-        }}><p hidden={!onPlay} onMouseOut={()=>setTextPlay('READY?')} onMouseOver={()=>setTextPlay('GO!')} >{textPlay}</p></div>
+        }}><p hidden={onPlay && !menuMusic} onMouseOut={()=>setTextPlay('READY?')} onMouseOver={()=>setTextPlay('GO!')} >{textPlay}</p>
+          <ReactPlayer url="https://www.youtube.com/watch?v=0lDfQT0yiwc" loop playing={showPlayScreen && !FINAL} width="0" height="0" onStart={()=>{setMenuMusic(true)}}/>
+  
+        </div>
         <div className="inventario-icon" onClick={()=>setShowInventario(true)}></div>
         <div className="inventario" style={{display:showInventario?'block':'none'}}>
 
@@ -305,12 +323,12 @@ function App() {
           </div>
 
         </div>
-        <Zone1 inputText={inputText} setInventario={setInventario} inventario={inventario} currentAnyText={currentAnyText}/>
-        <div className="texto" onClick={textHandler} style={{display:showText?'block':'none'}}>
+        <Zone1 setFINAL={setFINAL} inputText={inputText} setInventario={setInventario} inventario={inventario} currentAnyText={currentAnyText}/>
+        <div className="texto " onClick={textHandler} style={{display:showText?'block':'none'}}>
         {TEXT}
         <div className={'foto ' + (newFoto?'boom':'')} onAnimationEnd={()=>{
 
-          setNewFoto(()=>false)
+          setNewFoto(()=>false);
 
           animationAvatarStart.current = false;
           

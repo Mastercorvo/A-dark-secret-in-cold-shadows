@@ -3,7 +3,7 @@ import './zone1.css';
 
 import { useRef, useState } from 'react';
 
-function Zone1({inputText, setInventario, currentAnyText, inventario}) {
+function Zone1({inputText, setInventario, currentAnyText, inventario, setFINAL}) {
 
     const electricidad = useRef(false);
 
@@ -142,6 +142,8 @@ function Zone1({inputText, setInventario, currentAnyText, inventario}) {
       if(baul){
 
         setShowFinal(true);
+
+        setFINAL(true)
 
       }else{
 
