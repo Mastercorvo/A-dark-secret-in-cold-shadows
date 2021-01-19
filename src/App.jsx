@@ -303,9 +303,11 @@ function App() {
 
         <div className="play"style={{display:showPlayScreen?'flex':'none'}} onClick={()=>{
 
-          setShowPlayScreen(false)
+          if(onPlay && !menuMusic) return false;
+
+          setShowPlayScreen(false);
           
-          first()
+          first();
 
         }}><p hidden={onPlay && !menuMusic} onMouseOut={()=>setTextPlay('READY?')} onMouseOver={()=>setTextPlay('GO!')} >{textPlay}</p>
           <ReactPlayer url="https://www.youtube.com/watch?v=0lDfQT0yiwc" loop playing={showPlayScreen && !FINAL} width="0" height="0" onStart={()=>{setMenuMusic(true)}}/>
