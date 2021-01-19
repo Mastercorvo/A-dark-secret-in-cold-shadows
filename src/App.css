@@ -15,22 +15,76 @@
 
   align-items: center;
 
+  background-color: black;
+
 }
 
 .App .texto{
 
-  width: 80%;
+  width: 70%;
 
-  height: 300px;
+  height: 280px;
 
-  background-color: black;
+  background-color: white;
 
   position: absolute;
 
   bottom: 12%;
 
-  color: red;
+  color: black;
 
   border-radius: 20px;
+
+  padding: 40px;
+
+  box-sizing: border-box;
+
+  font-family: sans-serif;
+
+  font-size: 1.5em;
+
+  user-select: none;
+
+}
+
+@keyframes Boom{
+
+  from{
+
+    transform: translateX(100px);
+
+  }
+
+  to{
+
+    transform: scale(0px);
+
+  }
+
+}
+
+.App .texto > .foto{
+
+  position: absolute;
+
+  width: 300px;
+
+  height: 300px;
+
+  bottom: 100%;
+
+  left: 0;
+
+  background-size: 100% 100%;
+
+  background-color: transparent;
+
+}
+
+.App .texto > .boom{
+
+  animation-name: Boom;
+
+  animation-duration: 2s;
 
 }
