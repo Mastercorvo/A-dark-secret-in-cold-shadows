@@ -1,11 +1,11 @@
 
 import './zone1.css';
 
-function Zone1({inputText, outputText}) {
+function Zone1({inputText}) {
 
     function cajasHandler() {
 
-        inputText({text:['— Selena: ','Haa... ¿Dónde estoy?'], img: SelenaHablaTriste});
+      inputText([{text:['— Selena: ','Haa... ¿Dónde estoy?'], img: 'SelenaHablaTriste'}])
         
     }
 

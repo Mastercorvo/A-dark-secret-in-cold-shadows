@@ -19,164 +19,178 @@ function App() {
 
   useImage({srcList:[SelenaHabla, SelenaHablaSeria, SelenaHablaTriste, SelenaDesconfia, SelenaAvergonzada]});
 
+  const [TEXT, setTEXT] = useState('');
+
+  const [avatar, setAvatar] = useState('');
+  const [newFoto, setNewFoto] = useState(false);
+  const [showText, setShowText] = useState(false);
+
+  const writing = useRef(false);
+
   const arrayTexts = useRef([]);
 
-  const [TEXT, setTEXT] = useState('');
-  const writing = useRef(false);
   const currentText = useRef('');
-  const forceText = useRef(false);
-  const anyText = useRef(false);
-  const [avatar, setAvatar] = useState('');
-  const [showText, setShowText] = useState(false)
 
-  const [newFoto, setNewFoto] = useState(false);
+  const currentNowWriting = useRef(false);
 
-  function escribir(_DATA) {
+  const arrayOfTimeOuts = useRef([])
 
-    const DATA = _DATA?_DATA:{text:['','']};
+  function inputText(array){
 
-    let { text, speed, wait, img, replace } = DATA;
-
-    setAvatar(()=>Selenas[img])
-
-    if(speed === 'insta'){
-      
-      setTEXT(()=>text.join``);
-      
-      return false;
-      
-    }
+    if(writing.current) return false;
 
     writing.current = true;
-    
-    if(replace === undefined) replace = true;
-    if(speed === undefined) speed = 40;
-    if(wait === undefined) wait = 0;
 
-    const textOriginal = text[0];
-    
-    const texstModify = text[0]+' _';
+    setShowText(true);
 
-    if(replace) setTEXT(()=>'');
-    
-    setTEXT(v=> v+text[0]);
+    for(let i = 0; i < array.length ;i++){
 
-    currentText.current = text.join``;
-
-    for(let i = 0; i <= wait/100; i++){
-
-      setTimeout(()=>{
-
-        if(i%2 === 0){
-
-          setTEXT(()=>texstModify);
-
-        }else {
-
-          setTEXT(()=>textOriginal);
-        
-        }
-
-        if((wait/100) === i){ 
-        
-          continueText();
-        
-        }
-
-      }, 100 * (wait/100));
+      arrayTexts.current[i] = ()=>later(array[i]);
 
     }
 
-    function continueText() {
+    function later(_DATA){
 
-      setTEXT(()=>textOriginal);
+      currentNowWriting.current = true;
+
+      for(let i = 0;i < arrayOfTimeOuts.current.length; i++){
+        
+        clearTimeout(arrayOfTimeOuts.current[i]);
+        
+      }
       
-      for(let i = 0; i < text[1].length; i++){
+      let DATA = _DATA?_DATA:{};
+      
+      let { text, speed, replace, wait } = DATA;
+      
+      if(speed === undefined) speed = 40;
+      if(replace === undefined) replace = true;
+      if(replace){
+
+        setTEXT(()=>'');
+
+      }   
+
+      if(wait === undefined) wait = 0;
+      
+      currentText.current = text.join``;
+
+      let textModify = '';
+
+      let textOriginal = ''
+
+      if(replace){
+
+        textModify = text[0] + ' _';
   
-        setTimeout(()=>{
+        textOriginal = text[0];
+
+      }else{
+
+        textModify = TEXT + text[0] + ' _';
   
-          if(!forceText.current) setTEXT(v=>v + text[1][i]); 
-  
-          if(i === (text[1].length - 1)){
-  
-            writing.current = false;
-            if(arrayTexts.current.length === 0) anyText.current = false
-  
-          }
-  
-        }, speed * i);
-  
+        textOriginal = TEXT + text[0];
+
       }
 
-    }
+      for(let i = 0; i <= wait/100 ;i++){
 
-  }
+        setTimeout(()=>{
 
-  function inputText(data, purgue){
+          if((i%2) === 0){
 
-    if(purgue) arrayTexts.current = [];
+            setTEXT(()=>textModify);
 
-    if(anyText.current) return false;
+          }else{
 
-    arrayTexts.current.push(data);
+            setTEXT(()=>textOriginal);
+
+          }
+
+          if(i === (wait/100)) continueText();
+
+        }, 100 * i);
+
+      }
+
+      function continueText(){
+
+        setTEXT(()=>textOriginal);
+
+        for(let i = 0; i < text[1].length;i++){
     
-  }
+          arrayOfTimeOuts.current.push(setTimeout(()=>{
+    
+            setTEXT(v=>v+text[1][i]);
+    
+            if(i === (text[1].length - 1)){
 
-  const forceTextCount = useRef(0);
+              currentNowWriting.current = false;
 
-  function outputText(power){
-
-    if(anyText.current && !power) return false;
-
-    setNewFoto(()=>true)
-    setShowText(()=>true)
-
-    anyText.current = true;
-
-    forceText.current = false;
-
-    if(writing.current){
-
-      setNewFoto(()=>false);
-
-      forceText.current = true;
-
-      setTEXT(()=>currentText.current);
-
-      if(arrayTexts.current.length === 0) anyText.current = false;
-
-      if(forceTextCount.current === 1) setShowText(false);
+            }
+    
+          }, speed * i))
+    
+        }
+  
+      }
       
-      if(arrayTexts.current.length === 0) forceTextCount.current = 1;
-
-      return false;
-
     }
+    
+    arrayTexts.current.shift()();
 
-    if(arrayTexts.current.length === 0) setShowText(false);
-    
-    escribir(arrayTexts.current.shift());
-    
   }
 
   useEffect(()=>{
 
-    inputText({text:['— Selena: ','Haa... ¿Dónde estoy?'], img: 'SelenaHablaTriste'});
-    inputText({text:['— Selena: ','No sé como llegue aquí pero debo salir rapido.'], img: 'SelenaHablaSeria'});
-    outputText();
+    inputText([{text:['— Selena: ','Haa... ¿Dónde estoy?'], img: 'SelenaHablaTriste'},
+    {text:['— Selena: ','Haa... ¿Dónde232323 estoy?'], img: 'SelenaHablaTriste'},
+  {text:['— Selena: ','No sé como llegue aquí pero debo salir rapido.'], img: 'SelenaHablaSeria'}])
 
-  }, [])
+  }, []);
+
+  const count = useRef(0);
 
   function textHandler(){
 
-    outputText(true);
+    if(currentNowWriting.current){
+
+      for(let i = 0;i < arrayOfTimeOuts.current.length; i++){
+        
+        clearTimeout(arrayOfTimeOuts.current[i]);
+        
+      }
+
+      setTEXT(()=>currentText.current);
+
+      currentNowWriting.current = false
+
+      return false;
+
+    }
+
+    const Element = arrayTexts.current.shift();
+
+    Element && Element();
+
+    if(count.current === 1) {
+
+      setShowText(false);
+
+      writing.current = false;
+
+      currentText.current = '';
     
+    }
+
+    if(arrayTexts.current.length === 0) count.current = 1
+
   }
 
   return (
 
       <div className="App">
-        <Zone1 inputText={inputText} outputText={outputText}/>
+        <Zone1 inputText={inputText}/>
         <div className="texto" onClick={textHandler} style={{display:showText?'block':'none'}}>
         {TEXT}
         <div className={'foto ' + (newFoto?'boom':'')} onAnimationEnd={()=>{setNewFoto(()=>false)}} style={{backgroundImage: `url(${avatar})`} }></div>
