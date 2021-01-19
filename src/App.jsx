@@ -26,14 +26,12 @@ function App() {
   const [showText, setShowText] = useState(false);
 
   const writing = useRef(false);
-
   const arrayTexts = useRef([]);
-
   const currentText = useRef('');
-
   const currentNowWriting = useRef(false);
+  const arrayOfTimeOuts = useRef([]);
 
-  const arrayOfTimeOuts = useRef([])
+  const animationAvatarStart = useRef(false);
 
   function inputText(array){
 
@@ -51,6 +49,16 @@ function App() {
 
     function later(_DATA){
 
+      // Animation code
+      setTimeout(() => {
+        
+        setNewFoto(()=>true);
+        
+      }, 0);
+      animationAvatarStart.current = true;
+
+      // Code
+
       currentNowWriting.current = true;
 
       for(let i = 0;i < arrayOfTimeOuts.current.length; i++){
@@ -61,7 +69,7 @@ function App() {
       
       let DATA = _DATA?_DATA:{};
       
-      let { text, speed, replace, wait } = DATA;
+      let { text, speed, replace, wait, img } = DATA;
       
       if(speed === undefined) speed = 40;
       if(replace === undefined) replace = true;
@@ -69,7 +77,9 @@ function App() {
 
         setTEXT(()=>'');
 
-      }   
+      }
+
+      setAvatar(()=>Selenas[img])
 
       if(wait === undefined) wait = 0;
       
@@ -127,6 +137,8 @@ function App() {
 
               currentNowWriting.current = false;
 
+              if(!animationAvatarStart.current) setNewFoto(()=>false);
+
             }
     
           }, speed * i))
@@ -155,6 +167,8 @@ function App() {
 
     if(currentNowWriting.current){
 
+      setNewFoto(()=>false);
+
       for(let i = 0;i < arrayOfTimeOuts.current.length; i++){
         
         clearTimeout(arrayOfTimeOuts.current[i]);
@@ -168,8 +182,10 @@ function App() {
       return false;
 
     }
-
+    
     const Element = arrayTexts.current.shift();
+    
+    setNewFoto(()=>false);
 
     Element && Element();
 
@@ -193,7 +209,13 @@ function App() {
         <Zone1 inputText={inputText}/>
         <div className="texto" onClick={textHandler} style={{display:showText?'block':'none'}}>
         {TEXT}
-        <div className={'foto ' + (newFoto?'boom':'')} onAnimationEnd={()=>{setNewFoto(()=>false)}} style={{backgroundImage: `url(${avatar})`} }></div>
+        <div className={'foto ' + (newFoto?'boom':'')} onAnimationEnd={()=>{
+
+          setNewFoto(()=>false)
+
+          animationAvatarStart.current = false;
+          
+          }} style={{backgroundImage: `url(${avatar})`} }></div>
         </div>
 
       </div>
