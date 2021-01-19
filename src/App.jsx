@@ -1,9 +1,7 @@
 
 import './App.css';
 
-import { useState, useRef, useEffect } from 'react';
-
-import {useImage} from 'react-image';
+import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 
 import Zone1 from "./zona 1/Zone1";
 
@@ -13,11 +11,57 @@ const SelenaHablaTriste = 'https://i.ibb.co/P1k9ph8/Selena-Stickers5.png';
 const SelenaDesconfia = 'https://i.ibb.co/5R6tPPQ/Selena-Stickers3.png';
 const SelenaAvergonzada = 'https://i.ibb.co/L0TWpy5/Selena-Stickers10.png';
 
-const Selenas ={SelenaHabla, SelenaHablaSeria, SelenaHablaTriste, SelenaDesconfia, SelenaAvergonzada}
+const Selenas =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeria'],[SelenaHablaTriste,'SelenaHablaTriste'], [SelenaDesconfia, 'SelenaDesconfia'], [SelenaAvergonzada, 'SelenaAvergonzada']];
+
+let ObjetSelenas = {}
 
 function App() {
 
-  useImage({srcList:[SelenaHabla, SelenaHablaSeria, SelenaHablaTriste, SelenaDesconfia, SelenaAvergonzada]});
+  const [isLoad, setIsLoad] = useState(true);
+  const [countImages, setCountImages] = useState(0);
+  const [countImagesLoad, setCountImagesLoad] = useState(0);
+
+  const [onPlay, setOnplay] = useState(false);
+
+  const [showPlayScreen, setShowPlayScreen] = useState(true);
+
+  const cacheImages = async (arr) =>{
+
+    setCountImages(()=>arr.length)
+
+    const promises = await arr.map(([link, name])=>{
+  
+      return new Promise((resolve, reject)=>{
+
+        fetch(link).then(result=>{
+          
+          return result.blob();
+        }).then(result=>{
+          
+          console.log('hola');
+          setCountImagesLoad(v=>v+1);
+          resolve([name, URL.createObjectURL(result)]);
+
+        })
+
+      })
+  
+    });
+
+    
+    ObjetSelenas = Object.fromEntries(await Promise.all(promises))
+    
+    setOnplay(()=>true);
+    
+    setIsLoad(false);
+
+  }
+  
+  useLayoutEffect(()=>{
+    
+    cacheImages(Selenas);
+
+  }, []);
 
   const [TEXT, setTEXT] = useState('');
 
@@ -87,7 +131,11 @@ function App() {
 
       }
 
-      setAvatar(()=>Selenas[img])
+      setAvatar(()=>{
+
+        return ObjetSelenas[img]
+      
+      });
 
       if(wait === undefined) wait = 0;
       
@@ -161,13 +209,13 @@ function App() {
 
   }
 
-  useEffect(()=>{
+    function first(){
 
-    inputText([{text:['— Selena: ','Haaaa... ¿Dónde estoy?'], img: 'SelenaHablaTriste'},
-  {text:['— Selena: ','No sé como llegue aquí pero debo salir rapido.'], img: 'SelenaHablaSeria'},
-  {text:['[SYSTEM] ','Ayuda a Selena a salir de aquí.']}]);
+      inputText([{text:['— Selena: ','Haaaa... ¿Dónde estoy?'], img: 'SelenaHablaTriste'},
+      {text:['— Selena: ','No sé como llegue aquí pero debo salir rapido.'], img: 'SelenaHablaSeria'},
+      {text:['[SYSTEM] ','Ayuda a Selena a salir de aquí.']}]);
 
-  }, []);
+    }
 
   const count = useRef(0);
 
@@ -215,9 +263,36 @@ function App() {
 
   }
 
+  const [textPlay, setTextPlay] = useState('READY?');
+
+  if(isLoad){
+
+    return <div className="load">
+
+      <h1>Unfinished Selena Game (Protoptipe)</h1>
+
+      <span>Un juego original del estudio:</span>
+
+      <div className="logo"></div>
+
+      <p>Cargando...</p>
+
+      <div className="bar"><div style={{width:`${(100*countImagesLoad)/countImages}%`}}></div></div>
+      
+    </div>
+
+  }
+
   return (
 
       <div className="App">
+        <div className="play"style={{display:showPlayScreen?'flex':'none'}} onClick={()=>{
+
+          setShowPlayScreen(false)
+          
+          first()
+
+        }}><p hidden={!onPlay} onMouseOut={()=>setTextPlay('READY?')} onMouseOver={()=>setTextPlay('GO!')} >{textPlay}</p></div>
         <div className="inventario-icon" onClick={()=>setShowInventario(true)}></div>
         <div className="inventario" style={{display:showInventario?'block':'none'}}>
 
