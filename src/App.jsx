@@ -31,11 +31,19 @@ function App() {
   const currentNowWriting = useRef(false);
   const arrayOfTimeOuts = useRef([]);
 
+  const [inventario, setInventario] = useState({});
+
+  const [showInventario, setShowInventario] = useState(false);
+
   const animationAvatarStart = useRef(false);
+
+  const currentAnyText = useRef(false);
 
   function inputText(array){
 
     if(writing.current) return false;
+    
+    currentAnyText.current = true;
 
     writing.current = true;
 
@@ -155,9 +163,9 @@ function App() {
 
   useEffect(()=>{
 
-    inputText([{text:['— Selena: ','Haa... ¿Dónde estoy?'], img: 'SelenaHablaTriste'},
-    {text:['— Selena: ','Haa... ¿Dónde232323 estoy?'], img: 'SelenaHablaTriste'},
-  {text:['— Selena: ','No sé como llegue aquí pero debo salir rapido.'], img: 'SelenaHablaSeria'}]);
+    inputText([{text:['— Selena: ','Haaaa... ¿Dónde estoy?'], img: 'SelenaHablaTriste'},
+  {text:['— Selena: ','No sé como llegue aquí pero debo salir rapido.'], img: 'SelenaHablaSeria'},
+  {text:['[SYSTEM] ','Ayuda a Selena a salir de aquí.']}]);
 
   }, []);
 
@@ -195,6 +203,8 @@ function App() {
 
       setShowText(false);
 
+      currentAnyText.current = false
+
       writing.current = false;
 
       currentText.current = '';
@@ -208,8 +218,19 @@ function App() {
   return (
 
       <div className="App">
-        <div className="inventario-icon"></div>
-        <Zone1 inputText={inputText}/>
+        <div className="inventario-icon" onClick={()=>setShowInventario(true)}></div>
+        <div className="inventario" style={{display:showInventario?'block':'none'}}>
+
+          <p className="close" onClick={()=>setShowInventario(false)}>Cerrar</p>
+
+          <div className="container">
+
+            {Object.entries(inventario).map(e=>e[1])}
+
+          </div>
+
+        </div>
+        <Zone1 inputText={inputText} setInventario={setInventario} inventario={inventario} currentAnyText={currentAnyText}/>
         <div className="texto" onClick={textHandler} style={{display:showText?'block':'none'}}>
         {TEXT}
         <div className={'foto ' + (newFoto?'boom':'')} onAnimationEnd={()=>{

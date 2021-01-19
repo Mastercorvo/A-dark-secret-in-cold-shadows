@@ -1,17 +1,174 @@
 
 import './zone1.css';
 
-function Zone1({inputText}) {
+import { useRef, useState } from 'react';
+
+function Zone1({inputText, setInventario, currentAnyText, inventario}) {
+
+    const electricidad = useRef(false);
 
     function cajasHandler() {
-
-      inputText([{text:['— Selena: ','Encontre un destornillador pero huele feo y raro.'], img: 'SelenaHablaSeria'},
-      {text:['— Selena: ','Espera creo que sé dónde estuvo este destornillador'], img: 'SelenaAvergonzada'}
-    ])
+      
+      if(currentAnyText.current) return false;
         
+      if('destornillador' in inventario){
+
+        inputText([{text:['— Selena: ','Ya no hay nada allí.']}]);
+
+        return false;
+
+      }else{
+
+        inputText([{text:['— Selena: ','Encontre un destornillador pero huele feo y raro.'], img: 'SelenaHablaSeria'},
+        {text:['— Selena: ','Espera creo que sé dónde estuvo este destornillador *Destornillador obtenido*'], img: 'SelenaAvergonzada'}
+      ])
+
+      }
+
+    setInventario(v=>{
+
+      const copy = {...v}
+
+      copy.destornillador = <div> Destonillador </div>;
+
+      return copy
+
+    })
+
+    }
+
+    function cajaElectricaHandler(){
+
+      if(electricidad.current){
+
+        inputText([{text:['— Selena: ','Creo que ya lo repare.']}]);
+
+        return false;
+
+      }
+
+      if('destornillador' in inventario){
+
+        inputText([{text:['— Selena: ','*Abriendo caja electrica* Bien intentare conectar estos clables.']},
+        {text:['— Selena: ', 'Bien creo que ya está listo.']}]);
+
+        electricidad.current = true
+
+      } else inputText([{text:['— Selena: ','Es una caja electrica.']}]);
+
+    }
+
+    const [showPantalla, setShowPantalla] = useState(false);
+    const [nowPantalla, setNowPantalla] = useState(false);
+    const [childPantalla, setChildPantalla] = useState('');
+    const [baul, setBaul] = useState(false);
+    const [showFinal, setShowFinal] = useState(false);
+
+    function pantallaHanlder(){
+
+      if(currentAnyText.current) return false;
+
+      setShowPantalla(()=>true);
+
+    }
+
+    const electricError = useRef(false);
+
+    function errorChild(){
+
+      electricError.current = true;
+
+      setChildPantalla('ERROR: FALATA ELECTRICIDAD');
+
+    }
+    function zones(){
+
+      setNowPantalla(true);
+
+      if(electricidad.current){
+
+        setChildPantalla(<><p>Zona 1: segura</p> <p>Zona 2: Segura</p> <p>Zona 3: Señales extrañas</p> 
+        <p onClick={()=>setNowPantalla(()=>false)}>Volver</p></>)
+
+      }else errorChild()
+
+    }
+
+    function pantallaClose(){
+
+      setShowPantalla(()=>false);
+
+      setNowPantalla(()=>false);
+
+      if(electricError.current){
+
+        inputText([{text:['— Selena: ','Vere si puedo reparar la electricidad.'], img: 'SelenaHablaSeria'}])
+
+        electricError.current = false;
+
+      }
+
+    }
+
+    function openBaul(){
+
+      setNowPantalla(true);
+      
+      if(electricidad.current){
+        setBaul(v=>!v);
+
+        setChildPantalla(<><p>{!baul?'Baul Abierto': 'Baul Cerrado'}</p>
+        <p onClick={()=>setNowPantalla(()=>false)}>Volver</p></>);
+
+      }else errorChild()
+
+    }
+
+    function checkInfo(){
+
+      setNowPantalla(true);
+      
+      if(electricidad.current){
+
+        setChildPantalla(<><p>Se han reportados varios muertos. No se sabe que lo causo. Esten todos alertas.</p>
+        <p onClick={()=>setNowPantalla(()=>false)}>Volver</p></>);
+
+      }else errorChild()
+
+    }
+
+    function baulHandler(){
+
+      if(baul){
+
+        setShowFinal(true);
+
+      }else{
+
+        inputText([{text:['— Selena: ','Este baul está cerrado. Pero siento que me ayudaria mucho si lo habro.'], img: 'SelenaHablaSeria'}])
+
+      }
+
     }
 
     return (<div className="Zone1">
+
+      <div className="final" style={{display:showFinal?'flex':'none'}}>
+
+        <p>Has llegado al final de esta pequeñisima demo. Espero lo hallas disfrutado :D. ATT: Corvo</p>
+        <p>Por cierto Selena encontro un telefono para pedir ayuda y fue rescatada.</p>
+        <p>Recarga la pagina para iniciar de nuevo.</p>
+
+      </div>
+
+      <div className="pantalla" style={{display:showPantalla?'flex':'none'}}>
+
+        {nowPantalla?childPantalla:<><div onClick={zones} ><p>Zonas</p></div>
+        <div onClick={openBaul}><p>Abir baul</p></div>
+        <div onClick={checkInfo}><p>Chequeo de información</p></div></>}
+        <p className="close" onClick={pantallaClose}>Salir</p>
+
+      </div>
 
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +255,7 @@ function Zone1({inputText}) {
           strokeWidth="5.292"
           d="M0 0H508V161.018H0z"
         ></path>
-        <g id="caja-electrica" fillOpacity="1" stroke="none" strokeOpacity="1">
+        <g id="caja-electrica" onClick={cajaElectricaHandler} fillOpacity="1" stroke="none" strokeOpacity="1">
           <path
             id="rect1041"
             fill="#6e6e6e"
@@ -259,6 +416,7 @@ function Zone1({inputText}) {
         </g>
         <g
           id="pantalla"
+          onClick={pantallaHanlder}
           strokeDasharray="none"
           strokeLinecap="round"
           strokeMiterlimit="4"
@@ -350,7 +508,7 @@ function Zone1({inputText}) {
             d="M243.795 51.594h25.135"
           ></path>
         </g>
-        <g id="baul">
+        <g id="baul" onClick={baulHandler}>
           <g
             id="g1202"
             fillOpacity="1"

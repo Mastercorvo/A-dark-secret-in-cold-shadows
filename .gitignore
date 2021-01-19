@@ -6,7 +6,7 @@
 .pnp.js
 
 fotos
-*svg
+svg
 # testing
 /coverage
 
