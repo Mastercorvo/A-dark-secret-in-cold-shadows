@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/unfinished-selena-game/static/css/main.eebf751e.chunk.css",
-    "main.js": "/unfinished-selena-game/static/js/main.234d906a.chunk.js",
-    "main.js.map": "/unfinished-selena-game/static/js/main.234d906a.chunk.js.map",
+    "main.css": "/unfinished-selena-game/static/css/main.823cd3ed.chunk.css",
+    "main.js": "/unfinished-selena-game/static/js/main.1d7a7520.chunk.js",
+    "main.js.map": "/unfinished-selena-game/static/js/main.1d7a7520.chunk.js.map",
     "runtime-main.js": "/unfinished-selena-game/static/js/runtime-main.2a22e81d.js",
     "runtime-main.js.map": "/unfinished-selena-game/static/js/runtime-main.2a22e81d.js.map",
-    "static/js/2.c0a96bee.chunk.js": "/unfinished-selena-game/static/js/2.c0a96bee.chunk.js",
-    "static/js/2.c0a96bee.chunk.js.map": "/unfinished-selena-game/static/js/2.c0a96bee.chunk.js.map",
+    "static/js/2.c6da1feb.chunk.js": "/unfinished-selena-game/static/js/2.c6da1feb.chunk.js",
+    "static/js/2.c6da1feb.chunk.js.map": "/unfinished-selena-game/static/js/2.c6da1feb.chunk.js.map",
     "static/js/3.a248190f.chunk.js": "/unfinished-selena-game/static/js/3.a248190f.chunk.js",
     "static/js/3.a248190f.chunk.js.map": "/unfinished-selena-game/static/js/3.a248190f.chunk.js.map",
     "index.html": "/unfinished-selena-game/index.html",
-    "static/css/main.eebf751e.chunk.css.map": "/unfinished-selena-game/static/css/main.eebf751e.chunk.css.map",
-    "static/js/2.c0a96bee.chunk.js.LICENSE.txt": "/unfinished-selena-game/static/js/2.c0a96bee.chunk.js.LICENSE.txt",
+    "static/css/main.823cd3ed.chunk.css.map": "/unfinished-selena-game/static/css/main.823cd3ed.chunk.css.map",
+    "static/js/2.c6da1feb.chunk.js.LICENSE.txt": "/unfinished-selena-game/static/js/2.c6da1feb.chunk.js.LICENSE.txt",
     "static/media/App.css": "/unfinished-selena-game/static/media/icono de inventario.9aed8b52.svg",
     "static/media/system.f7841681.svg": "/unfinished-selena-game/static/media/system.f7841681.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.2a22e81d.js",
-    "static/js/2.c0a96bee.chunk.js",
-    "static/css/main.eebf751e.chunk.css",
-    "static/js/main.234d906a.chunk.js"
+    "static/js/2.c6da1feb.chunk.js",
+    "static/css/main.823cd3ed.chunk.css",
+    "static/js/main.1d7a7520.chunk.js"
   ]
 }
