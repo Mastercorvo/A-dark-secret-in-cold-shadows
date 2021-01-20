@@ -7,15 +7,17 @@ import ReactPlayer from 'react-player';
 
 import Zone1 from "./zona 1/Zone1";
 
-const SelenaHabla = 'https://i.ibb.co/rGM9kQR/Selena-Stickers1.png';
-const SelenaHablaSeria = 'https://i.ibb.co/9tVZNgx/Selena-Stickers2.png';
-const SelenaHablaTriste = 'https://i.ibb.co/P1k9ph8/Selena-Stickers5.png';
-const SelenaDesconfia = 'https://i.ibb.co/5R6tPPQ/Selena-Stickers3.png';
-const SelenaAvergonzada = 'https://i.ibb.co/L0TWpy5/Selena-Stickers10.png';
+import System from './system.svg';
 
-const Selenas =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeria'],[SelenaHablaTriste,'SelenaHablaTriste'], [SelenaDesconfia, 'SelenaDesconfia'], [SelenaAvergonzada, 'SelenaAvergonzada']];
+const SelenaHabla = 'https://i.ibb.co/4f6dxLH/selena1.png';
+const SelenaHablaSeria = 'https://i.ibb.co/dgP6TZY/selena10.png';
+const SelenaHablaTriste = 'https://i.ibb.co/6RWdPkq/selena7.png';
+const SelenaDesconfia = 'https://i.ibb.co/vYX4mcJ/selena9.png';
+const SelenaAvergonzada = 'https://i.ibb.co/jRD33qx/selena2.png';
 
-let ObjetSelenas = {}
+const Images =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeria'],[SelenaHablaTriste,'SelenaHablaTriste'], [SelenaDesconfia, 'SelenaDesconfia'], [SelenaAvergonzada, 'SelenaAvergonzada']];
+
+let ObjetImages = {system: System}
 
 function App() {
 
@@ -51,7 +53,7 @@ function App() {
     });
 
     
-    ObjetSelenas = Object.fromEntries(await Promise.all(promises))
+    ObjetImages = {...Object.fromEntries(await Promise.all(promises)), ...ObjetImages}
     
     setOnplay(()=>true);
     
@@ -61,7 +63,7 @@ function App() {
   
   useLayoutEffect(()=>{
     
-    cacheImages(Selenas);
+    cacheImages(Images);
 
   }, []);
 
@@ -107,7 +109,9 @@ function App() {
 
       setAvatar(()=>{
 
-        return ObjetSelenas[img]
+        if(!img) return ObjetImages['system']
+
+        return ObjetImages[img]
       
       });
 
@@ -285,8 +289,10 @@ function App() {
       <h1>Unfinished Selena Game (Protoptipe)</h1>
 
       <span>Un juego original del estudio:</span>
-
-      <div className="logo"></div>
+      <div className="container-logos">
+        <div className="logo"></div>
+        <div className="logo2"></div>
+      </div>
 
       <p>Cargando...</p>
 
@@ -299,18 +305,15 @@ function App() {
   return (
 
       <div className="App">
-        <ReactPlayer url="https://www.youtube.com/watch?v=PAb74twuW58" loop playing={!showPlayScreen && !FINAL} width="0" height="0"/>
+        {/* <ReactPlayer url="https://www.youtube.com/watch?v=PAb74twuW58" loop playing={!showPlayScreen && !FINAL} width="0" height="0"/> */}
 
         <div className="play"style={{display:showPlayScreen?'flex':'none'}} onClick={()=>{
-
-          if(onPlay && !menuMusic) return false;
 
           setShowPlayScreen(false);
           
           first();
 
-        }}><p hidden={onPlay && !menuMusic} onMouseOut={()=>setTextPlay('READY?')} onMouseOver={()=>setTextPlay('GO!')} >{textPlay}</p>
-          <ReactPlayer url="https://www.youtube.com/watch?v=0lDfQT0yiwc" loop playing={showPlayScreen && !FINAL} width="0" height="0" onStart={()=>{setMenuMusic(true)}}/>
+        }}><p hidden={!onPlay} onMouseOut={()=>setTextPlay('READY?')} onMouseOver={()=>setTextPlay('GO!')} >{textPlay}</p>
   
         </div>
         <div className="inventario-icon" onClick={()=>setShowInventario(true)}></div>
@@ -326,8 +329,7 @@ function App() {
 
         </div>
         <Zone1 setFINAL={setFINAL} inputText={inputText} setInventario={setInventario} inventario={inventario} currentAnyText={currentAnyText}/>
-        <div className="texto " onClick={textHandler} style={{display:showText?'block':'none'}}>
-        {TEXT}
+        <div className="texto " onClick={textHandler} style={{display:showText?'grid':'none'}}>
         <div className={'foto ' + (newFoto?'boom':'')} onAnimationEnd={()=>{
 
           setNewFoto(()=>false);
@@ -335,6 +337,8 @@ function App() {
           animationAvatarStart.current = false;
           
           }} style={{backgroundImage: `url(${avatar})`} }></div>
+
+          <div className="text-container"><p>{TEXT}</p></div>
 
         </div>
 
