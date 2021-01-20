@@ -9,16 +9,36 @@ import Zone1 from "./zona 1/Zone1";
 
 import System from './system.svg';
 
+// Selena
+
 const SelenaHabla = 'https://i.ibb.co/4f6dxLH/selena1.png';
 const SelenaHablaSeria = 'https://i.ibb.co/dgP6TZY/selena10.png';
 const SelenaHablaTriste = 'https://i.ibb.co/6RWdPkq/selena7.png';
 const SelenaDesconfia = 'https://i.ibb.co/vYX4mcJ/selena9.png';
 const SelenaAvergonzada = 'https://i.ibb.co/jRD33qx/selena2.png';
+const SelenaFeliz = 'https://i.ibb.co/zZPGCFG/selena3.png';
+
+// Nicolas
+
+const NicolasEncantado = 'https://i.ibb.co/Wgw9VkY/nicolas-4.png';
+const NicolasFeliz = 'https://i.ibb.co/QfGsSJV/nicolas-3.png';
+const NicolasHabla = 'https://i.ibb.co/FWYsVqC/nicolas-2.png';
+const NicolasHablaFeliz = 'https://i.ibb.co/3CkQXt1/nicolas-1.png';
+
+const Espada = 'https://i.ibb.co/Ss0yPFx/espadaselena.png';
+
+// Random
+
+const Flecha = 'https://i.ibb.co/2ZFSfRC/Chavez-Official-portrait-photo.jpg';
+
+//Escenarios
 
 const Trono = 'https://i.ibb.co/n8G4hnq/trono-full.png';
 
 const Images =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeria'],[SelenaHablaTriste,'SelenaHablaTriste'], [SelenaDesconfia, 'SelenaDesconfia'], [SelenaAvergonzada, 'SelenaAvergonzada'],
-[System, 'system'],[Trono, 'trono']];
+[System, 'system'],[Trono, 'trono'], [NicolasEncantado, 'NicolasEncantado'], [NicolasFeliz, 'NicolasFeliz'],
+[NicolasHabla, 'NicolasHabla'], [NicolasHablaFeliz,'NicolasHablaFeliz'],[SelenaFeliz, 'SelenaFeliz'],
+[Flecha, 'flecha'], [Espada, 'espada']];
 
 function App() {
 
@@ -27,10 +47,11 @@ function App() {
   const [isLoad, setIsLoad] = useState(true);
   const [countImages, setCountImages] = useState(0);
   const [countImagesLoad, setCountImagesLoad] = useState(0);
-
   const [onPlay, setOnplay] = useState(false);
-
   const [showPlayScreen, setShowPlayScreen] = useState(true);
+
+  const [inventoryDescription, setInventoryDescription] = useState('');
+  const [showInventoryDescription, setShowInventoryDescription] = useState(false);
 
   const cacheImages = async (arr) =>{
 
@@ -220,9 +241,16 @@ function App() {
 
     function first(){
 
-      inputText([{text:['— Selena: ','Haaaa... ¿Dónde estoy?'], img: 'SelenaHablaTriste'},
-      {text:['— Selena: ','No sé como llegue aquí, pero debo salir rápido.'], img: 'SelenaHablaSeria'},
-      {text:['[SYSTEM] ','Ayuda a Selena a salir de aquí.']}]);
+      addItem('flecha', 'Un comandante que estará siempre en nuestro corazones.', 'Un Chavez');
+      addItem('espada', '¡La legendaria espada de tungsteno! Este objeto no puede ser utilizado aquí.', 'Maekir');
+
+      inputText([{text:['— Nicolás:',' Es un gusto tenerte por aquí Selena, me alegra mucho que vengas a visitar el castillo. '], img: 'NicolasHabla'},
+      {text:['— Selena:',' Gracias a ti por dejarme venir.'], img: 'SelenaFeliz'},
+      {text:['— Nicolás:',' ¿Que deseas hacer por aquí? '], img: 'NicolasEncantado'},
+      {text:['— Selena:',' Vengo a pasear y conocer un poco ¿No hay problema con que camine por el castillo un poco? '], img: 'SelenaFeliz'},
+      {text:['— Nicolás:',' ¡No hay ningún problema en lo absoluto! Confío en tí pero solo no vayas a donde los guardias estén en la puerta.'], img: 'NicolasEncantado'},
+      {text:['— Nicolás:',' Si necesitas algo házmelo saber, estaré atendiendo unos asuntos. *Nicolás se va* '], img: 'NicolasHabla'},
+      {text:['— Selena:',' Bien... Ya es hora de buscar pruebas contra Nicole. '], img: 'SelenaHablaSeria'},])
 
     }
 
@@ -274,7 +302,34 @@ function App() {
 
   const [textPlay, setTextPlay] = useState('READY?');
   const [FINAL, setFINAL] = useState(false);
-  const [menuMusic, setMenuMusic] = useState(false);
+
+  function addItem(image, description, name){
+
+    function onClick(){
+
+      setInventoryDescription(description);
+
+      setShowInventoryDescription(()=>true);
+
+    }
+
+    setInventario((inv)=>{
+
+      const copy = {...inv}
+
+      copy[image] = (<div className="item" onClick={onClick}>
+
+        <div className="image" style={{backgroundImage:`url(${ObjetImages.current[image]})`}}></div>
+
+        <p className="name">{name}</p>
+
+      </div>);
+  
+      return copy;
+      
+  })
+
+  }
 
   if(isLoad){
 
@@ -299,7 +354,7 @@ function App() {
   return (
 
       <div className="App">
-        {/* <ReactPlayer url="https://www.youtube.com/watch?v=PAb74twuW58" loop playing={!showPlayScreen && !FINAL} width="0" height="0"/> */}
+        {!showPlayScreen && <ReactPlayer  url="https://www.youtube.com/watch?v=SaCheA6Njc4" loop playing={true} width="0" height="0"/>}
 
         <div className="play"style={{display:showPlayScreen?'flex':'none'}} onClick={()=>{
 
@@ -311,9 +366,18 @@ function App() {
   
         </div>
         <div className="inventario-icon" onClick={()=>setShowInventario(true)}></div>
-        <div className="inventario" style={{display:showInventario?'block':'none'}}>
+        <div className="inventario" style={{display:showInventario?'flex':'none'}}>
 
-          <p className="close" onClick={()=>setShowInventario(false)}>Cerrar</p>
+          <div className="description" style={{display:showInventoryDescription?'grid':'none'}} onClick={()=>setShowInventoryDescription(()=>false)}>
+            <div className="title"><h3>Descripción:</h3></div>
+            <p className="first">{inventoryDescription || 'Example'}</p> 
+            <p className="close">Click para cerra la descripción.</p>
+            </div>
+
+          <p className="close" onClick={()=>{
+            setShowInventario(false);
+            setShowInventoryDescription(()=>false);
+            }}>Cerrar</p>
 
           <div className="container">
 

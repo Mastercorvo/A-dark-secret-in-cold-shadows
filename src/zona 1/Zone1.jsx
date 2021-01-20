@@ -13,11 +13,8 @@ function Zone1({inputText, setInventario, currentAnyText, inventario, setFINAL, 
 
     }
 
-    const [play, setPlay] = useState(true)
-
-    return (<div className="Zone1" onClick={()=>setPlay(v=>{console.log('yes'); return !v})}>
+    return (<div className="Zone1">
       
-    {play && <ReactPlayer url="https://www.youtube.com/watch?v=OJXi5BvR_DU" width="0" height="0" playing={true}/>}
     <svg
       xmlns="http://www.w3.org/2000/svg"
       id="svg8"

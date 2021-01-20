@@ -17,6 +17,22 @@
 
 }
 
+*,
+*::before,
+*::after{
+
+  box-sizing: content-box;
+
+  word-break: keep-all;
+
+}
+
+p, h2, h3{
+
+  margin: 0;
+
+}
+
 .AA{
 
   animation-name: AAA;
@@ -197,6 +213,12 @@
 
   padding: 100px;
 
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
   box-sizing: border-box;
 
 }
@@ -245,7 +267,7 @@
 
   height: 100%;
 
-  background-color: rgb(0, 225, 255);
+  background-color: #D43C3C;
 
   border-radius: 20px;
 
@@ -255,11 +277,146 @@
 
   gap: 30px;
 
-  grid-auto-rows: 150px;
+  grid-auto-rows: 200px;
 
   padding: 30px;
 
   box-sizing: border-box;
+
+}
+
+.App .inventario > .container .item{
+
+  width: 100%;
+
+  height: 100%;
+
+  cursor: pointer;
+
+  transition: all 0.2s;
+
+  padding: 10px;
+
+  border-radius: 5px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  flex-direction: column;
+
+}
+
+.App .inventario > .container .item:hover{
+
+  transition: all 0.2s;
+
+  filter: brightness(1.1);
+
+}
+
+.App .inventario > .container .item:active{
+
+  transition: all 0.2s;
+
+  transform: scale(0.8);
+
+}
+
+.App .inventario > .container .item .image{
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+
+  background-size: 100% 100%;
+
+  width: 100%;
+
+  height: 100%;
+
+  margin-bottom: 5px;
+
+}
+
+.App .inventario > .container .item .name{
+
+  font-weight: bold;
+
+  font-family: monospace;
+
+
+  font-size: 1.5em;
+
+}
+
+.App .inventario .description{
+
+  width: 60%;
+
+  height: 300px;
+
+  background-color: grey;
+
+  color: black;
+
+  position: absolute;
+
+  bottom: 10%;
+
+  border-radius: 30px;
+
+  box-shadow: -5px 5px white;
+
+  display: grid;
+
+  grid-template-rows: min-content auto min-content;
+
+  gap: 20px;
+
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  user-select: none;
+
+  z-index: 3000;
+
+}
+
+.App .inventario .description .title{
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-size: 1.5rem;
+
+  font-family: sans-serif;
+
+  font-weight: bold;
+
+}
+
+.App .inventario .description .first{
+
+  font-family: sans-serif;
+
+  font-size: 1.5rem;
+
+  font-style: italic;
+
+}
+
+.App .inventario .description .close{
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
 
 }
 
@@ -403,7 +560,7 @@
 
   width: 100%;
 
-  word-break: break-all;
+  word-break: keep-all;
 
 }
 
