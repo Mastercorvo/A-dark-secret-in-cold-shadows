@@ -59,7 +59,7 @@
        x2="93.674599"
        y2="38.617073"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.2122016,0,0,1.2122016,-11.112598,-7.5505365)" />
+       gradientTransform="matrix(1.2122016,0,0,1.2122016,-11.112598,-7.5505363)" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient865"
@@ -69,7 +69,7 @@
        x2="93.674599"
        y2="38.617073"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.2122016,0,0,1.2122016,-42.268098,29.776644)" />
+       gradientTransform="matrix(1.2122016,0,0,1.2122016,-42.268097,29.776645)" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient865"
@@ -79,7 +79,7 @@
        x2="93.674599"
        y2="38.617073"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.2122016,0,0,1.2122016,14.736877,29.250613)" />
+       gradientTransform="matrix(1.2122016,0,0,1.2122016,14.736878,29.250614)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -111,7 +111,7 @@
      inkscape:snap-text-baseline="true"
      inkscape:snap-page="true"
      showguides="true"
-     inkscape:snap-global="false"
+     inkscape:snap-global="true"
      inkscape:window-width="1280"
      inkscape:window-height="967"
      inkscape:window-x="0"
@@ -134,7 +134,7 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:url(#linearGradient841);fill-opacity:1;stroke:#ffffff;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round"
+       style="fill:url(#linearGradient841);fill-opacity:1;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round"
        id="rect833"
        width="132.29167"
        height="132.29167"
@@ -144,7 +144,7 @@
        style="fill:url(#linearGradient859);fill-opacity:1;stroke:none;stroke-width:0.641457;stroke-linecap:round;stroke-linejoin:round"
        id="path843"
        cx="69.069496"
-       cy="39.261139"
+       cy="39.261135"
        r="33.370411" />
     <circle
        style="fill:url(#linearGradient859-7);fill-opacity:1;stroke:none;stroke-width:0.641457;stroke-linecap:round;stroke-linejoin:round"
