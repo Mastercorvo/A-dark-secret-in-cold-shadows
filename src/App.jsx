@@ -15,11 +15,14 @@ const SelenaHablaTriste = 'https://i.ibb.co/6RWdPkq/selena7.png';
 const SelenaDesconfia = 'https://i.ibb.co/vYX4mcJ/selena9.png';
 const SelenaAvergonzada = 'https://i.ibb.co/jRD33qx/selena2.png';
 
-const Images =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeria'],[SelenaHablaTriste,'SelenaHablaTriste'], [SelenaDesconfia, 'SelenaDesconfia'], [SelenaAvergonzada, 'SelenaAvergonzada']];
+const Trono = 'https://i.ibb.co/n8G4hnq/trono-full.png';
 
-let ObjetImages = {system: System}
+const Images =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeria'],[SelenaHablaTriste,'SelenaHablaTriste'], [SelenaDesconfia, 'SelenaDesconfia'], [SelenaAvergonzada, 'SelenaAvergonzada'],
+[System, 'system'],[Trono, 'trono']];
 
 function App() {
+
+  const ObjetImages = useRef({});
 
   const [isLoad, setIsLoad] = useState(true);
   const [countImages, setCountImages] = useState(0);
@@ -53,7 +56,7 @@ function App() {
     });
 
     
-    ObjetImages = {...Object.fromEntries(await Promise.all(promises)), ...ObjetImages}
+    ObjetImages.current = {...Object.fromEntries(await Promise.all(promises)), ...ObjetImages.current}
     
     setOnplay(()=>true);
     
@@ -109,9 +112,9 @@ function App() {
 
       setAvatar(()=>{
 
-        if(!img) return ObjetImages['system']
+        if(!img) return ObjetImages.current['system']
 
-        return ObjetImages[img]
+        return ObjetImages.current[img]
       
       });
 
@@ -225,16 +228,7 @@ function App() {
 
   const count = useRef(0);
 
-    const [AA, setAA] = useState(true);
-
   function textHandler(){
-
-    setAA(false);
-    setTimeout(()=>{
-
-      setAA(true);
-
-    }, 0)
 
     if(currentNowWriting.current){
 
@@ -328,7 +322,7 @@ function App() {
           </div>
 
         </div>
-        <Zone1 setFINAL={setFINAL} inputText={inputText} setInventario={setInventario} inventario={inventario} currentAnyText={currentAnyText}/>
+        <Zone1 ObjetImages={ObjetImages} setFINAL={setFINAL} inputText={inputText} setInventario={setInventario} inventario={inventario} currentAnyText={currentAnyText}/>
         <div className="texto " onClick={textHandler} style={{display:showText?'grid':'none'}}>
         <div className={'foto ' + (newFoto?'boom':'')} onAnimationEnd={()=>{
 

@@ -3,11 +3,11 @@ import './zone1.css';
 
 import { useRef, useState } from 'react';
 
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player';
 
-function Zone1({inputText, setInventario, currentAnyText, inventario, setFINAL}) {
+function Zone1({inputText, setInventario, currentAnyText, inventario, setFINAL, ObjetImages}) {
 
-    function tronoHanlder(){
+    function tronoHandler(){
 
       alert('hola')
 
@@ -18,9 +18,6 @@ function Zone1({inputText, setInventario, currentAnyText, inventario, setFINAL})
     return (<div className="Zone1" onClick={()=>setPlay(v=>{console.log('yes'); return !v})}>
       
     {play && <ReactPlayer url="https://www.youtube.com/watch?v=OJXi5BvR_DU" width="0" height="0" playing={true}/>}
-
-    <div className="backgroung" ></div>
-
     <svg
       xmlns="http://www.w3.org/2000/svg"
       id="svg8"
@@ -30,6 +27,17 @@ function Zone1({inputText, setInventario, currentAnyText, inventario, setFINAL})
       viewBox="0 0 508 285.75"
       className="main-svg"
     >
+      <image
+          id="image860"
+          width="508"
+          height="285.75"
+          x="0"
+          y="0"
+          fill="none"
+          stroke="none"
+          preserveAspectRatio="none"
+          href={ObjetImages.current['trono']}
+      ></image>
       <g
         id="layer1"
         fill="#000"
@@ -42,7 +50,7 @@ function Zone1({inputText, setInventario, currentAnyText, inventario, setFINAL})
       >
         <path
           id="trono"
-          onClick={tronoHanlder}
+          onClick={tronoHandler}
           d="M250.22 66.146l-16.253 9.071-21.166 20.789-3.024 26.836 5.67 34.018-13.23 6.048-1.512 18.899.756 33.64 16.631 5.67 44.223-.379 35.908-.756 2.646-34.018-3.78-24.946-13.607-.756 4.914-51.405-14.363-28.726-9.45.378z"
           opacity="0"
         ></path>

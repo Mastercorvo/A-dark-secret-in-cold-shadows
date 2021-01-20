@@ -22,17 +22,3 @@
     z-index: 500;
 
 }
-
-.Zone1 > .backgroung{
-
-    background-image: url(./svg/tronoFondo.svg);
-
-    width: 100%;
-
-    height: 100%;
-
-    background-size: 100% 100%;
-
-    position: absolute;
-
-}
