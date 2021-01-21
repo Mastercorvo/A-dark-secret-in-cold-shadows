@@ -5,7 +5,9 @@ import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 
 import ReactPlayer from 'react-player';
 
-import Zone1 from "./zona 1/Zone1";
+import Zone1 from './zona 1/Zone1';
+
+import Sala from './sala/Sala'
 
 import System from './system.svg';
 
@@ -25,20 +27,24 @@ const NicolasFeliz = 'https://i.ibb.co/QfGsSJV/nicolas-3.png';
 const NicolasHabla = 'https://i.ibb.co/FWYsVqC/nicolas-2.png';
 const NicolasHablaFeliz = 'https://i.ibb.co/3CkQXt1/nicolas-1.png';
 
-const Espada = 'https://i.ibb.co/Ss0yPFx/espadaselena.png';
+const Espada = 'https://i.ibb.co/r5cHjnz/espadamaekir.png';
 
 // Random
 
 const Flecha = 'https://i.ibb.co/2ZFSfRC/Chavez-Official-portrait-photo.jpg';
 
+// Objetos
+
+const Nota = 'https://i.ibb.co/pZc8WZJ/nota.png';
+
 //Escenarios
 
-const Trono = 'https://i.ibb.co/n8G4hnq/trono-full.png';
+const Trono = 'https://i.ibb.co/80TQYBT/tronofull.png';
 
 const Images =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeria'],[SelenaHablaTriste,'SelenaHablaTriste'], [SelenaDesconfia, 'SelenaDesconfia'], [SelenaAvergonzada, 'SelenaAvergonzada'],
 [System, 'system'],[Trono, 'trono'], [NicolasEncantado, 'NicolasEncantado'], [NicolasFeliz, 'NicolasFeliz'],
 [NicolasHabla, 'NicolasHabla'], [NicolasHablaFeliz,'NicolasHablaFeliz'],[SelenaFeliz, 'SelenaFeliz'],
-[Flecha, 'flecha'], [Espada, 'espada']];
+[Flecha, 'flecha'], [Espada, 'espada'], [Nota, 'nota']];
 
 function App() {
 
@@ -50,6 +56,9 @@ function App() {
   const [onPlay, setOnplay] = useState(false);
   const [showPlayScreen, setShowPlayScreen] = useState(true);
 
+  const [zonesArrow, setZonesArrow] = useState([]);
+  const [zone, setZone] = useState('trono')
+
   const [inventoryDescription, setInventoryDescription] = useState('');
   const [showInventoryDescription, setShowInventoryDescription] = useState(false);
 
@@ -59,7 +68,7 @@ function App() {
 
     const promises = await arr.map(([link, name])=>{
   
-      return new Promise((resolve, reject)=>{
+      return new Promise( resolve =>{
 
         fetch(link).then(result=>{
           
@@ -239,20 +248,20 @@ function App() {
 
   }
 
-    function first(){
+  function first(){
 
-      addItem('flecha', 'Un comandante que estará siempre en nuestro corazones.', 'Un Chavez');
-      addItem('espada', '¡La legendaria espada de tungsteno! Este objeto no puede ser utilizado aquí.', 'Maekir');
+    addItem('flecha', 'Un comandante que estará siempre en nuestro corazones.', 'Un Chavez');
+    addItem('espada', '¡La legendaria espada de tungsteno! Este objeto no puede ser utilizado aquí.', 'Maekir');
 
-      inputText([{text:['— Nicolás:',' Es un gusto tenerte por aquí Selena, me alegra mucho que vengas a visitar el castillo. '], img: 'NicolasHabla'},
-      {text:['— Selena:',' Gracias a ti por dejarme venir.'], img: 'SelenaFeliz'},
-      {text:['— Nicolás:',' ¿Que deseas hacer por aquí? '], img: 'NicolasEncantado'},
-      {text:['— Selena:',' Vengo a pasear y conocer un poco ¿No hay problema con que camine por el castillo un poco? '], img: 'SelenaFeliz'},
-      {text:['— Nicolás:',' ¡No hay ningún problema en lo absoluto! Confío en tí pero solo no vayas a donde los guardias estén en la puerta.'], img: 'NicolasEncantado'},
-      {text:['— Nicolás:',' Si necesitas algo házmelo saber, estaré atendiendo unos asuntos. *Nicolás se va* '], img: 'NicolasHabla'},
-      {text:['— Selena:',' Bien... Ya es hora de buscar pruebas contra Nicole. '], img: 'SelenaHablaSeria'},])
+    inputText([{text:['— Nicolás:',' Es un gusto tenerte por aquí Selena, me alegra mucho que vengas a visitar el castillo. '], img: 'NicolasHabla'},
+    {text:['— Selena:',' Gracias a ti por dejarme venir.'], img: 'SelenaFeliz'},
+    {text:['— Nicolás:',' ¿Que deseas hacer por aquí? '], img: 'NicolasEncantado'},
+    {text:['— Selena:',' Vengo a pasear y conocer un poco ¿No hay problema con que camine por el castillo un poco? '], img: 'SelenaFeliz'},
+    {text:['— Nicolás:',' ¡No hay ningún problema en lo absoluto! Confío en tí pero solo no vayas a donde los guardias estén en la puerta.'], img: 'NicolasEncantado'},
+    {text:['— Nicolás:',' Si necesitas algo házmelo saber, estaré atendiendo unos asuntos. *Nicolás se va* '], img: 'NicolasHabla'},
+    {text:['— Selena:',' Bien... Ya es hora de buscar pruebas contra Nicole. '], img: 'SelenaHablaSeria'},])
 
-    }
+  }
 
   const count = useRef(0);
 
@@ -303,7 +312,7 @@ function App() {
   const [textPlay, setTextPlay] = useState('READY?');
   const [FINAL, setFINAL] = useState(false);
 
-  function addItem(image, description, name){
+  function addItem(image, description, name, position){
 
     function onClick(){
 
@@ -328,6 +337,51 @@ function App() {
       return copy;
       
   })
+
+  }
+
+  function buttonPlayHandler(){
+
+    setShowPlayScreen(false);
+          
+    first();
+
+  }
+
+  function inventoryDescriptionHandler(){
+
+    setShowInventoryDescription(()=>false)
+
+  }
+
+  function closeInventoryHandler(){
+
+    setShowInventario(false);
+    setShowInventoryDescription(()=>false);
+
+  }
+
+  function showInventoryHandler(){
+
+    if(currentAnyText.current) return false;
+
+    setShowInventario(true);
+
+  }
+
+  function leftHandler() {
+
+    if(currentAnyText.current) return false;
+
+    setZone(()=>zonesArrow[0]);
+    
+  }
+
+  function rightHandler() {
+    
+    if(currentAnyText.current) return false;
+
+    setZone(()=>zonesArrow[1]);
 
   }
 
@@ -356,28 +410,22 @@ function App() {
       <div className="App">
         {!showPlayScreen && <ReactPlayer  url="https://www.youtube.com/watch?v=SaCheA6Njc4" loop playing={true} width="0" height="0"/>}
 
-        <div className="play"style={{display:showPlayScreen?'flex':'none'}} onClick={()=>{
+        <div className="left arrow" hidden={!zonesArrow[0]} onClick={leftHandler}></div>
+        <div className="right arrow" hidden={!zonesArrow[1]} onClick={rightHandler}></div>
 
-          setShowPlayScreen(false);
-          
-          first();
-
-        }}><p hidden={!onPlay} onMouseOut={()=>setTextPlay('READY?')} onMouseOver={()=>setTextPlay('GO!')} >{textPlay}</p>
+        <div className="play"style={{display:showPlayScreen?'flex':'none'}} onClick={buttonPlayHandler}><p hidden={!onPlay} onMouseOut={()=>setTextPlay('READY?')} onMouseOver={()=>setTextPlay('GO!')} >{textPlay}</p>
   
         </div>
-        <div className="inventario-icon" onClick={()=>setShowInventario(true)}></div>
+        <div className="inventario-icon" onClick={showInventoryHandler}></div>
         <div className="inventario" style={{display:showInventario?'flex':'none'}}>
 
-          <div className="description" style={{display:showInventoryDescription?'grid':'none'}} onClick={()=>setShowInventoryDescription(()=>false)}>
+          <div className="description" style={{display:showInventoryDescription?'grid':'none'}} onClick={inventoryDescriptionHandler}>
             <div className="title"><h3>Descripción:</h3></div>
             <p className="first">{inventoryDescription || 'Example'}</p> 
-            <p className="close">Click para cerra la descripción.</p>
+            <p className="close">Click para cerrar la descripción.</p>
             </div>
 
-          <p className="close" onClick={()=>{
-            setShowInventario(false);
-            setShowInventoryDescription(()=>false);
-            }}>Cerrar</p>
+          <p className="close" onClick={closeInventoryHandler}>Cerrar</p>
 
           <div className="container">
 
@@ -386,15 +434,18 @@ function App() {
           </div>
 
         </div>
-        <Zone1 ObjetImages={ObjetImages} setFINAL={setFINAL} inputText={inputText} setInventario={setInventario} inventario={inventario} currentAnyText={currentAnyText}/>
-        <div className="texto " onClick={textHandler} style={{display:showText?'grid':'none'}}>
-        <div className={'foto ' + (newFoto?'boom':'')} onAnimationEnd={()=>{
+        <Zone1 setZonesArrow={setZonesArrow} zone={zone} ObjetImages={ObjetImages} setFINAL={setFINAL} addItem={addItem} inputText={inputText} inventario={inventario} currentAnyText={currentAnyText}/>
+        <Sala setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
 
+        <div className="texto " onClick={textHandler} style={{display:showText?'grid':'none'}}>
+        <div className='foto' onAnimationEnd={()=>{
+          
           setNewFoto(()=>false);
 
           animationAvatarStart.current = false;
           
           }} style={{backgroundImage: `url(${avatar})`} }></div>
+        
 
           <div className="text-container"><p>{TEXT}</p></div>
 

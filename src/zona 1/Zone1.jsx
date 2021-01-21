@@ -1,19 +1,67 @@
 
 import './zone1.css';
 
-import { useRef, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 import ReactPlayer from 'react-player';
 
-function Zone1({inputText, setInventario, currentAnyText, inventario, setFINAL, ObjetImages}) {
+const NOTA_TEXT = 'Para que no se me olvide los números son... La cantidad de libros rojos en el librero. El segundo número de mi cumpleaños. La cantidad de árboles en el pueblo. Y un número que solo yo sé  >:)'
+
+function Zone1({inputText, addItem, currentAnyText, inventario, setFINAL, ObjetImages, zone, setZonesArrow}) {
 
     function tronoHandler(){
 
-      alert('hola')
+      inputText([{
+      text:['— Selena: ','No puedo creer que sentarse en ese trono le de tanto poder a una persona...'], img:'SelenaHablaSeria'}, 
+      {text:['— Selena: ','Ahí debería estar el papá de Nicolás y Nicole pero realmente nunca lo he visto en persona.'], img:'SelenaHablaTriste'}])
 
     }
 
+    function alfombraHandler(){
+
+      inputText([{
+        text:['— Selena: ','El suelo debajo de esta alfombra se siente hueco, revisaré más tarde.'], img:'SelenaHablaSeria'}])
+
+    }
+
+    const [showNota, setShowNota] = useState(false);
+
+    function notaHandler(){
+
+      if(currentAnyText.current) return false;
+
+      setShowNota(()=>true);
+
+    }
+
+    function closeNota(){
+
+      setShowNota(()=>false);
+
+      if(inventario['nota']) return false;
+
+      addItem('nota', NOTA_TEXT, 'Nota de la sal del trono')
+
+      inputText([{
+        text:['— Selena: ','Tal ves esta información me sirva luego.'], img:'SelenaHablaSeria'}])
+
+    }
+
+    useEffect(()=>{
+
+      if(zone === 'trono') setZonesArrow(()=>['sala', 'pueblo']);
+
+    },[zone])
+
+    if(zone !== 'trono') return false;
+
     return (<div className="Zone1">
+
+      <div className="nota" onClick={closeNota} style={{display:showNota?'flex':'none'}}>
+
+        <p>{NOTA_TEXT}</p>
+
+      </div>
       
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -53,11 +101,13 @@ function Zone1({inputText, setInventario, currentAnyText, inventario, setFINAL, 
         ></path>
         <path
           id="alfombra"
+          onClick={alfombraHandler}
           d="M316.185 285.75l-25.658-63.916-75.637.267-28.063 63.649z"
           opacity="0"
         ></path>
         <path
           id="nota"
+          onClick={notaHandler}
           d="M433.066 101.96l-3.969 1.133-1.511 7.843 2.362 7.37 4.725-.094.189-13.418z"
           opacity="0"
         ></path>
@@ -68,7 +118,6 @@ function Zone1({inputText, setInventario, currentAnyText, inventario, setFINAL, 
         ></path>
       </g>
     </svg>
-  );
 
 
     </div>)

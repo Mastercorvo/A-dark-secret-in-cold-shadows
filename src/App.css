@@ -155,6 +155,48 @@ p, h2, h3{
 
 }
 
+.App .arrow{
+
+  background-size: 100% 100%;
+
+  height: 50px;
+
+  width: 100px;
+
+  position: absolute;
+
+  z-index: 1000;
+
+  border: 10px transparent solid;
+
+  background-repeat: no-repeat;
+
+  border-radius: 5px;
+
+}
+
+.App .arrow:hover{
+
+  background-color: rgba(255, 255, 255, 0.3);
+
+}
+
+.App > .left{
+
+  background-image: url(./arrowLeft.svg);
+
+  left: 30px;
+
+}
+
+.App > .right{
+
+  background-image: url(./arrowRight.svg);
+
+  right: 30px;
+
+}
+
 .App .play{
 
   position: absolute;
@@ -207,7 +249,7 @@ p, h2, h3{
 
   height: 100%;
 
-  background-color: rgb(54, 54, 54);
+  background-color: rgba(54, 54, 54, 0.493);
 
   z-index: 3000;
 
@@ -282,6 +324,8 @@ p, h2, h3{
   padding: 30px;
 
   box-sizing: border-box;
+
+  box-shadow: -10px 10px #a02e2e;
 
 }
 
@@ -366,7 +410,7 @@ p, h2, h3{
 
   border-radius: 30px;
 
-  box-shadow: -5px 5px white;
+  box-shadow: -5px 5px rgb(75, 75, 75);
 
   display: grid;
 
