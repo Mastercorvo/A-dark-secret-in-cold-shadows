@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/unfinished-selena-game/static/css/main.bb830676.chunk.css",
-    "main.js": "/unfinished-selena-game/static/js/main.a1fff01c.chunk.js",
-    "main.js.map": "/unfinished-selena-game/static/js/main.a1fff01c.chunk.js.map",
+    "main.js": "/unfinished-selena-game/static/js/main.db9499f6.chunk.js",
+    "main.js.map": "/unfinished-selena-game/static/js/main.db9499f6.chunk.js.map",
     "runtime-main.js": "/unfinished-selena-game/static/js/runtime-main.47d81095.js",
     "runtime-main.js.map": "/unfinished-selena-game/static/js/runtime-main.47d81095.js.map",
     "static/js/2.e93373be.chunk.js": "/unfinished-selena-game/static/js/2.e93373be.chunk.js",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.47d81095.js",
     "static/js/2.e93373be.chunk.js",
     "static/css/main.bb830676.chunk.css",
-    "static/js/main.a1fff01c.chunk.js"
+    "static/js/main.db9499f6.chunk.js"
   ]
 }
