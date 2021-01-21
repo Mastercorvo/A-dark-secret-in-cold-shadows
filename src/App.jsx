@@ -70,6 +70,8 @@ function App() {
   const [inventoryDescription, setInventoryDescription] = useState('');
   const [showInventoryDescription, setShowInventoryDescription] = useState(false);
 
+  const [checkZoneMark, setCheckZoneMark] = useState('')
+
   const cacheImages = async (arr) =>{
 
     setCountImages(()=>arr.length)
@@ -376,6 +378,8 @@ function App() {
 
   }
 
+  const [showCheckZone, setShowCheckZone] = useState(false);
+
   function leftHandler() {
 
     if(currentAnyText.current) return false;
@@ -387,6 +391,16 @@ function App() {
   function rightHandler() {
 
     if(currentAnyText.current) return false;
+
+    if(zonesArrow[1] === 'pueblo'){
+
+      setCheckZoneMark(()=>'pueblo');
+
+      setShowCheckZone(()=>true);
+
+      return false;
+      
+    }
 
     setZone(()=>zonesArrow[1]);
 
@@ -416,6 +430,14 @@ function App() {
 
   })
 
+  function yesCheckZone(){
+
+    setShowCheckZone(()=>false);
+
+    setZone(()=>checkZoneMark)
+
+  }
+
   if(isLoad){
 
     return <div className="load">
@@ -439,6 +461,17 @@ function App() {
   return (
 
       <div className="App">
+
+        <div className="check-zone" style={{display:showCheckZone?'flex':'none'}}>
+
+          <div className="container">
+
+            <p className="first">Quiere ir al {checkZoneMark}</p>
+            <div className="option" onClick={yesCheckZone}><p >Sí.</p></div> <div className="option" onClick={()=>setShowCheckZone(()=>false)}><p >No.</p></div>
+
+          </div>
+
+        </div>
 
         <ReactPlayer url='https://soundcloud.com/breitkopf-haertel/1-movement-from-brandenburg-concerto-no-3-in-g-major-bwv-1048-by-johann-sebastian-bach' playing={castilloSong} width="0" height="0" onEnded={()=>{
           castilloSongElement.current.seekTo(0, 0);
@@ -481,7 +514,7 @@ function App() {
 
         </div>
         <Zone1 setZonesArrow={setZonesArrow} zone={zone} ObjetImages={ObjetImages} setFINAL={setFINAL} addItem={addItem} inputText={inputText} inventario={inventario} currentAnyText={currentAnyText}/>
-        <Sala setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
+        <Sala setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone} inputText={inputText} currentAnyText={currentAnyText}/>
         <Pueblo setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
         <div className="texto " onClick={textHandler} style={{display:showText?'grid':'none'}}>
         <div className='foto' onAnimationEnd={()=>{

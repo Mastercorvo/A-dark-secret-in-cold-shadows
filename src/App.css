@@ -33,15 +33,6 @@ p, h2, h3{
 
 }
 
-.AA{
-
-  animation-name: AAA;
-
-  animation-duration: 1s;
-
-  animation-fill-mode: forwards;
-
-}
 
 .load{
 
@@ -155,8 +146,105 @@ p, h2, h3{
 
 }
 
-.App .arrow{
+.App .check-zone{
+  
+  width: 100%;
+  
+  height: 100%;
+  
+  display: flex;
+  
+  justify-content: center;
+  
+  align-items: center;
+  
+  background-color: rgba(0, 204, 255, 0.418);
+  
+  position: absolute;
+  
+  top: 0;
+  
+  z-index: 5000;
+  
+}
 
+.App .check-zone .container{
+
+  width: 300px;
+
+  height: 200px;
+
+  background-color: black;
+
+  display: grid;
+
+  justify-items: center;
+
+  align-items: center;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  grid-area: 10px;
+
+  color: whitesmoke;
+
+  gap: 10px;
+
+  padding: 30px;
+
+  padding-left: 100px;
+  padding-right: 100px;
+
+  border-radius: 10px;
+
+  font-weight: bold;
+
+  font-size: 2em;
+
+  user-select: none;
+
+}
+
+.App .check-zone .container .first{
+
+  grid-column: 1/3;
+
+}
+
+.App .check-zone .container .option{
+
+  background-color: white;
+
+  color: black;
+
+  font-family: monospace;
+
+  width: 100%;
+
+  height: 100%;
+
+  border-radius: 5px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  cursor: pointer;
+
+}
+
+.App .check-zone .container .option:hover{
+
+  background-color: darkblue;
+
+  color: white;
+
+}
+
+.App .arrow{
+  
   background-size: 100% 100%;
 
   height: 50px;
