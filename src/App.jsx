@@ -76,12 +76,10 @@ function App() {
   
       return new Promise( resolve =>{
 
-        fetch(link, { mode: 'cors' }).then(result=>{
+        fetch(link).then(result=>{
           
           return result.blob();
         }).then(result=>{
-          
-          console.log('hola');
           setCountImagesLoad(v=>v+1);
           resolve([name, URL.createObjectURL(result)]);
 
@@ -136,7 +134,7 @@ function App() {
 
     setShowText(true);
 
-    for(let i = 0; i < array.length ;i++){
+    for(let i = 0; i < array.length; i++){
 
       arrayTexts.current[i] = ()=>later(array[i]);
 
@@ -145,6 +143,10 @@ function App() {
     function later(_DATA){
 
       // Animation code
+
+      let DATA = _DATA?_DATA:{};
+      
+      let { text, speed, replace, wait, img } = DATA;
 
       setAvatar(()=>{
 
@@ -170,10 +172,6 @@ function App() {
         clearTimeout(arrayOfTimeOuts.current[i]);
         
       }
-      
-      let DATA = _DATA?_DATA:{};
-      
-      let { text, speed, replace, wait, img } = DATA;
       
       if(speed === undefined) speed = 40;
       if(replace === undefined) replace = true;
@@ -432,8 +430,8 @@ function App() {
   return (
 
       <div className="App">
-        <ReactPlayer url='https://soundcloud.com/breitkopf-haertel/1-movement-from-brandenburg-concerto-no-3-in-g-major-bwv-1048-by-johann-sebastian-bach' playing={castilloSong} loop width="0" height="0"/>
-        <ReactPlayer url='https://soundcloud.com/video-background-music/cold-isolation-sad-dramatic-background-music-piano-and-violin' playing={afueraSong} loop width="0" height="0"/>
+        <ReactPlayer url='https://soundcloud.com/breitkopf-haertel/1-movement-from-brandenburg-concerto-no-3-in-g-major-bwv-1048-by-johann-sebastian-bach' playing={castilloSong} loop={true} width="0" height="0"/>
+        <ReactPlayer url='https://soundcloud.com/video-background-music/cold-isolation-sad-dramatic-background-music-piano-and-violin' playing={afueraSong} loop={true} width="0" height="0"/>
 
         <div className="left arrow" hidden={!zonesArrow[0]} onClick={leftHandler}></div>
         <div className="right arrow" hidden={!zonesArrow[1]} onClick={rightHandler}></div>
