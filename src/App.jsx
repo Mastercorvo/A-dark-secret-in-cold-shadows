@@ -1,7 +1,7 @@
 
 import './App.css';
 
-import { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import { useState, useRef, useEffect, useLayoutEffect, useMemo, useCallback } from 'react';
 
 import ReactPlayer from 'react-player';
 
@@ -12,6 +12,8 @@ import Sala from './sala/Sala';
 import Pueblo from './pueblo/Pueblo'
 
 import System from './system.svg';
+
+import Moment from './moment.svg';
 
 // Selena
 
@@ -50,7 +52,7 @@ const PuebloImg = 'https://i.ibb.co/GF8nNVk/pueblo-full.png';
 const Images =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeria'],[SelenaHablaTriste,'SelenaHablaTriste'], [SelenaDesconfia, 'SelenaDesconfia'], [SelenaAvergonzada, 'SelenaAvergonzada'],
 [System, 'system'],[Trono, 'trono'], [NicolasEncantado, 'NicolasEncantado'], [NicolasFeliz, 'NicolasFeliz'],
 [NicolasHabla, 'NicolasHabla'], [NicolasHablaFeliz,'NicolasHablaFeliz'],[SelenaFeliz, 'SelenaFeliz'],
-[Flecha, 'flecha'], [Espada, 'espada'], [Nota, 'nota'], [SalaImg, 'sala'], [PuebloImg, 'pueblo']];
+[Flecha, 'flecha'], [Espada, 'espada'], [Nota, 'nota'], [SalaImg, 'sala'], [PuebloImg, 'pueblo'], [Moment, 'moment']];
 
 function App() {
 
@@ -76,7 +78,7 @@ function App() {
   
       return new Promise( resolve =>{
 
-        fetch(link).then(result=>{
+        fetch(link, {method:'GET'}).then(result=>{
           
           return result.blob();
         }).then(result=>{
@@ -150,9 +152,9 @@ function App() {
 
       setAvatar(()=>{
 
-        if(!img) return ObjetImages.current['system']
+        if(!img) return ObjetImages.current['system'];
 
-        return ObjetImages.current[img]
+        return ObjetImages.current[img];
       
       });
 
@@ -262,7 +264,8 @@ function App() {
     {text:['— Nicolás:',' ¿Que deseas hacer por aquí? '], img: 'NicolasEncantado'},
     {text:['— Selena:',' Vengo a pasear y conocer un poco ¿No hay problema con que camine por el castillo un poco? '], img: 'SelenaFeliz'},
     {text:['— Nicolás:',' ¡No hay ningún problema en lo absoluto! Confío en tí pero solo no vayas a donde los guardias estén en la puerta.'], img: 'NicolasEncantado'},
-    {text:['— Nicolás:',' Si necesitas algo házmelo saber, estaré atendiendo unos asuntos. *Nicolás se va* '], img: 'NicolasHabla'},
+    {text:['— Nicolás:',' Si necesitas algo házmelo saber, estaré atendiendo unos asuntos.'], img: 'NicolasHabla'},
+    {text:['','— Nicolás se retira de la sala.'], img: 'moment'},
     {text:['— Selena:',' Bien... Ya es hora de buscar pruebas contra Nicole. '], img: 'SelenaHablaSeria'},])
 
   }
@@ -388,15 +391,21 @@ function App() {
     setZone(()=>zonesArrow[1]);
 
   }
+  
+  //Song
 
-  const [castilloSong, setCastilloSong] = useState({});
+  const [castilloSong, setCastilloSong] = useState(false);
+
+  const castilloSongElement = useRef(undefined);
 
   useEffect(()=>{
 
     if((zone === 'sala' || zone === 'trono') && !showPlayScreen) setCastilloSong(true);
       else setCastilloSong(false);
 
-  })
+  });
+
+  const afueraSongElement = useRef(undefined);
 
   const [afueraSong, setAfueraSong] = useState(false);
 
@@ -430,8 +439,22 @@ function App() {
   return (
 
       <div className="App">
-        <ReactPlayer url='https://soundcloud.com/breitkopf-haertel/1-movement-from-brandenburg-concerto-no-3-in-g-major-bwv-1048-by-johann-sebastian-bach' playing={castilloSong} loop={true} width="0" height="0"/>
-        <ReactPlayer url='https://soundcloud.com/video-background-music/cold-isolation-sad-dramatic-background-music-piano-and-violin' playing={afueraSong} loop={true} width="0" height="0"/>
+
+        <ReactPlayer url='https://soundcloud.com/breitkopf-haertel/1-movement-from-brandenburg-concerto-no-3-in-g-major-bwv-1048-by-johann-sebastian-bach' playing={castilloSong} width="0" height="0" onEnded={()=>{
+          castilloSongElement.current.seekTo(0, 0);
+
+            setCastilloSong(false)
+            setTimeout(()=>setCastilloSong(true), 0)
+          
+          }} ref={castilloSongElement}/>
+        
+        <ReactPlayer url='https://soundcloud.com/video-background-music/cold-isolation-sad-dramatic-background-music-piano-and-violin' playing={afueraSong} width="0" height="0" onEnded={()=>{
+          castilloSongElement.current.seekTo(0, 0);
+
+            setAfueraSong(false)
+            setTimeout(()=>setAfueraSong(true), 0)
+          
+          }} ref={afueraSongElement}/>
 
         <div className="left arrow" hidden={!zonesArrow[0]} onClick={leftHandler}></div>
         <div className="right arrow" hidden={!zonesArrow[1]} onClick={rightHandler}></div>

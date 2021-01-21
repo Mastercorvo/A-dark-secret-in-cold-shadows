@@ -3,9 +3,7 @@ import './zone1.css';
 
 import { useRef, useEffect, useState } from 'react';
 
-import ReactPlayer from 'react-player';
-
-const NOTA_TEXT = 'Para que no se me olvide los números son... La cantidad de libros rojos en el librero. El segundo número de mi cumpleaños. La cantidad de árboles en el pueblo. Y un número que solo yo sé  >:)'
+const NOTA_TEXT = 'Para que no se me olvide los números son... La cantidad de libros amarillos en el librero. El segundo número de mi cumpleaños. La cantidad de árboles en el pueblo. Y un número que solo yo sé  >:)'
 
 function Zone1({inputText, addItem, currentAnyText, inventario, setFINAL, ObjetImages, zone, setZonesArrow}) {
 
