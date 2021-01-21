@@ -7,7 +7,9 @@ import ReactPlayer from 'react-player';
 
 import Zone1 from './zona 1/Zone1';
 
-import Sala from './sala/Sala'
+import Sala from './sala/Sala';
+
+import Pueblo from './pueblo/Pueblo'
 
 import System from './system.svg';
 
@@ -40,11 +42,15 @@ const Nota = 'https://i.ibb.co/pZc8WZJ/nota.png';
 //Escenarios
 
 const Trono = 'https://i.ibb.co/80TQYBT/tronofull.png';
+const SalaImg = 'https://i.ibb.co/jZSXYtD/sala-de-estar-full.png';
+const PuebloImg = 'https://i.ibb.co/GF8nNVk/pueblo-full.png';
+
+//Code
 
 const Images =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeria'],[SelenaHablaTriste,'SelenaHablaTriste'], [SelenaDesconfia, 'SelenaDesconfia'], [SelenaAvergonzada, 'SelenaAvergonzada'],
 [System, 'system'],[Trono, 'trono'], [NicolasEncantado, 'NicolasEncantado'], [NicolasFeliz, 'NicolasFeliz'],
 [NicolasHabla, 'NicolasHabla'], [NicolasHablaFeliz,'NicolasHablaFeliz'],[SelenaFeliz, 'SelenaFeliz'],
-[Flecha, 'flecha'], [Espada, 'espada'], [Nota, 'nota']];
+[Flecha, 'flecha'], [Espada, 'espada'], [Nota, 'nota'], [SalaImg, 'sala'], [PuebloImg, 'pueblo']];
 
 function App() {
 
@@ -70,7 +76,7 @@ function App() {
   
       return new Promise( resolve =>{
 
-        fetch(link).then(result=>{
+        fetch(link, { mode: 'cors' }).then(result=>{
           
           return result.blob();
         }).then(result=>{
@@ -378,12 +384,30 @@ function App() {
   }
 
   function rightHandler() {
-    
+
     if(currentAnyText.current) return false;
 
     setZone(()=>zonesArrow[1]);
 
   }
+
+  const [castilloSong, setCastilloSong] = useState({});
+
+  useEffect(()=>{
+
+    if((zone === 'sala' || zone === 'trono') && !showPlayScreen) setCastilloSong(true);
+      else setCastilloSong(false);
+
+  })
+
+  const [afueraSong, setAfueraSong] = useState(false);
+
+  useEffect(()=>{
+  
+    if(zone === 'pueblo') setAfueraSong(true);
+      else setAfueraSong(false);
+
+  })
 
   if(isLoad){
 
@@ -408,7 +432,8 @@ function App() {
   return (
 
       <div className="App">
-        {!showPlayScreen && <ReactPlayer  url="https://www.youtube.com/watch?v=SaCheA6Njc4" loop playing={true} width="0" height="0"/>}
+        <ReactPlayer url='https://soundcloud.com/breitkopf-haertel/1-movement-from-brandenburg-concerto-no-3-in-g-major-bwv-1048-by-johann-sebastian-bach' playing={castilloSong} loop width="0" height="0"/>
+        <ReactPlayer url='https://soundcloud.com/video-background-music/cold-isolation-sad-dramatic-background-music-piano-and-violin' playing={afueraSong} loop width="0" height="0"/>
 
         <div className="left arrow" hidden={!zonesArrow[0]} onClick={leftHandler}></div>
         <div className="right arrow" hidden={!zonesArrow[1]} onClick={rightHandler}></div>
@@ -436,7 +461,7 @@ function App() {
         </div>
         <Zone1 setZonesArrow={setZonesArrow} zone={zone} ObjetImages={ObjetImages} setFINAL={setFINAL} addItem={addItem} inputText={inputText} inventario={inventario} currentAnyText={currentAnyText}/>
         <Sala setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
-
+        <Pueblo setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
         <div className="texto " onClick={textHandler} style={{display:showText?'grid':'none'}}>
         <div className='foto' onAnimationEnd={()=>{
           

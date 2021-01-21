@@ -19,6 +19,7 @@ function Sala({ObjetImages, zone, setZonesArrow}) {
       height="1080"
       version="1.1"
       viewBox="0 0 508 285.75"
+      className="main-svg"
     >
         <image
           id="image860"
