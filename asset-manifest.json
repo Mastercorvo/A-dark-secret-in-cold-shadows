@@ -1,25 +1,28 @@
 {
   "files": {
-    "main.css": "/unfinished-selena-game/static/css/main.7060d1eb.chunk.css",
-    "main.js": "/unfinished-selena-game/static/js/main.5da78d38.chunk.js",
-    "main.js.map": "/unfinished-selena-game/static/js/main.5da78d38.chunk.js.map",
-    "runtime-main.js": "/unfinished-selena-game/static/js/runtime-main.47d81095.js",
-    "runtime-main.js.map": "/unfinished-selena-game/static/js/runtime-main.47d81095.js.map",
+    "main.css": "/unfinished-selena-game/static/css/main.7ba6ea44.chunk.css",
+    "main.js": "/unfinished-selena-game/static/js/main.b55a2367.chunk.js",
+    "main.js.map": "/unfinished-selena-game/static/js/main.b55a2367.chunk.js.map",
+    "runtime-main.js": "/unfinished-selena-game/static/js/runtime-main.691d8e9a.js",
+    "runtime-main.js.map": "/unfinished-selena-game/static/js/runtime-main.691d8e9a.js.map",
     "static/js/2.9b97c1d3.chunk.js": "/unfinished-selena-game/static/js/2.9b97c1d3.chunk.js",
     "static/js/2.9b97c1d3.chunk.js.map": "/unfinished-selena-game/static/js/2.9b97c1d3.chunk.js.map",
-    "static/js/3.a655857a.chunk.js": "/unfinished-selena-game/static/js/3.a655857a.chunk.js",
-    "static/js/3.a655857a.chunk.js.map": "/unfinished-selena-game/static/js/3.a655857a.chunk.js.map",
+    "static/js/3.d754a474.chunk.js": "/unfinished-selena-game/static/js/3.d754a474.chunk.js",
+    "static/js/3.d754a474.chunk.js.map": "/unfinished-selena-game/static/js/3.d754a474.chunk.js.map",
     "index.html": "/unfinished-selena-game/index.html",
-    "static/css/main.7060d1eb.chunk.css.map": "/unfinished-selena-game/static/css/main.7060d1eb.chunk.css.map",
+    "static/css/main.7ba6ea44.chunk.css.map": "/unfinished-selena-game/static/css/main.7ba6ea44.chunk.css.map",
     "static/js/2.9b97c1d3.chunk.js.LICENSE.txt": "/unfinished-selena-game/static/js/2.9b97c1d3.chunk.js.LICENSE.txt",
     "static/media/App.css": "/unfinished-selena-game/static/media/icono de inventario.9aed8b52.svg",
+    "static/media/dulces.9d311a53.svg": "/unfinished-selena-game/static/media/dulces.9d311a53.svg",
+    "static/media/llave.36d47bdc.svg": "/unfinished-selena-game/static/media/llave.36d47bdc.svg",
     "static/media/moment.e3a8ad00.svg": "/unfinished-selena-game/static/media/moment.e3a8ad00.svg",
+    "static/media/nota.7e62b1af.svg": "/unfinished-selena-game/static/media/nota.7e62b1af.svg",
     "static/media/system.f7841681.svg": "/unfinished-selena-game/static/media/system.f7841681.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.47d81095.js",
+    "static/js/runtime-main.691d8e9a.js",
     "static/js/2.9b97c1d3.chunk.js",
-    "static/css/main.7060d1eb.chunk.css",
-    "static/js/main.5da78d38.chunk.js"
+    "static/css/main.7ba6ea44.chunk.css",
+    "static/js/main.b55a2367.chunk.js"
   ]
 }
