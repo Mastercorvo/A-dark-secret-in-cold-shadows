@@ -437,6 +437,11 @@ p, h2, h3{
 
   flex-direction: column;
 
+  justify-items: center;
+
+  align-items: center;
+
+
 }
 
 .App .inventario > .container .item:hover{
@@ -477,8 +482,9 @@ p, h2, h3{
 
   font-family: monospace;
 
+  text-align: center;
 
-  font-size: 1.5em;
+  font-size: 1.5rem;
 
 }
 

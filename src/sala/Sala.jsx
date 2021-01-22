@@ -2,10 +2,10 @@
 import { useEffect, useRef } from 'react';
 import './sala.css';
 
-function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText}) {
+function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addItem}) {
 
     useEffect(() => {
-        if(zone === 'sala') setZonesArrow(()=>[undefined, 'trono'])
+        if(zone === 'sala') setZonesArrow(()=>['cuarto', 'trono'])
     },[zone])
 
     function cudernoBloqueadoHandler() {
@@ -70,6 +70,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText}) {
         inputText([{text:['— Selena: ','Bien... Lo haré, espero nadie me vea.'], img: 'SelenaHablaSeria'},{text:['','— Selena revisa la papelera encontrándose con muchas hojas y facturas con nombres extraños, parecen venir de otros reinos.'], img: 'moment'},
         {text:['— Selena: ','Parecen pagos por la contratación de personas de... ¿¡Un gremio de asesinos!?'], img: 'SelenaHabla'},
         {text:['— Selena: ','Hay una factura del día que secuestraron a Nicolás... Me quedaré con esto.'], img: 'SelenaDesconfia'}])
+        addItem('nota', "Muestra un pago a varias personas de un gremio de asesinos para secuestrar a Nicolás", '"Factura misteriosa"')
           break;
       
         default:

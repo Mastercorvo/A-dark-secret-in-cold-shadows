@@ -36,9 +36,11 @@ function Zone1({inputText, addItem, currentAnyText, inventario, setFINAL, ObjetI
 
       setShowNota(()=>false);
 
-      if(inventario['nota']) return false;
+      const name = 'Nota de la sala del trono'
 
-      addItem('nota', NOTA_TEXT, 'Nota de la sal del trono')
+      if(Object.keys(inventario).includes(name)) return false;
+
+      addItem('nota', NOTA_TEXT, name)
 
       inputText([{
         text:['— Selena: ','Tal ves esta información me sirva luego.'], img:'SelenaHablaSeria'}])

@@ -15,6 +15,14 @@ import System from './system.svg';
 
 import Moment from './moment.svg';
 
+import Nota from './fotos/trono/nota.svg';
+
+import CuartoZone from './cuarto/Cuarto'
+
+import imgKey from './cuarto/svg/llave.svg';
+
+import imgCandy from './cuarto/svg/dulces.svg';
+
 // Selena
 
 const SelenaHabla = 'https://i.ibb.co/4f6dxLH/selena1.png';
@@ -39,7 +47,7 @@ const Flecha = 'https://i.ibb.co/2ZFSfRC/Chavez-Official-portrait-photo.jpg';
 
 // Objetos
 
-const Nota = 'https://i.ibb.co/pZc8WZJ/nota.png';
+
 
 //Escenarios
 
@@ -58,8 +66,8 @@ const CuartoSinNada ="https://i.ibb.co/8XFdhmP/Sin-dulce-y-sin-llave.png"
 const Images =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeria'],[SelenaHablaTriste,'SelenaHablaTriste'], [SelenaDesconfia, 'SelenaDesconfia'], [SelenaAvergonzada, 'SelenaAvergonzada'],
 [System, 'system'],[Trono, 'trono'], [NicolasEncantado, 'NicolasEncantado'], [NicolasFeliz, 'NicolasFeliz'],
 [NicolasHabla, 'NicolasHabla'], [NicolasHablaFeliz,'NicolasHablaFeliz'],[SelenaFeliz, 'SelenaFeliz'],
-[Flecha, 'flecha'], [Espada, 'espada'], [Nota, 'nota'], [SalaImg, 'sala'], [PuebloImg, 'pueblo'], [Moment, 'moment'], [PuebloSinSombraImg, 'puebloSinSombra'],[Cuarto,'cuarto'],[CuartoSinDulces, 'cuartoSinDulce'],
-[CuartoSinLlave, 'cuartoSinLlave'], [CuartoSinNada, 'cuartoSinNada']];
+[Flecha, 'flecha'], [Espada, 'espada'], [Nota, 'nota'], [SalaImg, 'sala'], [PuebloImg, 'pueblo'], [Moment, 'moment'], [PuebloSinSombraImg, 'puebloSinSombra'],[Cuarto,'cuarto'],[CuartoSinDulces, 'cuartoSinDulces'],
+[CuartoSinLlave, 'cuartoSinLlave'], [CuartoSinNada, 'cuartoSinNada'], [imgKey, 'llave'], [imgCandy, 'dulces']];
 
 function App() {
 
@@ -73,6 +81,8 @@ function App() {
 
   const [zonesArrow, setZonesArrow] = useState([]);
   const [zone, setZone] = useState('trono')
+
+  const postText = useRef([]);
 
   const [inventoryDescription, setInventoryDescription] = useState('');
   const [showInventoryDescription, setShowInventoryDescription] = useState(false);
@@ -313,6 +323,8 @@ function App() {
 
       setShowText(false);
 
+      if(postText.current[0])postText.current.shift()();
+
       currentAnyText.current = false
 
       writing.current = false;
@@ -328,7 +340,7 @@ function App() {
   const [textPlay, setTextPlay] = useState('READY?');
   const [FINAL, setFINAL] = useState(false);
 
-  function addItem(image, description, name, position){
+  function addItem(image, description, name){
 
     function onClick(){
 
@@ -342,7 +354,7 @@ function App() {
 
       const copy = {...inv}
 
-      copy[image] = (<div className="item" onClick={onClick}>
+      copy[name] = (<div className="item" onClick={onClick}>
 
         <div className="image" style={{backgroundImage:`url(${ObjetImages.current[image]})`}}></div>
 
@@ -387,9 +399,45 @@ function App() {
 
   const [showCheckZone, setShowCheckZone] = useState(false);
 
+  const firstCuarto = useRef(true);
+
+  const [textCheckZone, setTextCheckZone] = useState('');
+
   function leftHandler() {
 
     if(currentAnyText.current) return false;
+
+    if(zonesArrow[0] === 'cuarto'){
+
+      if(firstCuarto.current){
+
+        inputText([{text:['— Selena:',' L-La habitación de Nicolás... ¿Debería entrar? No me verá nadie, creo.'], img: 'SelenaHablaSeria'}]);
+
+        postText.current.push(()=>{
+
+          setTextCheckZone(()=>'¿Piensas entrar al cuarto de Nicolas?');
+
+          setCheckZoneMark(()=>'cuarto');
+
+          setShowCheckZone(()=>true);
+
+        });
+
+        firstCuarto.current = false;
+
+      }else {
+
+        setTextCheckZone(()=>'¿Piensas entrar al cuarto de Nicolas?');
+
+        setCheckZoneMark(()=>'cuarto');
+
+        setShowCheckZone(()=>true);
+
+      }
+
+      return false
+
+    }
 
     setZone(()=>zonesArrow[0]);
     
@@ -400,6 +448,8 @@ function App() {
     if(currentAnyText.current) return false;
 
     if(zonesArrow[1] === 'pueblo'){
+
+      setTextCheckZone(()=>'¿Desea ir al pueblo?');
 
       setCheckZoneMark(()=>'pueblo');
 
@@ -473,7 +523,7 @@ function App() {
 
           <div className="container">
 
-            <p className="first">Quiere ir al {checkZoneMark}</p>
+            <p className="first">{textCheckZone}</p>
             <div className="option" onClick={yesCheckZone}><p >Sí.</p></div> <div className="option" onClick={()=>setShowCheckZone(()=>false)}><p >No.</p></div>
 
           </div>
@@ -521,9 +571,10 @@ function App() {
 
         </div>
         <Zone1 setZonesArrow={setZonesArrow} zone={zone} ObjetImages={ObjetImages} setFINAL={setFINAL} addItem={addItem} inputText={inputText} inventario={inventario} currentAnyText={currentAnyText}/>
-        <Sala setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone} inputText={inputText} currentAnyText={currentAnyText}/>
+        <Sala setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone} inputText={inputText} currentAnyText={currentAnyText} addItem={addItem}/>
         <Pueblo setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
-        <div className="texto " onClick={textHandler} style={{display:showText?'grid':'none'}}>
+        <CuartoZone inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
+        <div className="texto" onClick={textHandler} style={{display:showText?'grid':'none'}}>
         <div className='foto' onAnimationEnd={()=>{
           
           setNewFoto(()=>false);
@@ -532,7 +583,6 @@ function App() {
           
           }} style={{backgroundImage: `url(${avatar})`} }></div>
         
-
           <div className="text-container"><p>{TEXT}</p></div>
 
         </div>
