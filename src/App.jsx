@@ -45,14 +45,21 @@ const Nota = 'https://i.ibb.co/pZc8WZJ/nota.png';
 
 const Trono = 'https://i.ibb.co/80TQYBT/tronofull.png';
 const SalaImg = 'https://i.ibb.co/jZSXYtD/sala-de-estar-full.png';
-const PuebloImg = 'https://i.ibb.co/GF8nNVk/pueblo-full.png';
+const PuebloImg = 'https://i.ibb.co/Wp0tN57/pueblo-orginal-con-sombra.png';
+const PuebloSinSombraImg = 'https://i.ibb.co/tHs9Mdk/pueblo-original-sin-sombra.png';
+
+const Cuarto ="https://i.ibb.co/bgpJnpg/Cuarto-Nicolas.png"
+const CuartoSinLlave ="https://i.ibb.co/FD2yYXW/Sin-llave.png"
+const CuartoSinDulces ="https://i.ibb.co/TPWzYcq/sin-dulce.png"
+const CuartoSinNada ="https://i.ibb.co/8XFdhmP/Sin-dulce-y-sin-llave.png"
 
 //Code
 
 const Images =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeria'],[SelenaHablaTriste,'SelenaHablaTriste'], [SelenaDesconfia, 'SelenaDesconfia'], [SelenaAvergonzada, 'SelenaAvergonzada'],
 [System, 'system'],[Trono, 'trono'], [NicolasEncantado, 'NicolasEncantado'], [NicolasFeliz, 'NicolasFeliz'],
 [NicolasHabla, 'NicolasHabla'], [NicolasHablaFeliz,'NicolasHablaFeliz'],[SelenaFeliz, 'SelenaFeliz'],
-[Flecha, 'flecha'], [Espada, 'espada'], [Nota, 'nota'], [SalaImg, 'sala'], [PuebloImg, 'pueblo'], [Moment, 'moment']];
+[Flecha, 'flecha'], [Espada, 'espada'], [Nota, 'nota'], [SalaImg, 'sala'], [PuebloImg, 'pueblo'], [Moment, 'moment'], [PuebloSinSombraImg, 'puebloSinSombra'],[Cuarto,'cuarto'],[CuartoSinDulces, 'cuartoSinDulce'],
+[CuartoSinLlave, 'cuartoSinLlave'], [CuartoSinNada, 'cuartoSinNada']];
 
 function App() {
 
