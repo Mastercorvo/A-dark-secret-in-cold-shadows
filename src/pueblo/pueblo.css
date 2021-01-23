@@ -11,6 +11,8 @@
 
     align-items: center;
 
+    --nubes-opacidad: 0.9;
+
 }
 
 .Pueblo .main-svg{
@@ -107,6 +109,8 @@
 
     animation-iteration-count: infinite;
 
+    opacity: var(--nubes-opacidad);
+
 }
 
 .Pueblo .nube2-prueba{
@@ -118,8 +122,7 @@
     animation-timing-function: linear;
 
     animation-iteration-count: infinite;
-
-
+    opacity: var(--nubes-opacidad);
 
 }
 
@@ -132,6 +135,7 @@
     animation-timing-function: linear;
 
     animation-iteration-count: infinite;
+    opacity: var(--nubes-opacidad);
 
 }
 
@@ -144,6 +148,7 @@
     animation-timing-function: linear;
 
     animation-iteration-count: infinite;
+    opacity: var(--nubes-opacidad);
 
 }
 
@@ -156,5 +161,6 @@
     animation-timing-function: linear;
 
     animation-iteration-count: infinite;
+    opacity: var(--nubes-opacidad);
 
 }
