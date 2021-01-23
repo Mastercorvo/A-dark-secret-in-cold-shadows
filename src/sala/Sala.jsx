@@ -1,8 +1,10 @@
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './sala.css';
 
-function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addItem, inventario,setInventario}) {
+const llaveData = ['otraLlave', 'Una llave misteriosa encontrada en la sala del castillo.', 'Una llave encontrada en la sala del castillo']
+
+function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addItem, inventario,setInventario, postText}) {
 
     useEffect(() => {
         if(zone === 'sala') setZonesArrow(()=>['cuarto', 'trono'])
@@ -38,7 +40,39 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
     }
 
+    const openChest = useRef(false);
+
     const OpenLibreria = useRef(false);
+
+    const [showChest, setShowChest] = useState(false);
+
+    const viewChest = useRef(false);
+
+    const [inputChest, setInputChest] = useState('');
+
+    function chestHandler({target}){
+
+      const value = target.value;
+
+      setInputChest(value);
+
+      if(openChest.current){
+
+        setInputChest('DESBLOQUEADO');
+
+        return false;
+
+      }else setInputChest(value);
+
+      if(value === '5'){
+
+        openChest.current = true;
+
+        setInputChest('DESBLOQUEADO');
+
+      }
+
+    }
 
     function libreria(){
 
@@ -48,11 +82,13 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
         OpenLibreria.current = true;
 
-        addItem('cofre', 'Un cofre encontrado en la sala del castillo', 'Un cofre')
-        addItem('otraLlave', 'Una llave misteriosa encontrada en la sala del castillo.', 'Una llave de la sala del castillo');
+        inputText([{text:['— Selena: ','Creo que la llave entra aquí.'], img: 'SelenaHablaSeria'}]);
 
-        inputText([{text:['— Selena: ','Creo que la llave entra aquí.'], img: 'SelenaHablaSeria'},
-        {text:['','— Selena obtiene una llave y un cofre.'], img: 'moment'}]);
+        postText.current.push(()=>{
+
+          setShowChest(true);
+
+        });
 
         setInventario(value=>{
 
@@ -67,6 +103,10 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
       }else if(!OpenLibreria.current){
 
         inputText([{text:['— Selena: ','Está cerrado... Parece que necesita una llave.'], img: 'SelenaHablaSeria'}]);
+
+      }else if(!openChest.current){
+
+        setShowChest(true);
 
       }
       
@@ -109,9 +149,95 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
     }
 
+    const viewMarkBook = useRef(false);
+
+    function libroEspecialHandler(){
+
+      if(viewMarkBook.current) return false; 
+
+      inputText([{text:['','Un libro muy interesante, trata sobre un rey antiguo y su subida al trono.'], img: 'moment'}]);
+
+      postText.current.push(()=>{
+
+        setShowCheck(true)
+
+      });
+
+    }
+
+    function yesShowMoreBook(){
+
+      setShowCheck(false);
+
+      inputText([{text:['— Selena: ','Es un separador muy elegante ¿Será de Nicole o Nicolás?'], img: 'SelenaHablaSeria'}, {text:['','Dentro puedes encontrar páginas hablando sobre dominar el reino y el regicidio para conseguirlo.'], img: 'moment'}, {text:['— Selena: ','Esperemos que nadie se haya inspirado de esto para gobernar.'], img: 'SelenaDesconfia'}, {text:['— Selena: ','Tengo un mal presentimiento.'], img: 'SelenaDesconfia'},{text:['','Separador añadido al inventario.'], img: 'moment'}]);
+
+      addItem('separador','Un separador de libros que marcaba una sección de páginas hablando sobre dominar el reino y el regicidio para conseguirlo.', 'Un separador elegante');
+
+    }
+
+    const [showCheck, setShowCheck] = useState(false);
+
     if(zone !== 'sala') return false;
 
     return (<div className="Sala">
+
+      <div className="check" style={{display:showCheck?'flex':'none'}}>
+
+        <div className="container">
+
+          <h5>Hay un separador dentro ¿deseas revisar?</h5>
+
+          <div className="option" onClick={yesShowMoreBook}><p>Sí.</p></div> <div className="option" onClick={()=>setShowCheck(false)}><p>No.</p></div>
+
+        </div>
+
+      </div>
+
+      <div className="cofre-container" style={{display: showChest?'flex':'none'}}>
+
+        <div className="close" onClick={()=>{
+          
+          setShowChest(false);
+          
+          if(!viewChest.current && !openChest.current){
+
+            inputText([{text:['— Selena: ','¿Huh? ¿Pide una contraseña? Que extraña pregunta... Tendré que solucionar el acertijo.'], img:'SelenaDesconfia'}]);
+
+            viewChest.current = true
+
+          }else if(!viewChest.current){
+
+            inputText([{text:['— Selena: ','¡Vaya! adivine la contraseña a la primera.'], img:'SelenaFeliz'}, {text:['', '— Selena ha encontrado una llave.'], img:'moment'}]);
+
+            viewChest.current = true;
+
+            addItem(...llaveData);
+
+          }else if (openChest.current){
+
+            addItem(...llaveData);
+
+            inputText([{text:['— Selena: ','¡Vaya! Lo abri.'], img:'SelenaFeliz'},
+            {text:['', '— Selena ha encontrado una llave.'], img:'moment'}]);
+
+          }
+          
+        }}>Cerra</div>
+
+        <div className="cofre" style={{backgroundImage:`url(${ObjetImages.current['cofre']})`}}>
+
+          <div className="container">
+
+            <input type="text" value={inputChest} placeholder="Ingrese la contraseña" onChange={chestHandler}/>
+
+            <p>El tiempo dará la respuesta cuando la luz en el cielo comience a esconderse.
+  La hermana mayor primero, la hermana menor al final, su canto dará la señal para la llave encontrar.</p>
+
+          </div>
+
+        </div>
+
+      </div>
 
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -200,6 +326,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
         ></path>
         <path
           id="libroEspecial"
+          onClick={libroEspecialHandler}
           fill="#000"
           d="M0 147.174v13.371l4.394-.094v-13.418z"
           opacity="0"

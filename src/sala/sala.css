@@ -22,3 +22,148 @@
     z-index: 500;
 
 }
+.Sala #libroEspecial{
+
+    cursor: pointer;
+
+}
+
+.Sala .cofre-container{
+
+    background-color: rgba(0, 0, 0, 0.521);
+
+    position: absolute;
+
+    top: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 5000;
+
+}
+
+.Sala .cofre-container .close{
+
+    background-color: red;
+
+    color: white;
+
+    position: absolute;
+
+    top: 20px;
+
+    right: 20px;
+
+    padding: 10px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    font-weight: bold;
+
+    font-family: sans-serif;
+
+    border-radius: 6px;
+
+    font-size: 2.5rem;
+
+    user-select: none;
+
+    cursor: pointer;
+
+}
+
+.Sala .cofre-container .close:hover{
+
+    background-color: white;
+
+    color: red;
+
+}
+
+.Sala .cofre-container .cofre{
+
+    width: 600px;
+
+    height: 600px;
+
+    background-size: 100% 100%;
+
+    background-repeat: no-repeat;
+
+    background-position: center;
+
+    display: flex;
+    
+    justify-content: center;
+
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.466);
+
+    border-radius: 10px;
+
+    box-shadow: -10px 10px black;
+}
+
+.Sala .cofre-container .cofre .container{
+
+    width: min-content;
+
+    position: relative;
+    
+    top: 15%;
+
+}
+
+.Sala .cofre-container .cofre .container input{
+    
+    font-size: 1.5rem;
+    
+    padding: 10px;
+    
+    background-color: black;
+    
+    color: greenyellow;
+    
+    border: none;
+    
+    outline: none;
+    
+    font-family: sans-serif;
+    
+    font-weight: bold;
+
+    margin-bottom: 20px;
+
+    border-radius: 0;
+
+    border-bottom: 1px greenyellow solid;
+    
+}
+
+.Sala .cofre-container .cofre .container p{
+
+    background-color: white;
+
+    padding: 10px;
+
+    border-radius: 4px;
+
+    font-weight: bold;
+
+    font-family: monospace;
+
+    text-align: center;
+
+    font-size: 1.3rem;
+
+}
