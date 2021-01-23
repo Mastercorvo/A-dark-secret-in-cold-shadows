@@ -47,7 +47,7 @@
     }
     100%{
 
-        transform: translateX(600px);
+        transform: translateX(600px) translateY(100px);
 
     }
 }
@@ -61,7 +61,7 @@
     }
     100%{
 
-        transform: translateX(-200px);
+        transform: translateX(-1100px);
 
     }
 
@@ -76,7 +76,7 @@
     }
     100%{
 
-        transform: translateX(-200px);
+        transform: translateX(-1100px);
 
     }
 
@@ -86,12 +86,12 @@
 
     0%{
 
-        transform: translateX(600px);
+        transform: translateX(800px);
 
     }
     100%{
 
-        transform: translateX(-200px);
+        transform: translateX(-1100px);
 
     }
 
@@ -113,11 +113,13 @@
 
     animation-name: Nube2;
 
-    animation-duration: 90s;
+    animation-duration: 85s;
     
     animation-timing-function: linear;
 
     animation-iteration-count: infinite;
+
+
 
 }
 
@@ -125,7 +127,7 @@
 
     animation-name: Nube3;
 
-    animation-duration: 70s;
+    animation-duration: 65s;
     
     animation-timing-function: linear;
 
@@ -137,7 +139,7 @@
 
     animation-name: Nube4;
 
-    animation-duration: 95s;
+    animation-duration: 85s;
     
     animation-timing-function: linear;
 
@@ -149,7 +151,7 @@
 
     animation-name: Nube5;
 
-    animation-duration: 30s;
+    animation-duration: 45s;
     
     animation-timing-function: linear;
 
