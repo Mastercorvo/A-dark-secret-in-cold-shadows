@@ -23,8 +23,136 @@
 
 }
 
-@keyframes nube1{
+@keyframes Nube1{
 
+    0%{
 
+        transform: translateX(-200px);
+
+    }
+    100%{
+
+        transform: translateX(600px);
+
+    }
+
+}
+
+@keyframes Nube2{
+
+    0%{
+
+        transform: translateX(-400px);
+
+    }
+    100%{
+
+        transform: translateX(600px);
+
+    }
+}
+
+@keyframes Nube3{
+
+    0%{
+
+        transform: translateX(600px);
+
+    }
+    100%{
+
+        transform: translateX(-200px);
+
+    }
+
+}
+
+@keyframes Nube4{
+
+    0%{
+
+        transform: translateX(1000px);
+
+    }
+    100%{
+
+        transform: translateX(-200px);
+
+    }
+
+}
+
+@keyframes Nube5{
+
+    0%{
+
+        transform: translateX(600px);
+
+    }
+    100%{
+
+        transform: translateX(-200px);
+
+    }
+
+}
+
+.Pueblo .nube1-prueba{
+
+    animation-name: Nube1;
+
+    animation-duration: 45s;
+    
+    animation-timing-function: linear;
+
+    animation-iteration-count: infinite;
+
+}
+
+.Pueblo .nube2-prueba{
+
+    animation-name: Nube2;
+
+    animation-duration: 90s;
+    
+    animation-timing-function: linear;
+
+    animation-iteration-count: infinite;
+
+}
+
+.Pueblo .nube3-prueba{
+
+    animation-name: Nube3;
+
+    animation-duration: 70s;
+    
+    animation-timing-function: linear;
+
+    animation-iteration-count: infinite;
+
+}
+
+.Pueblo .nube4-prueba{
+
+    animation-name: Nube4;
+
+    animation-duration: 95s;
+    
+    animation-timing-function: linear;
+
+    animation-iteration-count: infinite;
+
+}
+
+.Pueblo .nube5-prueba{
+
+    animation-name: Nube5;
+
+    animation-duration: 30s;
+    
+    animation-timing-function: linear;
+
+    animation-iteration-count: infinite;
 
 }

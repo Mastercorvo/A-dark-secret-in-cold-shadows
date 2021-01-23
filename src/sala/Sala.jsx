@@ -86,7 +86,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
         inputText([{text:['','— Selena abre los gabetines con la llave.'], img: 'moment'},
         {text:['','Se puede ver un pequeño cofre con una pequeña pantalla.'], img: 'moment'},
-        {text:['— Selena: ','Huh... Parece algo traído del Reino de Electricidad'], img: 'SelenaHablaSeria'}]);
+        {text:['— Selena: ','Huh... Parece algo traído del Reino de Electricidad.'], img: 'SelenaHablaSeria'}]);
 
         postText.current.push(()=>{
 
