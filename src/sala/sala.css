@@ -234,7 +234,7 @@
 
 .Sala .cofre-container .cofre .container p{
 
-    background-color: white;
+    background-color: black;
 
     padding: 10px;
 
@@ -247,5 +247,7 @@
     text-align: center;
 
     font-size: 1.3rem;
+
+    color: greenyellow;
 
 }

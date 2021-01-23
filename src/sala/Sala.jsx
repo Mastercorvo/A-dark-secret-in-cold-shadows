@@ -226,7 +226,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
           }
           
-        }}>Cerra</div>
+        }}>Cerrar</div>
 
         <div className="cofre" style={{backgroundImage:`url(${ObjetImages.current['cofre']})`}}>
 

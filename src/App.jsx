@@ -59,8 +59,8 @@ const MujerMisteriosa = 'https://i.ibb.co/6N3Pv5k/foto.png';
 
 const Trono = 'https://i.ibb.co/80TQYBT/tronofull.png';
 const SalaImg = 'https://i.ibb.co/jZSXYtD/sala-de-estar-full.png';
-const PuebloImg = 'https://i.ibb.co/Wp0tN57/pueblo-orginal-con-sombra.png';
-const PuebloSinSombraImg = 'https://i.ibb.co/tHs9Mdk/pueblo-original-sin-sombra.png';
+const PuebloImg = 'https://i.ibb.co/pbS6J14/fondo-sin-nubes.png';
+const PuebloSinSombraImg = 'https://i.ibb.co/60WL1cf/fondo-sin-nubes-y-sin-sombra-misteriosa.png';
 
 const Cuarto ="https://i.ibb.co/bgpJnpg/Cuarto-Nicolas.png"
 const CuartoSinLlave ="https://i.ibb.co/FD2yYXW/Sin-llave.png"
