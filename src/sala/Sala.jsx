@@ -149,11 +149,13 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
     }
 
-    const viewMarkBook = useRef(false);
+    const [viewMarkBook, setViewMarkBook] = useState(false);
 
     function libroEspecialHandler(){
 
-      if(viewMarkBook.current) return false; 
+      if(currentAnyText.current) return false;
+
+      if(viewMarkBook) return false; 
 
       inputText([{text:['','Un libro muy interesante, trata sobre un rey antiguo y su subida al trono.'], img: 'moment'}]);
 
@@ -167,9 +169,11 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
     function yesShowMoreBook(){
 
+      setViewMarkBook(true)
+
       setShowCheck(false);
 
-      inputText([{text:['— Selena: ','Es un separador muy elegante ¿Será de Nicole o Nicolás?'], img: 'SelenaHablaSeria'}, {text:['','Dentro puedes encontrar páginas hablando sobre dominar el reino y el regicidio para conseguirlo.'], img: 'moment'}, {text:['— Selena: ','Esperemos que nadie se haya inspirado de esto para gobernar.'], img: 'SelenaDesconfia'}, {text:['— Selena: ','Tengo un mal presentimiento.'], img: 'SelenaDesconfia'},{text:['','Separador añadido al inventario.'], img: 'moment'}]);
+      inputText([{text:['— Selena: ','Es un separador muy elegante ¿Será de Nicole o Nicolás?'], img: 'SelenaHablaSeria'}, {text:['','Dentro puedes encontrar páginas hablando sobre dominar el reino y el regicidio para conseguirlo.'], img: 'moment'}, {text:['— Selena: ','Esperemos que nadie se haya inspirado de esto para gobernar.'], img: 'SelenaDesconfia'}, {text:['— Selena: ','Tengo un mal presentimiento.'], img: 'SelenaDesconfia'},{text:['','— Separador añadido al inventario.'], img: 'moment'}]);
 
       addItem('separador','Un separador de libros que marcaba una sección de páginas hablando sobre dominar el reino y el regicidio para conseguirlo.', 'Un separador elegante');
 
@@ -185,7 +189,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
         <div className="container">
 
-          <h5>Hay un separador dentro ¿deseas revisar?</h5>
+          <h5>Hay un separador dentro ¿Deseas revisar?</h5>
 
           <div className="option" onClick={yesShowMoreBook}><p>Sí.</p></div> <div className="option" onClick={()=>setShowCheck(false)}><p>No.</p></div>
 
@@ -327,6 +331,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
         <path
           id="libroEspecial"
           onClick={libroEspecialHandler}
+          style={{display:viewMarkBook?'none':'block'}}
           fill="#000"
           d="M0 147.174v13.371l4.394-.094v-13.418z"
           opacity="0"
