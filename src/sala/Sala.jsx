@@ -74,6 +74,8 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
     }
 
+    const [showCheckChest, setShowCheckChest] = useState(false);
+
     function libreria(){
 
       if(currentAnyText.current) return false;
@@ -82,11 +84,13 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
         OpenLibreria.current = true;
 
-        inputText([{text:['— Selena: ','Creo que la llave entra aquí.'], img: 'SelenaHablaSeria'}]);
+        inputText([{text:['','— Selena abre los gabetines con la llave.'], img: 'moment'},
+        {text:['','Se puede ver un pequeño cofre con una pequeña pantalla.'], img: 'moment'},
+        {text:['— Selena: ','Huh... Parece algo traído del Reino de Electricidad'], img: 'SelenaHablaSeria'}]);
 
         postText.current.push(()=>{
 
-          setShowChest(true);
+          setShowCheckChest(true)
 
         });
 
@@ -106,7 +110,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
       }else if(!openChest.current){
 
-        setShowChest(true);
+        setShowCheckChest(true);
 
       }
       
@@ -192,6 +196,24 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
           <h5>Hay un separador dentro ¿Deseas revisar?</h5>
 
           <div className="option" onClick={yesShowMoreBook}><p>Sí.</p></div> <div className="option" onClick={()=>setShowCheck(false)}><p>No.</p></div>
+
+        </div>
+
+      </div>
+
+      <div className="check" style={{display:showCheckChest?'flex':'none'}}>
+
+        <div className="container">
+
+          <h5>¿Deseas inspeccionar el cofre?</h5>
+
+          <div className="option" onClick={()=>{
+            
+            setShowChest(true);
+
+            setShowCheckChest(false);
+            
+          }}><p>Sí.</p></div> <div className="option" onClick={()=>setShowCheckChest(false)}><p>No.</p></div>
 
         </div>
 
