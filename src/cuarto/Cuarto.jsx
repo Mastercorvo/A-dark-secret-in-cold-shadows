@@ -15,6 +15,8 @@ function Cuarto({inputText, ObjetImages, zone, setZonesArrow, currentAnyText, in
 
     const [showLlave, setShowLlave] = useState(true);
 
+    const [questChild, setQuestChild] = useState(<div></div>);
+
     function llaveHandler(){
 
       if(currentAnyText.current) return false;
@@ -27,7 +29,8 @@ function Cuarto({inputText, ObjetImages, zone, setZonesArrow, currentAnyText, in
 
       addItem('llave', 'Una llave misteriosa.', 'Llave misteriosa del cuarto de Nicolas');
 
-      inputText([{text:['','— Selena ha encontrado una llave misteriosa.'], img:'moment'}]);
+      inputText([{text:['— Selena ','Hay una llave bajo la almohada ¿Para que será?'], img:'SelenaHablaSeria'},
+      {text:['— Selena ','Es sospechoso ¿Dónde he visto una cerradura antes en este castillo?'], img:'SelenaDesconfia'}]);
 
       countObject.current += 1;
 
@@ -71,6 +74,26 @@ function Cuarto({inputText, ObjetImages, zone, setZonesArrow, currentAnyText, in
     const touchFoto = useRef(false);
 
     function fotoHandler(){
+
+      if(currentAnyText.current) return false;
+
+      setQuestChild(()=>{
+
+        return <>
+        
+        <h5>¿Quiere ver la foto?</h5>
+
+        <div className="option" onClick={()=>{
+
+          setShowFoto(true);
+
+          setShowQuestFoto(false);
+
+        }}><p>Sí.</p></div> <div className="option" onClick={()=>setShowQuestFoto(()=>false)}><p>No.</p></div>
+
+        </>
+
+      })
 
       if(touchFoto.current){
 
@@ -118,15 +141,70 @@ function Cuarto({inputText, ObjetImages, zone, setZonesArrow, currentAnyText, in
 
     function calendarioHandler(){
 
+      if(currentAnyText.current) return false;
+
       if(touchCalendario.current){
 
-        inputText([{text:['','— Está fijado el día 19 de Marzo.'], img:'moment'}]);
+        inputText([{text:['','Está fijado el día 19 de Marzo.'], img:'moment'}]);
 
       }else{
 
         touchCalendario.current = true;
 
-        inputText([{text:['— Selena: ','Es el calendario de este mes, al parecer hay un día importante para Nicolás.'], img:'SelenaHablaSeria'}, {text:['— Selena: ','Tiene el dibujo de una chica con Corona enojada ¿Debería anotarlo?'], img:'SelenaHablaSeria'}, {text:['','—  Selena anota la fecha marcada en el calendario, al parecer es el 19 de Marzo.'], img:'moment'}]);
+        inputText([{text:['— Selena: ','Es el calendario de este mes, al parecer hay un día importante para Nicolás.'], img:'SelenaHablaSeria'}, {text:['— Selena: ','Tiene el dibujo de una chica con Corona enojada ¿Debería anotarlo?'], img:'SelenaHablaSeria'}, {text:['','— Selena anota la fecha marcada en el calendario, al parecer es el 19 de Marzo.'], img:'moment'}]);
+
+      }
+
+    }
+
+    const diarioTouch = useRef(false);
+
+    function diarioHandler(){
+
+      if(currentAnyText.current) return false;
+
+      setQuestChild(()=>{
+
+        return <>
+        
+        <h5>¿Quiere ver el diario de Nicolas?</h5>
+
+        <div className="option" onClick={()=>{
+
+          setShowQuestFoto(()=>false);
+
+          if(diarioTouch.current){
+
+            inputText([{text:['','Dentro del diario habla de su día a día, la admiración que tiene por su hermana y la tristeza que le causa que sean tan distantes últimamente, que piensa preparar algo especial para su cumpleaños y que espera que puedan ser otra vez tan unidos como antes.'], img:'moment'}]);
+
+          }else{
+
+            diarioTouch.current = true;
+
+            inputText([{text:['','— Selena Lee el diario de Nicolás.'], img:'moment'}, 
+            {text:['','Dentro habla de su día a día, la admiración que tiene por su hermana y la tristeza que le causa que sean tan distantes últimamente, que piensa preparar algo especial para su cumpleaños y que espera que puedan ser otra vez tan unidos como antes.'], img:'moment'}, {text: ['— Selena: ', 'Vaya... Si tan solo supiera las verdades intenciones de su hermana.'], img:'SelenaHablaTriste'}]);
+
+          }
+
+        }}><p>Sí.</p></div> <div className="option" onClick={()=>setShowQuestFoto(()=>false)}><p>No.</p></div>
+
+        </>
+
+      });
+
+      if(diarioTouch.current){
+
+        setShowQuestFoto(true);
+
+      }else{
+
+        inputText([{text:['— Selena: ','El diario de Nicolás... no debería pero la curiosidad me gana.'], img:'SelenaAvergonzada'}]);
+
+        postText.current.push(()=>{
+
+          setShowQuestFoto(true);
+
+        });
 
       }
 
@@ -140,15 +218,7 @@ function Cuarto({inputText, ObjetImages, zone, setZonesArrow, currentAnyText, in
 
       <div className="container">
 
-        <h5>¿Quiere ver la foto?</h5>
-
-        <div className="option"><p onClick={()=>{
-
-          setShowFoto(true);
-
-          setShowQuestFoto(false);
-
-        }}>Sí.</p></div> <div className="option"><p onClick={()=>setShowQuestFoto(()=>false)}>No.</p></div>
+        {questChild}
 
       </div>
 
@@ -210,6 +280,7 @@ function Cuarto({inputText, ObjetImages, zone, setZonesArrow, currentAnyText, in
         ></path>
         <path
           id="diario"
+          onClick={diarioHandler}
           d="M60.937 212.212l-3.608-3.875H46.104l-7.617 4.142-7.216 23.92 16.303 6.415 6.682-.534 8.953-26.46z"
           opacity="0"
         ></path>

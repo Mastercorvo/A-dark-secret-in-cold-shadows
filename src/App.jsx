@@ -465,14 +465,25 @@ function App() {
   
   //Song
 
+  const [castilloSongVolumen, setCastilloSongVolumen] = useState(1);
+
   const [castilloSong, setCastilloSong] = useState(false);
 
   const castilloSongElement = useRef(undefined);
 
   useEffect(()=>{
 
-    if((zone === 'sala' || zone === 'trono') && !showPlayScreen) setCastilloSong(true);
-      else setCastilloSong(false);
+    if((zone === 'sala' || zone === 'trono' || zone === 'cuarto') && !showPlayScreen){
+
+      setCastilloSong(true);
+
+    } else setCastilloSong(false);
+
+    if(zone === 'cuarto'){
+
+      setCastilloSongVolumen(0.1);
+
+    }else setCastilloSongVolumen(1);
 
   });
 
@@ -530,7 +541,7 @@ function App() {
 
         </div>
 
-        <ReactPlayer url='https://soundcloud.com/breitkopf-haertel/1-movement-from-brandenburg-concerto-no-3-in-g-major-bwv-1048-by-johann-sebastian-bach' playing={castilloSong} width="0" height="0" onEnded={()=>{
+        <ReactPlayer volume={castilloSongVolumen} url='https://soundcloud.com/breitkopf-haertel/1-movement-from-brandenburg-concerto-no-3-in-g-major-bwv-1048-by-johann-sebastian-bach' playing={castilloSong} width="0" height="0" onEnded={()=>{
           castilloSongElement.current.seekTo(0, 0);
 
             setCastilloSong(false)

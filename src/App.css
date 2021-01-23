@@ -630,6 +630,8 @@ p, h2, h3{
 
   color: black;
 
+  box-shadow: -5px 5px rgb(184, 184, 184);
+
   border-radius: 20px;
 
   padding: 20px;
