@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react';
 import './sala.css';
 
-function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addItem}) {
+function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addItem, inventario,setInventario}) {
 
     useEffect(() => {
         if(zone === 'sala') setZonesArrow(()=>['cuarto', 'trono'])
@@ -34,13 +34,41 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
     function lapices(){
 
-      inputText([{text:['— Selena: ','Dice que es marca mongol.'], img: 'SelenaHabla'},])
+      inputText([{text:['— Selena: ','Dice que es marca mongol.'], img: 'SelenaHablaSeria'}])
 
     }
 
+    const OpenLibreria = useRef(false);
+
     function libreria(){
 
-      inputText([{text:['— Selena: ','Está cerrado... Parece que necesita una llave.'], img: 'SelenaHablaSeria'},])
+      if(currentAnyText.current) return false;
+
+      if(!OpenLibreria.current && Object.keys(inventario).includes('Llave misteriosa del cuarto de Nicolas')){
+
+        OpenLibreria.current = true;
+
+        addItem('cofre', 'Un cofre encontrado en la sala del castillo', 'Un cofre')
+        addItem('otraLlave', 'Una llave misteriosa encontrada en la sala del castillo.', 'Una llave de la sala del castillo');
+
+        inputText([{text:['— Selena: ','Creo que la llave entra aquí.'], img: 'SelenaHablaSeria'},
+        {text:['','— Selena obtiene una llave y un cofre.'], img: 'moment'}]);
+
+        setInventario(value=>{
+
+          const copy = {...value};
+
+          delete copy['Llave misteriosa del cuarto de Nicolas'];
+
+          return copy;
+
+        });
+
+      }else if(!OpenLibreria.current){
+
+        inputText([{text:['— Selena: ','Está cerrado... Parece que necesita una llave.'], img: 'SelenaHablaSeria'}]);
+
+      }
       
     }
     
@@ -164,9 +192,10 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
         ></path>
         <path
           id="libreria"
+          fill="red"
           onClick={libreria}
-          fill="#fff"
-          d="M0 67.886l108.952.339.189 177.223L0 245.621z"
+          strokeWidth="0.132"
+          d="M0 189.595l103.292.09.179 46.819L0 236.549z"
           opacity="0"
         ></path>
         <path

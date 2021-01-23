@@ -29,8 +29,8 @@ function Cuarto({inputText, ObjetImages, zone, setZonesArrow, currentAnyText, in
 
       addItem('llave', 'Una llave misteriosa.', 'Llave misteriosa del cuarto de Nicolas');
 
-      inputText([{text:['— Selena ','Hay una llave bajo la almohada ¿Para que será?'], img:'SelenaHablaSeria'},
-      {text:['— Selena ','Es sospechoso ¿Dónde he visto una cerradura antes en este castillo?'], img:'SelenaDesconfia'}]);
+      inputText([{text:['— Selena: ','Hay una llave bajo la almohada ¿Para que será?'], img:'SelenaHablaSeria'},
+      {text:['— Selena: ','Es sospechoso ¿Dónde he visto una cerradura antes en este castillo?'], img:'SelenaDesconfia'}]);
 
       countObject.current += 1;
 
