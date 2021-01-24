@@ -98,6 +98,34 @@
     }
 
 }
+@keyframes NubeAlfa{
+
+    0%{
+
+        transform: translateX(1500px);
+
+    }
+    100%{
+
+        transform: translateX(-1800px);
+
+    }
+
+}
+@keyframes NubeBeta{
+
+    0%{
+
+        transform: translateX(-1800px);
+        
+    }
+    100%{
+        
+        transform: translateX(1500px);
+
+    }
+
+}
 
 .Pueblo .nube1-prueba{
 
@@ -157,6 +185,31 @@
     animation-name: Nube5;
 
     animation-duration: 45s;
+    
+    animation-timing-function: linear;
+
+    animation-iteration-count: infinite;
+    opacity: var(--nubes-opacidad);
+
+}
+
+.Pueblo .nubeAlfa{
+
+    animation-name: NubeAlfa;
+
+    animation-duration: 55s;
+    
+    animation-timing-function: linear;
+
+    animation-iteration-count: infinite;
+    opacity: var(--nubes-opacidad);
+
+}
+.Pueblo .nubeBeta{
+
+    animation-name: NubeBeta;
+
+    animation-duration: 75s;
     
     animation-timing-function: linear;
 
