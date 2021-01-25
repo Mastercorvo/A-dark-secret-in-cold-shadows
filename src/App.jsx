@@ -84,6 +84,8 @@ function App() {
 
   const ObjetImages = useRef({});
 
+  const [actions, setActions] = useState({})
+
   const [isLoad, setIsLoad] = useState(true);
   const [countImages, setCountImages] = useState(0);
   const [countImagesLoad, setCountImagesLoad] = useState(0);
@@ -592,9 +594,9 @@ function App() {
           </div>
 
         </div>
-        <Zone1 setZonesArrow={setZonesArrow} zone={zone} ObjetImages={ObjetImages} setFINAL={setFINAL} addItem={addItem} inputText={inputText} inventario={inventario} currentAnyText={currentAnyText}/>
-        <Sala inventario={inventario} postText={postText} setInventario={setInventario} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone} inputText={inputText} currentAnyText={currentAnyText} addItem={addItem}/>
-        <Pueblo postText={postText} inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
+        <Zone1 actions={actions} setZonesArrow={setZonesArrow} zone={zone} ObjetImages={ObjetImages} setFINAL={setFINAL} addItem={addItem} inputText={inputText} inventario={inventario} currentAnyText={currentAnyText}/>
+        <Sala actions={actions} inventario={inventario} postText={postText} setInventario={setInventario} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone} inputText={inputText} currentAnyText={currentAnyText} addItem={addItem}/>
+        <Pueblo setActions={setActions} postText={postText} inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
         <CuartoZone postText={postText} inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
         <div className="texto" onClick={textHandler} style={{display:showText?'grid':'none'}}>
         <div className='foto' onAnimationEnd={()=>{

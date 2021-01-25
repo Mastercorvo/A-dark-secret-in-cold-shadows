@@ -11,10 +11,10 @@ const Rumore = ["¿Has visto al principe Nicolás? ¡Es muy agradable y carismá
 "No vuelvo a viajar al reino de agua, todo está siempre mojado", 
 "El otro día un amigo del Reino de Tierra me vino a visitar.... Rompió la mesa de la casa...", "¿Ya viste la nueva temporada de la Rosa de Elementalupe?",
 "¡AH! !ES LA ELEMENTAL DE FUEGO! Tengan cuidado, quema y corta",
-"Escuché que el reino eléctrico estaba creado un nuevo teléfono celular, yo sigo esperando a que bajen los precios del primero  :c", 
+"Escuché que el reino eléctrico estaba creado un nuevo teléfono celular, yo sigo esperando a que bajen los precios del primero", 
 "Ah... Cómo extraño a la reina... ¡Era tan hermosa! Es increíble como su hija se parece tanto a ella", "La herrería de al lado está hecha de hielo, no se le derrite con el horno?"];
 
-function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAnyText, postText}) {
+function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAnyText, postText, setActions}) {
 
 
     useEffect(() => {
@@ -150,6 +150,21 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
     function casaHandler(){
 
+      if(currentAnyText.current) return false;
+
+      const numberX = Math.floor(Math.random() * Rumore.length);
+
+      if(numberX === 1) setActions(value=>{
+
+        const copy = {...value};
+
+        copy.cuadro = 1;
+
+        return copy;
+
+      });
+
+      inputText([{text:['— Escuchado rumores: ',Rumore[numberX]], img: 'moment'}])
 
     }
 

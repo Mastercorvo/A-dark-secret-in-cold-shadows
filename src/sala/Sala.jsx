@@ -4,7 +4,7 @@ import './sala.css';
 
 const llaveData = ['otraLlave', 'Una llave misteriosa encontrada en la sala del castillo.', 'Una llave encontrada en la sala del castillo']
 
-function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addItem, inventario,setInventario, postText}) {
+function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addItem, inventario, setInventario, postText, actions}) {
 
     useEffect(() => {
         if(zone === 'sala') setZonesArrow(()=>['cuarto', 'trono'])
@@ -117,6 +117,14 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
     }
     
     function marco(){
+      
+      if('cuadro' in actions){
+
+        alert('¡ALTO AHÍ HERMANO! ¿Eri gei?');
+
+        return false;
+
+      }
       
       inputText([{text:['— Selena: ','Nicole ni siquiera se esforzó por sonreír en la foto. Que horror.'], img: 'SelenaHablaSeria'},])
       
