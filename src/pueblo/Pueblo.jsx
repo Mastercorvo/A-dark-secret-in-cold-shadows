@@ -5,7 +5,9 @@ import { useEffect, useState } from 'react';
 
 function Pueblo({ObjetImages, zone, setZonesArrow}) {
   
-  const [nube1Position, setNube1Position] = useState("matrix(.8448 0 0 .74304 50.37 155.213)");
+    const [manecilla1, setManecilla1] = useState('rotate(99deg)');
+
+
 
     useEffect(()=>{
 
@@ -24,6 +26,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow}) {
     useEffect(() => {
       if(zone === 'pueblo') setZonesArrow(()=>['trono', undefined]);
     },[zone]);
+
 
     if(zone !== 'pueblo') return false;
     
@@ -49,6 +52,170 @@ function Pueblo({ObjetImages, zone, setZonesArrow}) {
           preserveAspectRatio="none"
           href={ObjetImages.current['pueblo']}
       ></image>
+      <g id="reloj">
+          <circle
+            id="path872"
+            cx="173.208"
+            cy="81.17"
+            r="19.334"
+            fill="#fff"
+            fillOpacity="1"
+            strokeWidth="1.176"
+            opacity="1"
+          ></circle>
+          <path
+            id="path874-9"
+            fill="none"
+            stroke="#000"
+            strokeLinecap="butt"
+            strokeLinejoin="miter"
+            strokeOpacity="1"
+            strokeWidth="0.265"
+            d="M173.34 61.836v5.633"
+          ></path>
+          <path
+            id="path874"
+            fill="none"
+            stroke="#000"
+            strokeLinecap="butt"
+            strokeLinejoin="miter"
+            strokeOpacity="1"
+            strokeWidth="0.265"
+            d="M153.873 81.17h5.633"
+          ></path>
+          <path
+            id="path874-5"
+            fill="none"
+            stroke="#000"
+            strokeLinecap="butt"
+            strokeLinejoin="miter"
+            strokeOpacity="1"
+            strokeWidth="0.265"
+            d="M186.91 81.038h5.632"
+          ></path>
+          <path
+            id="path874-9-5"
+            fill="none"
+            stroke="#000"
+            strokeLinecap="butt"
+            strokeLinejoin="miter"
+            strokeOpacity="1"
+            strokeWidth="0.265"
+            d="M173.208 94.872v5.633"
+          ></path>
+          <circle
+            id="path912"
+            cx="173.208"
+            cy="81.17"
+            r="1.795"
+            fill="#000"
+            fillOpacity="1"
+            strokeWidth="0.514"
+            opacity="1"
+          ></circle>
+          <text
+            xmlSpace="preserve"
+            style={{ lineHeight: "1.25", InkscapeFontSpecification: "Roboto" }}
+            id="text874"
+            x="169.742"
+            y="72.679"
+            strokeWidth="0.153"
+            fontFamily="Roboto"
+            fontSize="6.102"
+          >
+            <tspan id="tspan872" x="169.742" y="72.679" strokeWidth="0.153">
+              XII
+            </tspan>
+          </text>
+          <text
+            xmlSpace="preserve"
+            style={{ lineHeight: "1.25", InkscapeFontSpecification: "Roboto" }}
+            id="text874-8"
+            x="170.483"
+            y="93.261"
+            strokeWidth="0.153"
+            fontFamily="Roboto"
+            fontSize="6.101"
+          >
+            <tspan id="tspan872-6" x="170.483" y="93.261" strokeWidth="0.153">
+              VI
+            </tspan>
+          </text>
+          <text
+            xmlSpace="preserve"
+            style={{ lineHeight: "1.25", InkscapeFontSpecification: "Roboto" }}
+            id="text874-8-6"
+            x="180.872"
+            y="82.961"
+            strokeWidth="0.153"
+            fontFamily="Roboto"
+            fontSize="6.101"
+          >
+            <tspan id="tspan872-6-1" x="180.872" y="82.961" strokeWidth="0.153">
+              III
+            </tspan>
+          </text>
+          <text
+            xmlSpace="preserve"
+            style={{ lineHeight: "1.25", InkscapeFontSpecification: "Roboto" }}
+            id="text874-8-0"
+            x="158.949"
+            y="82.3"
+            strokeWidth="0.153"
+            fontFamily="Roboto"
+            fontSize="6.101"
+          >
+            <tspan id="tspan872-6-4" x="158.949" y="82.3" strokeWidth="0.153">
+              IX
+            </tspan>
+          </text>
+          <path
+            id="path927"
+            fill="none"
+            stroke="#000"
+            strokeLinecap="butt"
+            strokeLinejoin="miter"
+            strokeOpacity="1"
+            strokeWidth="0.265"
+            d="M186.879 94.842l-2.805-2.805"
+          ></path>
+          <path
+            id="path927-1"
+            fill="none"
+            stroke="#000"
+            strokeLinecap="butt"
+            strokeLinejoin="miter"
+            strokeOpacity="1"
+            strokeWidth="0.265"
+            d="M186.879 67.499l-2.805 2.805"
+          ></path>
+          <path
+            id="path927-1-7"
+            fill="none"
+            stroke="#000"
+            strokeLinecap="butt"
+            strokeLinejoin="miter"
+            strokeOpacity="1"
+            strokeWidth="0.265"
+            d="M162.34 92.037l-2.804 2.805"
+          ></path>
+          <path
+            id="path927-5"
+            fill="none"
+            stroke="#000"
+            strokeLinecap="butt"
+            strokeLinejoin="miter"
+            strokeOpacity="1"
+            strokeWidth="0.265"
+            d="M162.34 70.304l-2.804-2.805"
+          ></path>
+          <foreignObject className="manecilla1-container" width="50" height="50" x="153.87337" y="61.836163">
+            <body style={{width:"38.668591px", height:"38.668468px"}}>
+              <div className="manecilla1"></div>
+              <div className="manecilla2"></div>
+            </body>
+          </foreignObject>
+        </g>
       <defs id="defs2">
         <filter
           id="filter968"
@@ -265,7 +432,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow}) {
             d="M300.87 238.881c2.864-5.532 15.874-2.268 27.591-14.741 11.718-12.473 28.727-28.726 29.104-30.238.378-1.512-6.803-4.158 5.292-3.024 12.095 1.134 63.5 20.789 75.595 10.583 12.096-10.205 9.072-10.583 13.23-10.583 4.157 0 9.071-1.512 12.095 3.78 3.024 5.291 9.45 20.788 11.717 24.946 2.268 4.158 1.89 2.646 6.804 10.961 4.913 8.316 5.67 11.718 6.803 16.253 1.134 4.536-27.592 11.34-47.247 4.914-19.655-6.425-55.184-26.08-62.366-21.167-7.181 4.914.378 7.56-19.655 17.01-20.032 9.449-20.788 16.63-35.53 10.205-14.74-6.426-19.697-8.397-22.678-12.851-2.981-4.455-3.621-.516-.756-6.048z"
           ></path>
         </g>
-        <g id="nube1" transform={nube1Position}>
+        <g id="nube1" transform="matrix(.8448 0 0 .74304 50.37 155.213)">
           <g
             id="g958"
             className="nube1-prueba"
