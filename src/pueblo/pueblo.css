@@ -267,3 +267,118 @@
     align-items: center;
 
 }
+
+.Pueblo .modal{
+
+    width: 100%;
+
+    height: 100%;
+
+    position: absolute;
+
+    top: 0;
+
+    background-color: rgba(0, 0, 0, 0.562);
+
+    z-index: 5000;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-direction: column;
+
+}
+
+.Pueblo .modal .text{
+
+    background-color: white;
+
+    width: 50%;
+
+    padding: 20px;
+
+    font-size: 2rem;
+
+    font-family: 'prueba';
+
+    border-radius: 10px;
+
+    box-shadow: -5px 5px rgb(109, 109, 109);
+
+}
+
+.Pueblo .modal .close{
+
+    margin-top: 20px;
+
+    width: max-content;
+
+    background-color: white;
+
+    padding: 5px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    border-radius: 3px;
+
+    user-select: none;
+
+    cursor: pointer;
+
+}
+
+.Pueblo .modal .check{
+
+    background-color: black;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    grid-auto-rows: 100px;
+
+    font-size: 2rem;
+    
+    padding: 20px;
+
+    border-radius: 6px;
+
+    user-select: none;
+
+    color: white;
+
+    gap: 10px;
+
+}
+
+.Pueblo .modal .check h5{
+
+    grid-column: 1/3;
+
+}
+
+.Pueblo .modal .check p{
+
+    width: 100%;
+
+    height: 100%;
+
+    cursor: pointer;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+.Pueblo .modal .check p:hover{
+
+    background-color: darkblue;
+
+}

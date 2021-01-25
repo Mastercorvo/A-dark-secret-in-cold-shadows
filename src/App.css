@@ -1,6 +1,13 @@
 
 @import './normalize.css';
 
+@font-face{
+
+  font-family: 'prueba';
+  src: url(./pueblo/Silent\ Landfield.ttf);
+
+}
+
 @keyframes AAA{
 
   from{

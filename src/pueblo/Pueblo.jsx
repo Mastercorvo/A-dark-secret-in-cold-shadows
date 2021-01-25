@@ -1,36 +1,173 @@
 
 import './pueblo.css';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
-function Pueblo({ObjetImages, zone, setZonesArrow}) {
-  
-    const [manecilla1, setManecilla1] = useState('rotate(99deg)');
+const Rumore = ["¿Has visto al principe Nicolás? ¡Es muy agradable y carismático! Pero a cambio la princesa Nicole... Me da mala espina",
+"Escuché de los guardias que la princesa guarda algo tras las pinturas del castillo.",
+"¿Esa no es una de los peligrosos Elementales de Fuego? ¿Que hace aquí? No se acerquen a ella", "¡Me gané la lotería!",
+"¿Ya viste al guardia de cabello negro y blanco? Se parece mucho a Nicolás y Nicole, jaja que loco ¿No?", 
+"El otro día ví a la princesa Nicole viajando al Reino de Electricidad ¿Crees que por fin traigan teléfonos Chiaomi al reino?",
+"No vuelvo a viajar al reino de agua, todo está siempre mojado", 
+"El otro día un amigo del Reino de Tierra me vino a visitar.... Rompió la mesa de la casa...", "¿Ya viste la nueva temporada de la Rosa de Elementalupe?",
+"¡AH! !ES LA ELEMENTAL DE FUEGO! Tengan cuidado, quema y corta",
+"Escuché que el reino eléctrico estaba creado un nuevo teléfono celular, yo sigo esperando a que bajen los precios del primero  :c", 
+"Ah... Cómo extraño a la reina... ¡Era tan hermosa! Es increíble como su hija se parece tanto a ella", "La herrería de al lado está hecha de hielo, no se le derrite con el horno?"];
 
+function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAnyText, postText}) {
 
-
-    useEffect(()=>{
-
-      // for(let i = 0;i < 500;i++){
-
-      //   setTimeout(()=>{
-  
-      //     setNube1Position(`matrix(.8448 0 0 .74304 ${50.37 + i} 155.213)`);
-  
-      //   }, 50 * i);
-  
-      // }
-
-    }, []);
 
     useEffect(() => {
       if(zone === 'pueblo') setZonesArrow(()=>['trono', undefined]);
     },[zone]);
 
+    const [modalChild, setModalChild] = useState('');
+
+    const touchIglu = useRef(false);
+
+    function igluHandler(){
+
+      if(currentAnyText.current) return false;
+
+      if(touchIglu.current) return false;
+
+      touchIglu.current = true;
+
+      inputText([{text:['','— Selena se encuentra un papel en la entrada de la herrería.'], img:'moment'},
+      {text:['', 'Es de un pedido, armas para los guardias. Tiene un sello de completado y la firma de Nicole junto a su letra con caligrafía tan delicada e inconfundible.'], img:'moment'}, {text:['— Selena: ','Selena: Oh... Me quedaré con esto..'], img: 'SelenaDesconfia'}, {text:['— Selena: ','Cada pista es útil.'], img: 'SelenaDesconfia'}]);
+
+      addItem('recibo', 'Un pedido con la firma y delicada ortografía de Nicole.', 'Recibo encontrado en la herrería');
+
+    }
+
+    const touchPersona = useRef(false);
+
+    const [showModal, setShowModal] = useState(false);
+
+    const [background, setBackground] = useState('pueblo')
+
+    function personaHandler(){
+
+      if(currentAnyText.current) return false;
+
+      if(touchPersona.current) return false;
+
+      setBackground('puebloSinSombra');
+
+      touchPersona.current = true;
+
+      inputText([{text:['— Selena: ','¡¿Que fué eso?!'], img: 'SelenaHabla'},
+      {text:['','Selena encuentra una extraña carta al inspeccionar el lugar donde estaba la sombra.'], img:'moment'},{text:['— Selena: ','¿Que es esto?'], img:'SelenaDesconfia'}]);
+
+      addItem('nota', `Tus órdenes son simples, asesinar al príncipe del reino de hielo, ese científico me debe suficiente como para que estés obligado a hacer este trabajo para mi. 
+      Debes ser discreto, no quiero que mis planes sean arruinados porque un asesino de quinta como tú sea atrapado en el acto
+      - Doncella del norte -`, 'Una carta "extraña"');
+
+      postText.current.push(()=>{
+
+        setModalChild(
+          <>
+          <p className="text">Tus órdenes son simples, asesinar al príncipe del reino de hielo, ese científico me debe suficiente como para que estés obligado a hacer este trabajo para mi. <br/> <br/>
+  
+          Debes ser discreto, no quiero que mis planes sean arruinados porque un asesino de quinta como tú sea atrapado en el acto. <br/> <br/>
+          
+          - Doncella del norte -</p>
+  
+          <p className="close">Click para cerrar</p></>)
+
+        setShowModal(true);
+
+      });
+
+    }
+
+    const touchTinto = useRef(false);
+    const getPrenda = useRef(false);
+
+    function yesInspection() {
+
+      setShowModal(false);
+
+      inputText([{text:['','— Selena inspecciona la prenda y encuentra una llave muy pequeña. '], img: 'moment'},
+      {text:['— Selena: ','Que llave tan pequeña.'], img: 'SelenaHablaSeria'}]);
+
+      addItem('smallKey', 'Una llave pequeña encontrada en la tintorería.', 'Una llave pequeña');
+
+      getPrenda.current = true;
+
+    }
+
+    function tintoreriaHandler(){
+
+      if(currentAnyText.current) return false;
+
+      if(!touchTinto.current){
+
+        touchTinto.current = true;
+
+        inputText([{text:['— Selena: ','Parece ser una tintorería. '], img: 'SelenaHablaSeria'},
+        {text:['', 'Selena entra y reconoce una prenda de Nicole.'], img: 'moment'}]);
+  
+        postText.current.push(()=>{
+  
+          setShowModal(true);
+  
+          setModalChild(<>
+          
+            <div className="check">
+  
+              <h5>¿Decides inspeccionarla? </h5>
+  
+              <p onClick={yesInspection}>Sí.</p>
+              <p onClick={()=>setShowModal(false)}>No.</p>
+  
+            </div>
+  
+          </>)
+  
+        });
+  
+      }else if(!getPrenda.current){
+
+        setShowModal(true);
+
+        setModalChild(<>
+        
+          <div className="check">
+
+            <h5>¿Deseas inspeccionar la prenda de Nicole? </h5>
+
+            <p onClick={yesInspection}>Sí.</p>
+            <p onClick={()=>setShowModal(false)}>No.</p>
+
+          </div>
+
+        </>);
+
+      }
+
+    }
+
+    function casaHandler(){
+
+
+    }
+
+    function herreriaHandler(){
+
+      inputText([{text:['— Selena: ','¡La herrería! De ahí obtuve mi grandiosa armadura~ '], img: 'SelenaFeliz'}])
+
+    }
 
     if(zone !== 'pueblo') return false;
     
     return (<div className="Pueblo">
+
+      <div className="modal" style={{display:showModal?'flex':'none'}} onClick={()=>setShowModal(false)}>
+
+        {modalChild}
+
+      </div>
 
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -50,9 +187,9 @@ function Pueblo({ObjetImages, zone, setZonesArrow}) {
           fill="none"
           stroke="none"
           preserveAspectRatio="none"
-          href={ObjetImages.current['pueblo']}
+          href={ObjetImages.current[background]}
       ></image>
-      <g id="reloj">
+      <g id="reloj" style={{userSelect:'none'}}>
           <circle
             id="path872"
             cx="173.208"
@@ -234,6 +371,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow}) {
       <g id="layer1" strokeOpacity="1">
         <path
           id="persona"
+          onClick={personaHandler}
           fill="red"
           fillOpacity="1"
           stroke="none"
@@ -245,6 +383,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow}) {
         ></path>
         <path
           id="casa5"
+          onClick={casaHandler}
           fill="#00c3ff"
           fillOpacity="1"
           stroke="none"
@@ -257,6 +396,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow}) {
         ></path>
         <path
           id="iglu"
+          onClick={igluHandler}
           fill="#fe0"
           fillOpacity="1"
           stroke="none"
@@ -269,6 +409,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow}) {
         ></path>
         <path
           id="casa1"
+          onClick={tintoreriaHandler}
           fill="#ff0300"
           fillOpacity="1"
           stroke="none"
@@ -281,6 +422,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow}) {
         ></path>
         <path
           id="casa2"
+          onClick={casaHandler}
           fill="#00c3ff"
           fillOpacity="1"
           stroke="none"
@@ -294,6 +436,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow}) {
         <path
           id="casa4"
           fill="#fa0"
+          onClick={casaHandler}
           fillOpacity="1"
           stroke="none"
           strokeLinecap="butt"
@@ -304,6 +447,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow}) {
         ></path>
         <path
           id="casa3"
+          onClick={casaHandler}
           fill="#ff0017"
           fillOpacity="1"
           stroke="none"
@@ -516,8 +660,10 @@ function Pueblo({ObjetImages, zone, setZonesArrow}) {
             d="M187.222-139.782c-1.202.535-11.76 5.212-11.76 5.212"
             filter="url(#filter968)"
           ></path>
+        </g>
           <path
           id="herreria"
+          onClick={herreriaHandler}
           fill="#ffa800"
           fillOpacity="1"
           stroke="none"
@@ -528,10 +674,8 @@ function Pueblo({ObjetImages, zone, setZonesArrow}) {
           d="M203.882 180.44l.58 5.312-1.07 5.613-5.613 1.336-9.621-.801-1.738-4.678.669-15.1-7.35-.802-1.737.668-.268-5.613 1.737.535.134.935 23.653.268.401 2.539z"
           opacity="0"
         ></path>
-        </g>
       </g>
     </svg>
-  );
 
     </div>)
 

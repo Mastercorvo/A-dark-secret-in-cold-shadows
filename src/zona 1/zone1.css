@@ -67,6 +67,8 @@
 
     align-items: center;
 
+    font-family: 'prueba';
+
 }
 
 .Zone1 .nota p::before{
