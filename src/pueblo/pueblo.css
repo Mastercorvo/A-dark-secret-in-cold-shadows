@@ -304,6 +304,8 @@
 
     font-family: 'prueba';
 
+    font-display: block;
+
     border-radius: 10px;
 
     box-shadow: -5px 5px rgb(109, 109, 109);
