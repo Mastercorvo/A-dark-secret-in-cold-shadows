@@ -1,30 +1,6 @@
 
 @import './normalize.css';
 
-@font-face{
-
-  font-family: 'prueba';
-  src: url(./pueblo/Silent\ Landfield.ttf);
-  font-display: block;
-
-}
-
-@keyframes AAA{
-
-  from{
-
-    transform: scale(0.1);
-
-  }
-
-  to{
-
-    transform: scale(1);
-
-  }
-
-}
-
 *,
 *::before,
 *::after{

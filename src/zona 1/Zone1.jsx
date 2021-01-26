@@ -59,7 +59,7 @@ function Zone1({inputText, addItem, currentAnyText, inventario, setFINAL, ObjetI
 
       <div className="nota" onClick={closeNota} style={{display:showNota?'flex':'none'}}>
 
-        <p>{NOTA_TEXT}</p>
+        <div style={{backgroundImage:`url(${ObjetImages.current['notat']})`}}></div>
 
       </div>
       

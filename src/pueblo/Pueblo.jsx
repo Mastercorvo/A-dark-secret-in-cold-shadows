@@ -3,7 +3,7 @@ import './pueblo.css';
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
-const Rumore = ["¿Has visto al principe Nicolás? ¡Es muy agradable y carismático! Pero a cambio la princesa Nicole... Me da mala espina",
+let Rumore = ["¿Has visto al principe Nicolás? ¡Es muy agradable y carismático! Pero a cambio la princesa Nicole... Me da mala espina",
 "Escuché de los guardias que la princesa guarda algo tras las pinturas del castillo.",
 "¿Esa no es una de los peligrosos Elementales de Fuego? ¿Que hace aquí? No se acerquen a ella", "¡Me gané la lotería!",
 "¿Ya viste al guardia de cabello negro y blanco? Se parece mucho a Nicolás y Nicole, jaja que loco ¿No?", 
@@ -13,6 +13,8 @@ const Rumore = ["¿Has visto al principe Nicolás? ¡Es muy agradable y carismá
 "¡AH! !ES LA ELEMENTAL DE FUEGO! Tengan cuidado, quema y corta",
 "Escuché que el reino eléctrico estaba creado un nuevo teléfono celular, yo sigo esperando a que bajen los precios del primero", 
 "Ah... Cómo extraño a la reina... ¡Era tan hermosa! Es increíble como su hija se parece tanto a ella", "La herrería de al lado está hecha de hielo, no se le derrite con el horno?"];
+
+Rumore = [...Rumore, Rumore[1], Rumore[1], Rumore[1]];
 
 function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAnyText, postText, setActions}) {
 
@@ -46,6 +48,9 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
     const [background, setBackground] = useState('pueblo')
 
+    const manecilla1 = ''
+    const manecilla2 = ''
+
     function personaHandler(){
 
       if(currentAnyText.current) return false;
@@ -67,11 +72,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
         setModalChild(
           <>
-          <p className="text">Tus órdenes son simples, asesinar al príncipe del reino de hielo, ese científico me debe suficiente como para que estés obligado a hacer este trabajo para mi. <br/> <br/>
-  
-          Debes ser discreto, no quiero que mis planes sean arruinados porque un asesino de quinta como tú sea atrapado en el acto. <br/> <br/>
-          
-          - Doncella del norte -</p>
+          <div className="text" style={{backgroundImage:`url(${ObjetImages.current['carta']})`}}></div>
   
           <p className="close">Click para cerrar</p></>)
 
@@ -363,8 +364,8 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
           ></path>
           <foreignObject className="manecilla1-container" width="50" height="50" x="153.87337" y="61.836163">
             <body style={{width:"38.668591px", height:"38.668468px"}}>
-              <div className="manecilla1"></div>
-              <div className="manecilla2"></div>
+              <div className="manecilla1" style={{transform: manecilla1}} ></div>
+              <div className="manecilla2" style={{transform: manecilla2}} ></div>
             </body>
           </foreignObject>
         </g>
