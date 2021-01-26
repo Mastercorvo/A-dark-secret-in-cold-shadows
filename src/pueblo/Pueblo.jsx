@@ -18,7 +18,6 @@ Rumore = [...Rumore, Rumore[1], Rumore[1], Rumore[1]];
 
 function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAnyText, postText, setActions}) {
 
-
     useEffect(() => {
       if(zone === 'pueblo') setZonesArrow(()=>['trono', undefined]);
     },[zone]);
@@ -48,8 +47,60 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
     const [background, setBackground] = useState('pueblo')
 
-    const manecilla1 = ''
+    const [defaultHour, setDefaultHour] = useState(360)
+    const [atardecer, setAtardecer] = useState(0)
+    const timeOutsContainer = useRef([]);
+    const [manecilla1, setManecilla1] = useState(-90);
+    const [light, setLight] = useState(0.2);
     const manecilla2 = ''
+
+    useEffect(() => {
+
+      for(let i = 0; i < timeOutsContainer.current.length;i++){
+
+        clearTimeout(timeOutsContainer.current[i]);
+
+      }
+
+      timeOutsContainer.current = [];
+
+      for(let i = 0; i < 1440; i++){
+
+        timeOutsContainer.current.push(setTimeout(()=>{
+
+          setManecilla1(()=>{
+            
+            return (i * 0.5)-90;
+          
+          });
+
+          if((i >= 360) && (i <= 480)){
+
+            setLight((i-330)*(0.8/120));
+            console.log(1);
+
+          }
+
+          if((i >= 1080) && (i <= 1200)){
+
+            setAtardecer((i-1080) * (1/120))
+            console.log(2);
+          }
+
+          if(i >= 1200 && i <= 1260){
+
+            setAtardecer(1-((i-1200) * (1/60)))
+
+            setLight(1-((i-1200)*(0.8/60)));
+            console.log(3);
+          }
+
+          }, i * (0.04166 * 1000))
+        );
+
+      }
+
+    }, [defaultHour]);
 
     function personaHandler(){
 
@@ -177,14 +228,37 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
     if(zone !== 'pueblo') return false;
     
-    return (<div className="Pueblo">
+    return (<div className="Pueblo" style={{filter:`brightness(${light})`}}>
 
       <div className="modal" style={{display:showModal?'flex':'none'}} onClick={()=>setShowModal(false)}>
 
         {modalChild}
 
       </div>
-
+    <div className="background">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        id="svg8"
+        width="1920"
+        height="1080"
+        version="1.1"
+        viewBox="0 0 508 285.75"
+        className="main-svg"
+      >
+        <image
+              id="image860"
+              width="508"
+              height="285.75"
+              x="0"
+              y="0"
+              fill="none"
+              stroke="none"
+              preserveAspectRatio="none"
+              href={ObjetImages.current[background]}
+        ></image>
+      </svg>
+      <div className="background-2" style={{opacity:`${atardecer}`}}></div>
+    </div>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       id="svg8"
@@ -194,17 +268,6 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
       viewBox="0 0 508 285.75"
       className="main-svg"
     >
-      <image
-          id="image860"
-          width="508"
-          height="285.75"
-          x="0"
-          y="0"
-          fill="none"
-          stroke="none"
-          preserveAspectRatio="none"
-          href={ObjetImages.current[background]}
-      ></image>
       <g id="reloj" style={{userSelect:'none'}}>
           <circle
             id="path872"
@@ -364,26 +427,11 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
           ></path>
           <foreignObject className="manecilla1-container" width="50" height="50" x="153.87337" y="61.836163">
             <body style={{width:"38.668591px", height:"38.668468px"}}>
-              <div className="manecilla1" style={{transform: manecilla1}} ></div>
+              <div className="manecilla1" style={{transform: `translateX(3px) rotate(${manecilla1}deg)`}} ></div>
               <div className="manecilla2" style={{transform: manecilla2}} ></div>
             </body>
           </foreignObject>
         </g>
-      <defs id="defs2">
-        <filter
-          id="filter968"
-          width="1"
-          height="1"
-          x="0"
-          y="0"
-          colorInterpolationFilters="sRGB"
-        >
-          <feGaussianBlur
-            id="feGaussianBlur970"
-            stdDeviation="0"
-          ></feGaussianBlur>
-        </filter>
-      </defs>
       <g id="layer1" strokeOpacity="1">
         <path
           id="persona"
