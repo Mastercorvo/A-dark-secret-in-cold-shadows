@@ -47,6 +47,8 @@
     top: 0;
     
     z-index: 5000;
+
+    flex-direction: column;
     
 }
 
@@ -107,6 +109,35 @@
 .Sala .check .container .option:hover{
 
     background-color: darkblue;
+
+}
+
+.Sala .check .foto{
+
+    width: 500px;
+
+    height: 500px;
+
+    background-size: 100% 100%;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+}
+
+.Sala .check > .close{
+
+    margin-top: 20px;
+
+    background-color: white;
+
+    padding: 10px;
+
+    padding-left: 30px;
+    padding-right: 30px;
+
+    border-radius: 4px;
 
 }
 

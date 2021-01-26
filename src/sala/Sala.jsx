@@ -10,10 +10,39 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
         if(zone === 'sala') setZonesArrow(()=>['cuarto', 'trono'])
     },[zone])
 
-    function cudernoBloqueadoHandler() {
-      
-      inputText([{text:['— Selena: ','Parece ser un mini diario... Tiene un candado especial y ahora... ¿Donde estará la llave?'], img: 'SelenaHablaSeria'},])
+    const [showFoto, setShowFoto] = useState(false);
 
+    const touchFoto = useRef(false);
+
+    function cuadernoBloqueadoHandler() {
+
+      if(currentAnyText.current) return false;
+
+      if(touchFoto.current){
+
+        setShowFoto(true);
+
+        return false;
+
+      }
+
+      if(Object.keys(inventario).includes('Una llave pequeña')){
+
+        inputText([{text:['','— Selena abre el candado del pequeño diario con la pequeña llave.'], img: 'moment'},
+        {text:['','Se encuentra escrituras sin sentido y repentinamente ve una fotografía que llama su atención.'], img: 'moment'}]);
+
+        postText.current.push(()=>{
+
+          setShowFoto(true);
+
+        })
+        
+      }else{
+
+        inputText([{text:['— Selena: ','Parece ser un mini diario... Tiene un candado especial y ahora... ¿Donde estará la llave?'], img: 'SelenaHablaSeria'},])
+
+      }
+      
     }
 
     function ventana(){
@@ -209,6 +238,34 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
       </div>
 
+      <div className="check" style={{display:showFoto?'flex':'none'}} onClick={()=>{
+
+        setShowFoto(false);
+
+        if(touchFoto.current){
+
+          inputText([{text:['— Selena: ','La pagina 7 está marcada con un circulo rojo.'], img: 'SelenaHablaSeria'}]);
+
+          return false
+
+        }
+
+        touchFoto.current = true;
+
+        inputText([{text:['— Selena: ','Espera... ¿¡ESTÁ NO ES ESA NIÑA QUE NOS INTENTÓ MATAR A MÍ Y A VULNOS HACE UNOS DÍAS?!'], img: 'SelenaAvergonzada'},
+        {text:['— Selena: ','¿Que hace una foto de ella aquí? Que miedo.'], img: 'SelenaHablaSeria'},
+        {text:['','— Selena revisa por detrás de la fotografía.'], img: 'moment'},
+        {text:['— Selena: ','Dice... "Reino de Electricidad, barrios bajo" y lo que creo que es un número de teléfono".'], img: 'SelenaDesconfia'}, 
+        {text:['— Selena: ','¿Hm? La página de la hoja parece estar marcada con un circulo rojo... La página 7... Extraño.'], img: 'SelenaHablaSeria'}]);
+
+      }}>
+
+        <div className="foto" style={{backgroundImage:`url(${ObjetImages.current['chica']})`}} ></div>
+
+        <p className="close">Click para cerrar</p>
+
+      </div>
+
       <div className="check" style={{display:showCheckChest?'flex':'none'}}>
 
         <div className="container">
@@ -367,8 +424,8 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
           opacity="0"
         ></path>
         <path
-          id="cudernoBloqueado"
-          onClick={cudernoBloqueadoHandler}
+          id="cuadernoBloqueado"
+          onClick={cuadernoBloqueadoHandler}
           fill="#000"
           d="M294.999 204.06c-1.136-.534-14.032 0-14.032 0l-.2 6.548-1.337 1.003.134 3.207.869.4.133 8.553 14.566.134z"
           opacity="0"
