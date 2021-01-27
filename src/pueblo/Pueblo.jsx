@@ -5,6 +5,8 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import Reloj from './svg/reloj.svg';
 
+import ReactPlayer from 'react-player';
+
 let Rumore = ["¿Has visto al principe Nicolás? ¡Es muy agradable y carismático! Pero a cambio la princesa Nicole... Me da mala espina.",
 "Escuché de los guardias que la princesa guarda algo tras las pinturas del castillo.",
 "¿Esa no es una de los peligrosos Elementales de Fuego? ¿Que hace aquí? No se acerquen a ella", "¡Me gané la lotería!",
@@ -14,11 +16,10 @@ let Rumore = ["¿Has visto al principe Nicolás? ¡Es muy agradable y carismáti
 "El otro día un amigo del Reino de Tierra me vino a visitar.... Rompió la mesa de la casa...", "¿Ya viste la nueva temporada de la Rosa de Elementalupe?",
 "¡AH! !ES LA ELEMENTAL DE FUEGO! Tengan cuidado, quema y corta",
 "Escuché que el reino eléctrico estaba creado un nuevo teléfono celular, yo sigo esperando a que bajen los precios del primero.", 
-"Ah... Cómo extraño a la reina... ¡Era tan hermosa! Es increíble como su hija se parece tanto a ella", "La herrería de al lado está hecha de hielo, no se le derrite con el horno?"];
+"Ah... Cómo extraño a la reina... ¡Era tan hermosa! Es increíble como su hija se parece tanto a ella", "La herrería de al lado está hecha de hielo, no se le derrite con el horno?",
+"¡Me encanta oír las campanas de la tarde! Hmmm... ¿Cuantas veces es que sonaban?"];
 
 Rumore = [...Rumore, Rumore[1], Rumore[1], Rumore[1]];
-
-const seconds = 86400;
 
 function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAnyText, postText, setActions}) {
 
@@ -29,6 +30,14 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
     const [modalChild, setModalChild] = useState('');
 
     const touchIglu = useRef(false);
+
+    const executeAny = useRef([()=>{
+
+      campanadas.current.seekTo(8, 0);
+
+      setCampanadasPlay(true);
+
+    }]);
 
     function igluHandler(){
 
@@ -98,15 +107,41 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
           }
 
+          if((i >= 1020) && (i <= 1080)){
+
+            if(executeAny.current.length === 1){
+
+              executeAny.current.shift()()
+
+            }
+
+          }
+
           if(i >= 1200 && i <= 1260){
 
-            setAtardecer(1-((i-1200) * (1/60)))
+            setAtardecer(1-((i-1200) * (1/60)));
 
             setLight(1-((i-1200)*(0.8/60)));
 
           }
 
-          if(i === (1440-1)) overlordTime(0);
+          if(i === (1440-1)){
+
+            overlordTime(0);
+
+            if(executeAny.current.length === 0){
+
+              executeAny.current.push(()=>{
+
+                campanadas.current.seekTo(8, 0);
+          
+                setCampanadasPlay(true);
+          
+              })
+
+            }
+
+          }
 
           }, (i-time) * (((60*30)/1440) * 1000))
         );
@@ -145,9 +180,12 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
         setModalChild(
           <>
-          <div className="text" style={{backgroundImage:`url(${ObjetImages.current['carta']})`}}></div>
-  
-          <p className="close">Click para cerrar</p></>)
+          <div className="center" onClick={()=>setShowModal(false)}>
+            <div className="text" style={{backgroundImage:`url(${ObjetImages.current['carta']})`}}></div>
+    
+            <p className="close">Click para cerrar</p>
+          </div>
+          </>)
 
         setShowModal(true);
 
@@ -301,9 +339,25 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
     }
 
+    const campanadas = useRef(undefined);
+
+    const [campanasPlay, setCampanadasPlay] = useState(false);
+
     if(zone !== 'pueblo') return false;
     
     return (<div className="Pueblo">
+
+      <ReactPlayer url="https://www.youtube.com/watch?v=Oc_b8hy6L7E" playing={campanasPlay} width="0" height="0" ref={campanadas} onPlay={()=>{
+
+        setTimeout(()=>{
+
+          setCampanadasPlay(false);
+
+          inputText([{text:['— Selena: ', '5 veces...'], img:'SelenaDesconfia'}])
+
+        }, 8000);
+
+      }}/>
 
       <div className="modal" style={{display:showModal?'flex':'none'}}>
 
@@ -337,7 +391,19 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
               else setLight(0.2);
             overlordTime(minutes+HOURS)
             setShowWait(true);
-            setWaitAnimationName('wait')    
+            setWaitAnimationName('wait')
+
+            if(executeAny.current.length === 0){
+
+              executeAny.current.push(()=>{
+
+                campanadas.current.seekTo(8, 0);
+          
+                setCampanadasPlay(true);
+          
+              })
+
+            }
 
           }}></div>
 
