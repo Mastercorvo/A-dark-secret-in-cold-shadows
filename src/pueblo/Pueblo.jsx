@@ -51,7 +51,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
     const [background, setBackground] = useState('pueblo')
 
-    const [defaultHour, setDefaultHour] = useState(480*60);
+    const [defaultHour, setDefaultHour] = useState(480);
     const [atardecer, setAtardecer] = useState(0)
     const timeOutsContainer = useRef([]);
     const [manecilla1, setManecilla1] = useState(-90);
@@ -68,45 +68,47 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
       timeOutsContainer.current = [];
 
-      for(let i = time; i < seconds; i++){
+      for(let i = time; i < 1440; i++){
 
         timeOutsContainer.current.push(setTimeout(()=>{
 
+          console.log('hola');
+
           setManecilla2(()=>{
 
-            return (i*0.1) -90
+            return (i*6) -90
           
           });
 
           setManecilla1(()=>{
 
-            return (i * (720/seconds))-90;
+            return (i * (720/1440))-90;
           
           });
 
-          if((i >= (360*60)) && (i <= (480*60))){
+          if((i >= 360) && (i <= 480)){
 
-            setLight(((i-(336*60))*(1/(120*60)) >= 1)?1:(i-(336*60))*(1/(120*60)));
+            setLight(((i-336)*(1/120) >= 1)?1:(i-336)*(1/120));
 
           }
 
-          if((i >= (1080*60)) && (i <= (1200*60))){
+          if((i >= 1080) && (i <= 1200)){
 
             setAtardecer((i-1080) * (1/120))
 
           }
 
-          if(i >= (1200*60) && i <= (1260*60)){
+          if(i >= 1200 && i <= 1260){
 
-            setAtardecer(1-((i-(1200*60)) * (1/(60*60))))
+            setAtardecer(1-((i-1200) * (1/60)))
 
-            setLight(1-((i-(1200*60))*(0.8/(60*60))));
+            setLight(1-((i-1200)*(0.8/60)));
 
           }
 
-          if(i === (seconds-1)) overlordTime(0);
+          if(i === (1440-1)) overlordTime(0);
 
-          }, (i-time) * (((50*60)/seconds) * 1000))
+          }, (i-time) * (((60*30)/1440) * 1000))
         );
 
       }
@@ -120,7 +122,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
       overlordTime(defaultHour);
 
-    }, [defaultHour]);
+    }, []);
 
     function personaHandler(){
 
@@ -278,7 +280,9 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
         <div className="button" onClick={()=>{
 
           setShowModal(false);
-          setDefaultHour((minutes*60)+(hours*60*60))
+          if((defaultHour >= 480) && (defaultHour <= 1200)) setLight(1);
+          else setLight(0.2);
+          overlordTime((minutes)+(hours*60))
 
         }}>Establecer hora</div>
 
@@ -292,7 +296,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
     
     return (<div className="Pueblo">
 
-      <div className="modal" style={{display:showModal?'flex':'none'}} onClick={()=>setShowModal(false)}>
+      <div className="modal" style={{display:showModal?'flex':'none'}}>
 
         {modalChild}
 
