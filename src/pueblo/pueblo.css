@@ -13,6 +13,8 @@
 
     --nubes-opacidad: 0.9;
 
+    overflow: hidden;
+
 }
 
 .Pueblo .background{
@@ -31,6 +33,8 @@
     
     align-items: center;
 
+    z-index: 100;
+
 }
 
 .Pueblo .background .background-2{
@@ -41,23 +45,13 @@
 
     height: calc((100vw/1920)*1080);
 
-    z-index: 1000;
+    max-height: 100vh;
+
+    max-width: 100vw;
 
     background-image: linear-gradient(to top, rgba(255, 51, 0, 0.212), rgba(229, 255, 0, 0.158));
 
-}
-
-.main-svg{
-
-    width: 100%;
-
-    height: 100%;
-
-    z-index: 100;
-
-    position: absolute;
-
-    top: 0;
+    z-index: 1000;
 
 }
 
@@ -67,11 +61,37 @@
 
     height: 100%;
 
-    z-index: 500;
+    z-index: 1000;
 
     position: absolute;
 
     top: 0;
+
+}
+
+.Pueblo .reloj{
+
+    width: 70px;
+
+    height: 70px;
+
+    background-size: 100% 100%;
+
+    position: absolute;
+
+    z-index: 1500;
+
+    top: 50%;
+
+    right: 30px;
+
+    cursor: pointer;
+
+}
+
+.Pueblo .reloj:hover{
+
+    transform: scale(1.2) rotate(-5deg);
 
 }
 
@@ -328,7 +348,7 @@
 
     background-color: rgba(0, 0, 0, 0.562);
 
-    z-index: 5000;
+    z-index: 15000;
 
     display: flex;
 
@@ -434,5 +454,45 @@
 .Pueblo .modal .check p:hover{
 
     background-color: darkblue;
+
+}
+
+.Pueblo .modal .timer{
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    background-color: black;
+
+}
+
+.Pueblo .modal .button{
+
+    color: white;
+
+    cursor: pointer;
+
+}
+
+.Pueblo .modal .close{
+
+    background-color: white;
+
+    padding: 5px;
+
+    border-radius: 3px;
+
+    color: red;
+
+    cursor: pointer;
+
+}
+
+.Pueblo .modal .close:hover{
+
+    background-color: red;
+
+    color: white;
 
 }

@@ -3,15 +3,17 @@ import './pueblo.css';
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
-let Rumore = ["¿Has visto al principe Nicolás? ¡Es muy agradable y carismático! Pero a cambio la princesa Nicole... Me da mala espina",
+import Reloj from './svg/reloj.svg';
+
+let Rumore = ["¿Has visto al principe Nicolás? ¡Es muy agradable y carismático! Pero a cambio la princesa Nicole... Me da mala espina.",
 "Escuché de los guardias que la princesa guarda algo tras las pinturas del castillo.",
 "¿Esa no es una de los peligrosos Elementales de Fuego? ¿Que hace aquí? No se acerquen a ella", "¡Me gané la lotería!",
 "¿Ya viste al guardia de cabello negro y blanco? Se parece mucho a Nicolás y Nicole, jaja que loco ¿No?", 
 "El otro día ví a la princesa Nicole viajando al Reino de Electricidad ¿Crees que por fin traigan teléfonos Chiaomi al reino?",
-"No vuelvo a viajar al reino de agua, todo está siempre mojado", 
+"No vuelvo a viajar al reino de agua, todo está siempre mojado.", 
 "El otro día un amigo del Reino de Tierra me vino a visitar.... Rompió la mesa de la casa...", "¿Ya viste la nueva temporada de la Rosa de Elementalupe?",
 "¡AH! !ES LA ELEMENTAL DE FUEGO! Tengan cuidado, quema y corta",
-"Escuché que el reino eléctrico estaba creado un nuevo teléfono celular, yo sigo esperando a que bajen los precios del primero", 
+"Escuché que el reino eléctrico estaba creado un nuevo teléfono celular, yo sigo esperando a que bajen los precios del primero.", 
 "Ah... Cómo extraño a la reina... ¡Era tan hermosa! Es increíble como su hija se parece tanto a ella", "La herrería de al lado está hecha de hielo, no se le derrite con el horno?"];
 
 Rumore = [...Rumore, Rumore[1], Rumore[1], Rumore[1]];
@@ -49,7 +51,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
     const [background, setBackground] = useState('pueblo')
 
-    const [defaultHour, setDefaultHour] = useState(12*60*60);
+    const [defaultHour, setDefaultHour] = useState(480*60);
     const [atardecer, setAtardecer] = useState(0)
     const timeOutsContainer = useRef([]);
     const [manecilla1, setManecilla1] = useState(-90);
@@ -104,7 +106,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
           if(i === (seconds-1)) overlordTime(0);
 
-          }, (i-time) * (((30*60)/seconds) * 1000))
+          }, (i-time) * (((50*60)/seconds) * 1000))
         );
 
       }
@@ -114,7 +116,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
     useEffect(() => {
 
       if((defaultHour >= 480) && (defaultHour <= 1200)) setLight(1);
-      else setLight(0.8);
+      else setLight(0.2);
 
       overlordTime(defaultHour);
 
@@ -244,16 +246,59 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
     }
 
+    const [hours, setHour] = useState(0)
+
+    function hoursHandler({target}){
+
+      const value = target.value;
+
+      if((value <= 24) && (value >= 0)) setHour(value);
+
+    }
+
+    const [minutes, setMinutes] = useState(0)
+
+    function minutesHandler({target}){
+
+      const value = target.value;
+
+      if((value <= 60) && (value >= 0)) setMinutes(value);
+
+    }
+
+    function timerHandler(){
+
+      setShowModal(true);
+
+      setModalChild(<div className="timer">
+
+        <input type="text" placeholder="Horas" value={hours} onChange={hoursHandler}/>
+        <input type="text" placeholder="Minutos" value={minutes} onChange={minutesHandler}/>
+
+        <div className="button" onClick={()=>{
+
+          setShowModal(false);
+          setDefaultHour((minutes*60)+(hours*60*60))
+
+        }}>Establecer hora</div>
+
+        <p className="close" onClick={()=>setShowModal(false)}>Cerrar</p>
+
+      </div>)
+
+    }
+
     if(zone !== 'pueblo') return false;
     
-    return (<div className="Pueblo" style={{filter:`brightness(${light})`}}>
+    return (<div className="Pueblo">
 
       <div className="modal" style={{display:showModal?'flex':'none'}} onClick={()=>setShowModal(false)}>
 
         {modalChild}
 
       </div>
-    <div className="background">
+      <div className="reloj" style={{backgroundImage:`url(${Reloj})`}} onClick={timerHandler}></div>
+    <div className="background" style={{filter:`brightness(${light})`}}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         id="svg8"
@@ -274,19 +319,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
               preserveAspectRatio="none"
               href={ObjetImages.current[background]}
         ></image>
-      </svg>
-      <div className="background-2" style={{opacity:`${atardecer}`}}></div>
-    </div>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      id="svg8"
-      width="1920"
-      height="1080"
-      version="1.1"
-      viewBox="0 0 508 285.75"
-      className="main-svg"
-    >
-      <g id="reloj" style={{userSelect:'none'}}>
+              <g id="reloj" style={{userSelect:'none'}}>
           <circle
             id="path872"
             cx="173.208"
@@ -450,6 +483,20 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
             </body>
           </foreignObject>
         </g>
+      </svg>
+      <div className="background-2" style={{opacity:`${atardecer}`}}></div>
+    </div>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      id="svg8"
+      width="1920"
+      height="1080"
+      version="1.1"
+      viewBox="0 0 508 285.75"
+      className="main-svg"
+      style={{filter:`brightness(${light})`}}
+    >
+
       <g id="layer1" strokeOpacity="1">
         <path
           id="persona"
