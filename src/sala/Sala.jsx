@@ -223,28 +223,43 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
     const [showCheck, setShowCheck] = useState(false);
 
     const [amanecerOpacity, setAmanecerOpacity] = useState(0);
-    const [amanecer, setAmanecer] = useState(false);
+    const [amanecer, setAmanecer] = useState(true);
 
-    const [atardecerOpacity, setAtardecerOpacity] = useState(false)
-    const [atardecer, setAtardecer] = useState(false)
+    const [atardecerOpacity, setAtardecerOpacity] = useState(0)
+    const [atardecer, setAtardecer] = useState(true)
+
+    const [anochecerOpacity, setAnochecerOpacity] = useState(0)
+    const [anochecer, setAnochecer] = useState(true)
 
     useEffect(() => {
 
+      console.log(superTime);
+
       if((superTime >= 360) && (superTime <= 480)){
 
-        if(!amanecer) setAmanecer(true)
+        // if(!amanecer) setAmanecer(true)
         
         setAmanecerOpacity(((superTime-336)*(1/120) >= 1)?1:(superTime-336)*(1/120))
 
-      }else if (amanecer) setAmanecer(false);
+      }
 
       if((superTime >= 1080) && (superTime <= 1200)){
 
-        if(!atardecer) setAtardecer(true);
+        // if(!atardecer) setAtardecer(true);
 
         setAtardecerOpacity((superTime-1080) * (1/120))
 
-      } else if(atardecer) setAtardecer(false)
+      }
+
+      if(superTime >= 1200 && superTime <= 1260){
+
+        // if(!anochecer) setAnochecer(true);
+
+        setAtardecer(1-((superTime-1200) * (1/60)));
+
+        setAnochecerOpacity(1-((superTime-1200)*(0.8/60)));
+
+      }
 
     }, [superTime])
 
@@ -365,8 +380,19 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
       viewBox="0 0 508 285.75"
       className="main-svg"
     >
-        <image
+      <image
           id="image860"
+          width="508"
+          height="285.75"
+          x="0"
+          y="0"
+          fill="none"
+          stroke="none"
+          preserveAspectRatio="none"
+          href={ObjetImages.current['sala']}
+      ></image>
+        <image
+          id="image8601"
           width="508"
           height="285.75"
           x="0"
@@ -378,7 +404,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
           style={{display: amanecer, opacity: amanecerOpacity}}
       ></image>
         <image
-          id="image860"
+          id="image8602"
           width="508"
           height="285.75"
           x="0"
@@ -387,9 +413,10 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
           stroke="none"
           preserveAspectRatio="none"
           href={ObjetImages.current['salaT']}
+          style={{display: atardecer, opacity: atardecerOpacity}}
       ></image>
         <image
-          id="image860"
+          id="image8603"
           width="508"
           height="285.75"
           x="0"
@@ -398,17 +425,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
           stroke="none"
           preserveAspectRatio="none"
           href={ObjetImages.current['salaN']}
-      ></image>
-        <image
-          id="image860"
-          width="508"
-          height="285.75"
-          x="0"
-          y="0"
-          fill="none"
-          stroke="none"
-          preserveAspectRatio="none"
-          href={ObjetImages.current['sala']}
+          style={{opacity: anochecerOpacity}}
       ></image>
       <g
         id="layer1"

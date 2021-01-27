@@ -67,7 +67,9 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
     const [manecilla2, setManecilla2] = useState(-90);
     const [light, setLight] = useState(0.2);
 
-    function overlordTime(time){
+    function overlordTime(TIME){
+
+      const time = Number(TIME)
 
       setSuperTime(time)
 
@@ -79,11 +81,11 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
       timeOutsContainer.current = [];
 
-      for(let i = time; i < 1440; i++){
+      for(let i = time; i <= 1440; i++){
 
         timeOutsContainer.current.push(setTimeout(()=>{
 
-          setSuperTime(time+i);
+          setSuperTime(Number(time)+i);
 
           setManecilla2(()=>{
 
@@ -127,7 +129,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
           }
 
-          if(i === (1440-1)){
+          if(i === (1440)){
 
             overlordTime(0);
 
