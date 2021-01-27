@@ -4,7 +4,7 @@ import './sala.css';
 
 const llaveData = ['otraLlave', 'Una llave misteriosa encontrada en la sala del castillo.', 'Una llave encontrada en la sala del castillo']
 
-function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addItem, inventario, setInventario, postText, actions}) {
+function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addItem, inventario, setInventario, postText, actions, superTime}) {
 
     useEffect(() => {
         if(zone === 'sala') setZonesArrow(()=>['cuarto', 'trono'])
@@ -222,6 +222,32 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
     const [showCheck, setShowCheck] = useState(false);
 
+    const [amanecerOpacity, setAmanecerOpacity] = useState(0);
+    const [amanecer, setAmanecer] = useState(false);
+
+    const [atardecerOpacity, setAtardecerOpacity] = useState(false)
+    const [atardecer, setAtardecer] = useState(false)
+
+    useEffect(() => {
+
+      if((superTime >= 360) && (superTime <= 480)){
+
+        if(!amanecer) setAmanecer(true)
+        
+        setAmanecerOpacity(((superTime-336)*(1/120) >= 1)?1:(superTime-336)*(1/120))
+
+      }else if (amanecer) setAmanecer(false);
+
+      if((superTime >= 1080) && (superTime <= 1200)){
+
+        if(!atardecer) setAtardecer(true);
+
+        setAtardecerOpacity((superTime-1080) * (1/120))
+
+      } else if(atardecer) setAtardecer(false)
+
+    }, [superTime])
+
     if(zone !== 'sala') return false;
 
     return (<div className="Sala">
@@ -339,6 +365,40 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
       viewBox="0 0 508 285.75"
       className="main-svg"
     >
+        <image
+          id="image860"
+          width="508"
+          height="285.75"
+          x="0"
+          y="0"
+          fill="none"
+          stroke="none"
+          preserveAspectRatio="none"
+          href={ObjetImages.current['salaA']}
+          style={{display: amanecer, opacity: amanecerOpacity}}
+      ></image>
+        <image
+          id="image860"
+          width="508"
+          height="285.75"
+          x="0"
+          y="0"
+          fill="none"
+          stroke="none"
+          preserveAspectRatio="none"
+          href={ObjetImages.current['salaT']}
+      ></image>
+        <image
+          id="image860"
+          width="508"
+          height="285.75"
+          x="0"
+          y="0"
+          fill="none"
+          stroke="none"
+          preserveAspectRatio="none"
+          href={ObjetImages.current['salaN']}
+      ></image>
         <image
           id="image860"
           width="508"

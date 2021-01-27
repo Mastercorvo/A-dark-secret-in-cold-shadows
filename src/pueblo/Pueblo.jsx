@@ -21,7 +21,7 @@ let Rumore = ["¿Has visto al principe Nicolás? ¡Es muy agradable y carismáti
 
 Rumore = [...Rumore, Rumore[1], Rumore[1], Rumore[1]];
 
-function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAnyText, postText, setActions}) {
+function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAnyText, postText, setActions, setSuperTime}) {
 
     useEffect(() => {
       if(zone === 'pueblo') setZonesArrow(()=>['trono', undefined]);
@@ -69,6 +69,8 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
     function overlordTime(time){
 
+      setSuperTime(time)
+
       for(let i = 0; i < timeOutsContainer.current.length;i++){
 
         clearTimeout(timeOutsContainer.current[i]);
@@ -81,7 +83,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
         timeOutsContainer.current.push(setTimeout(()=>{
 
-          console.log('hola');
+          setSuperTime(time+i);
 
           setManecilla2(()=>{
 

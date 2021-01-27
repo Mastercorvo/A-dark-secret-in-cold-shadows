@@ -66,6 +66,9 @@ const chica = 'https://i.ibb.co/ZXmYDVS/foto-dentro-del-cuaderno-azul-con-candad
 
 const Trono = 'https://i.ibb.co/80TQYBT/tronofull.png';
 const SalaImg = 'https://i.ibb.co/jZSXYtD/sala-de-estar-full.png';
+const SalaA = 'https://i.ibb.co/Zc6j7Np/Pasillo-amanecer.png'
+const SalaN = 'https://i.ibb.co/sQ3QSjF/Pasillo-noche.png'
+const SalaT = 'https://i.ibb.co/R0wc2wd/Pasillo-atardecer.png'
 const PuebloImg = 'https://i.ibb.co/pbS6J14/fondo-sin-nubes.png';
 const PuebloSinSombraImg = 'https://i.ibb.co/60WL1cf/fondo-sin-nubes-y-sin-sombra-misteriosa.png';
 
@@ -81,7 +84,7 @@ const Images =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeri
 [NicolasHabla, 'NicolasHabla'], [NicolasHablaFeliz,'NicolasHablaFeliz'],[SelenaFeliz, 'SelenaFeliz'],
 [Flecha, 'flecha'], [Espada, 'espada'], [Nota, 'nota'], [SalaImg, 'sala'], [PuebloImg, 'pueblo'], [Moment, 'moment'], [PuebloSinSombraImg, 'puebloSinSombra'],[Cuarto,'cuarto'],[CuartoSinDulces, 'cuartoSinDulces'],
 [CuartoSinLlave, 'cuartoSinLlave'], [CuartoSinNada, 'cuartoSinNada'], [imgKey, 'llave'], [imgCandy, 'dulces'], [MujerMisteriosa, 'MujerMisteriosa'], [imgKeyOther, 'otraLlave'], [Cofre, 'cofre'], [Separador, 'separador'],
-[Recibo, 'recibo'], [SmallKey, 'smallKey'], [Carta, 'carta'], [Notat, 'notat'], [chica, 'chica']];
+[Recibo, 'recibo'], [SmallKey, 'smallKey'], [Carta, 'carta'], [Notat, 'notat'], [chica, 'chica'], [SalaA, 'salaA'], [SalaN, 'salaN'], [SalaT, 'salaT']];
 
 function App() {
 
@@ -522,6 +525,8 @@ function App() {
 
   }
 
+  const [superTime, setSuperTime] = useState('')
+
   if(isLoad){
 
     return <div className="load">
@@ -598,8 +603,8 @@ function App() {
 
         </div>
         <Zone1 actions={actions} setZonesArrow={setZonesArrow} zone={zone} ObjetImages={ObjetImages} setFINAL={setFINAL} addItem={addItem} inputText={inputText} inventario={inventario} currentAnyText={currentAnyText}/>
-        <Sala actions={actions} inventario={inventario} postText={postText} setInventario={setInventario} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone} inputText={inputText} currentAnyText={currentAnyText} addItem={addItem}/>
-        <Pueblo setActions={setActions} postText={postText} inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
+        <Sala superTime={superTime} actions={actions} inventario={inventario} postText={postText} setInventario={setInventario} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone} inputText={inputText} currentAnyText={currentAnyText} addItem={addItem}/>
+        <Pueblo setSuperTime={setSuperTime} setActions={setActions} postText={postText} inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
         <CuartoZone postText={postText} inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
         <div className="texto" onClick={textHandler} style={{display:showText?'grid':'none'}}>
         <div className='foto' onAnimationEnd={()=>{
