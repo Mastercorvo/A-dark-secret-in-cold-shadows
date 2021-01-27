@@ -319,7 +319,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
           <div className="inputs">
 
             <label>H<input type="text" placeholder="00" value={hours} onChange={hoursHandler}/></label>
-            <label>M<input type="text" placeholder="00" value={minutes} onChange={minutesHandler}/></label>
+            <label>m<input type="text" placeholder="00" value={minutes} onChange={minutesHandler}/></label>
 
             <select name="select" onChange={prueba}>
               <option value="1" selected >AM.</option>
