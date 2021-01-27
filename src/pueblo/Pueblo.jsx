@@ -254,27 +254,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
       const value = target.value;
 
-      if(!Number.isInteger(Number(value))) return false;
-
-      if(value[1] === '0') return false;
-      if(value.includes('.')) return false;
-
-      if((value <= 24) && (value >= 0)) setHour(value);
-
-    }
-
-    const [minutes, setMinutes] = useState('')
-
-    function minutesHandler({target}){
-
-      const value = target.value;
-
-      if(!Number.isInteger(Number(value))) return false;
-
-      if(value[1] === '0') return false;
-      if(value.includes('.')) return false;
-
-      if((value <= 60) && (value >= 0)) setMinutes(value);
+      setHour(value)
 
     }
 
@@ -288,6 +268,9 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
     }
 
+    const [showWait, setShowWait] = useState(false);
+    const [waitAnimationName, setWaitAnimationName] = useState('');
+
     if(zone !== 'pueblo') return false;
     
     return (<div className="Pueblo">
@@ -299,27 +282,36 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
       </div>
       <div className="modal" style={{display:showModal2?'flex':'none'}}>
 
-      <div className="timer">
+        <div className="timer">
 
-      <p className="title">Cambia la hora</p>
+          <p className="title">Cambia la hora</p>
 
-      <input type="text" placeholder="Horas" value={hours} onChange={hoursHandler}/>
-      <input type="text" placeholder="Minutos" onChange={minutesHandler}/>
+          <input type="time" placeholder="Horas" value={hours} onChange={hoursHandler}/>
 
-      <div className="button" onClick={()=>{
+          <div className="button" onClick={()=>{
 
-        setShowModal2(false);
-        if((((minutes)+(hours*60)) >= 480) && (((minutes)+(hours*60)) <= 1200)) setLight(1);
-        else setLight(0.2);
-        overlordTime((minutes)+(hours*60))
+            const [hours_, minutes] = hours.split`:`
 
-      }}>Establecer la hora</div>
+            setShowModal2(false);
+            if((((minutes)+(hours*60)) >= 480) && (((minutes)+(hours_*60)) <= 1200)) setLight(1);
+            else setLight(0.2);
+            overlordTime((minutes)+(hours_*60))
+            setShowWait(true);
+            setWaitAnimationName('wait')    
 
-      <p className="close" onClick={()=>setShowModal2(false)}>Cerrar</p>
+          }}></div>
+
+          <p className="close" onClick={()=>setShowModal2(false)}>Cerrar</p>
+
+        </div>
 
       </div>
+      <div className="wait" onAnimationEnd={()=>{
 
-      </div>
+        setShowWait(false);
+        setWaitAnimationName('')
+
+      }} style={{display:showWait?'flex':'none', animationName:waitAnimationName}}>Esperando la hora...</div>
       <div className="reloj" style={{backgroundImage:`url(${Reloj})`}} onClick={timerHandler}></div>
     <div className="background" style={{filter:`brightness(${light})`}}>
       <svg
