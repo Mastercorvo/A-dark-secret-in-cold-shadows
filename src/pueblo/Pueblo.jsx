@@ -248,47 +248,43 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
     }
 
-    const [hours, setHour] = useState(0)
+    const [hours, setHour] = useState('')
 
     function hoursHandler({target}){
 
       const value = target.value;
 
+      if(!Number.isInteger(Number(value))) return false;
+
+      if(value[1] === '0') return false;
+      if(value.includes('.')) return false;
+
       if((value <= 24) && (value >= 0)) setHour(value);
 
     }
 
-    const [minutes, setMinutes] = useState(0)
+    const [minutes, setMinutes] = useState('')
 
     function minutesHandler({target}){
 
       const value = target.value;
 
+      if(!Number.isInteger(Number(value))) return false;
+
+      if(value[1] === '0') return false;
+      if(value.includes('.')) return false;
+
       if((value <= 60) && (value >= 0)) setMinutes(value);
 
     }
 
+    const [showModal2, setShowModal2] = useState(false)
+
     function timerHandler(){
 
-      setShowModal(true);
+      if(currentAnyText.current) return false;
 
-      setModalChild(<div className="timer">
-
-        <input type="text" placeholder="Horas" value={hours} onChange={hoursHandler}/>
-        <input type="text" placeholder="Minutos" value={minutes} onChange={minutesHandler}/>
-
-        <div className="button" onClick={()=>{
-
-          setShowModal(false);
-          if((defaultHour >= 480) && (defaultHour <= 1200)) setLight(1);
-          else setLight(0.2);
-          overlordTime((minutes)+(hours*60))
-
-        }}>Establecer hora</div>
-
-        <p className="close" onClick={()=>setShowModal(false)}>Cerrar</p>
-
-      </div>)
+      setShowModal2(true);
 
     }
 
@@ -299,6 +295,29 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
       <div className="modal" style={{display:showModal?'flex':'none'}}>
 
         {modalChild}
+
+      </div>
+      <div className="modal" style={{display:showModal2?'flex':'none'}}>
+
+      <div className="timer">
+
+      <p className="title">Cambia la hora</p>
+
+      <input type="text" placeholder="Horas" value={hours} onChange={hoursHandler}/>
+      <input type="text" placeholder="Minutos" onChange={minutesHandler}/>
+
+      <div className="button" onClick={()=>{
+
+        setShowModal2(false);
+        if((((minutes)+(hours*60)) >= 480) && (((minutes)+(hours*60)) <= 1200)) setLight(1);
+        else setLight(0.2);
+        overlordTime((minutes)+(hours*60))
+
+      }}>Establecer la hora</div>
+
+      <p className="close" onClick={()=>setShowModal2(false)}>Cerrar</p>
+
+      </div>
 
       </div>
       <div className="reloj" style={{backgroundImage:`url(${Reloj})`}} onClick={timerHandler}></div>
