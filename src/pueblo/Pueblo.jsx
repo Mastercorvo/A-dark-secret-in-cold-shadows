@@ -254,7 +254,29 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
       const value = target.value;
 
+      if(/\D/.test(value)) return false;
+
+      if(value[1] === '0') return false;
+
+      if(Number(value) >= 12) return setHour(12);
+
       setHour(value)
+
+    }
+
+    const [minutes, setMinutes] = useState('')
+
+    function minutesHandler({target}){
+
+      const value = target.value;
+
+      if(/\D/.test(value)) return false;
+
+      if(value[1] === '0') return false;
+
+      if(Number(value) >= 60) return setMinutes(60);
+
+      setMinutes(value)
 
     }
 
@@ -268,8 +290,16 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
     }
 
+    const [horary, setHorary] = useState('1');
+
     const [showWait, setShowWait] = useState(false);
     const [waitAnimationName, setWaitAnimationName] = useState('');
+
+    function prueba({target}){
+
+      setHorary(target.value)
+
+    }
 
     if(zone !== 'pueblo') return false;
     
@@ -286,16 +316,26 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
           <p className="title">Cambia la hora</p>
 
-          <input type="time" placeholder="Horas" value={hours} onChange={hoursHandler}/>
+          <div className="inputs">
+
+            <label>H<input type="text" placeholder="00" value={hours} onChange={hoursHandler}/></label>
+            <label>M<input type="text" placeholder="00" value={minutes} onChange={minutesHandler}/></label>
+
+            <select name="select" onChange={prueba}>
+              <option value="1" selected >AM.</option>
+              <option value="2" >PM.</option>
+            </select>
+
+          </div>
 
           <div className="button" onClick={()=>{
 
-            const [hours_, minutes] = hours.split`:`
+            const HOURS = (Number(hours) + (horary === '1'?0:12)) * 60;
 
             setShowModal2(false);
-            if((((minutes)+(hours*60)) >= 480) && (((minutes)+(hours_*60)) <= 1200)) setLight(1);
-            else setLight(0.2);
-            overlordTime((minutes)+(hours_*60))
+            if(((minutes+HOURS) >= 480) && (((minutes + HOURS) <= 1200))) setLight(1);
+              else setLight(0.2);
+            overlordTime(minutes+HOURS)
             setShowWait(true);
             setWaitAnimationName('wait')    
 
