@@ -16,6 +16,8 @@ let Rumore = ["¿Has visto al principe Nicolás? ¡Es muy agradable y carismáti
 
 Rumore = [...Rumore, Rumore[1], Rumore[1], Rumore[1]];
 
+const seconds = 86400;
+
 function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAnyText, postText, setActions}) {
 
     useEffect(() => {
@@ -47,14 +49,14 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
     const [background, setBackground] = useState('pueblo')
 
-    const [defaultHour, setDefaultHour] = useState(360)
+    const [defaultHour, setDefaultHour] = useState(12*60*60);
     const [atardecer, setAtardecer] = useState(0)
     const timeOutsContainer = useRef([]);
     const [manecilla1, setManecilla1] = useState(-90);
+    const [manecilla2, setManecilla2] = useState(-90);
     const [light, setLight] = useState(0.2);
-    const manecilla2 = ''
 
-    useEffect(() => {
+    function overlordTime(time){
 
       for(let i = 0; i < timeOutsContainer.current.length;i++){
 
@@ -64,41 +66,57 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
       timeOutsContainer.current = [];
 
-      for(let i = 0; i < 1440; i++){
+      for(let i = time; i < seconds; i++){
 
         timeOutsContainer.current.push(setTimeout(()=>{
 
-          setManecilla1(()=>{
-            
-            return (i * 0.5)-90;
+          setManecilla2(()=>{
+
+            return (i*0.1) -90
           
           });
 
-          if((i >= 360) && (i <= 480)){
+          setManecilla1(()=>{
 
-            setLight((i-330)*(0.8/120));
-            console.log(1);
+            return (i * (720/seconds))-90;
+          
+          });
+
+          if((i >= (360*60)) && (i <= (480*60))){
+
+            setLight(((i-(336*60))*(1/(120*60)) >= 1)?1:(i-(336*60))*(1/(120*60)));
 
           }
 
-          if((i >= 1080) && (i <= 1200)){
+          if((i >= (1080*60)) && (i <= (1200*60))){
 
             setAtardecer((i-1080) * (1/120))
-            console.log(2);
+
           }
 
-          if(i >= 1200 && i <= 1260){
+          if(i >= (1200*60) && i <= (1260*60)){
 
-            setAtardecer(1-((i-1200) * (1/60)))
+            setAtardecer(1-((i-(1200*60)) * (1/(60*60))))
 
-            setLight(1-((i-1200)*(0.8/60)));
-            console.log(3);
+            setLight(1-((i-(1200*60))*(0.8/(60*60))));
+
           }
 
-          }, i * (0.04166 * 1000))
+          if(i === (seconds-1)) overlordTime(0);
+
+          }, (i-time) * (((30*60)/seconds) * 1000))
         );
 
       }
+
+    }
+
+    useEffect(() => {
+
+      if((defaultHour >= 480) && (defaultHour <= 1200)) setLight(1);
+      else setLight(0.8);
+
+      overlordTime(defaultHour);
 
     }, [defaultHour]);
 
@@ -428,7 +446,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
           <foreignObject className="manecilla1-container" width="50" height="50" x="153.87337" y="61.836163">
             <body style={{width:"38.668591px", height:"38.668468px"}}>
               <div className="manecilla1" style={{transform: `translateX(3px) rotate(${manecilla1}deg)`}} ></div>
-              <div className="manecilla2" style={{transform: manecilla2}} ></div>
+              <div className="manecilla2" style={{transform: `translateX(4px) rotate(${manecilla2}deg)`}} ></div>
             </body>
           </foreignObject>
         </g>
