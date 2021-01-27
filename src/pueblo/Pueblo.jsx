@@ -384,12 +384,16 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
           <div className="button" onClick={()=>{
 
-            const HOURS = (Number(hours) + (horary === '1'?0:12)) * 60;
+            let HOURS = (Number(hours) + (horary === '1'?0:12)) * 60;
 
-            setShowModal2(false);
+            if(hours === 12) HOURS = (Number(hours) + (horary === '1'?12:0))*60;
+              
+            overlordTime(minutes+HOURS)
+
             if(((minutes+HOURS) >= 480) && (((minutes + HOURS) <= 1200))) setLight(1);
               else setLight(0.2);
-            overlordTime(minutes+HOURS)
+
+            setShowModal2(false);
             setShowWait(true);
             setWaitAnimationName('wait')
 
