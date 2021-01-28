@@ -85,7 +85,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
         timeOutsContainer.current.push(setTimeout(()=>{
 
-          setSuperTime(Number(time)+i);
+          setSuperTime(i);
 
           setManecilla2(()=>{
 
@@ -136,6 +136,8 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
             if(executeAny.current.length === 0){
 
               executeAny.current.push(()=>{
+
+                if(!campanadas.current) return false;
 
                 campanadas.current.seekTo(8, 0);
           
@@ -302,7 +304,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
       if(Number(value) >= 12) return setHour(12);
 
-      setHour(value)
+      setHour(Number(value))
 
     }
 
@@ -314,11 +316,9 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
       if(/\D/.test(value)) return false;
 
-      if(value[1] === '0') return false;
-
       if(Number(value) >= 60) return setMinutes(60);
 
-      setMinutes(value)
+      setMinutes(Number(value))
 
     }
 
@@ -388,10 +388,10 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
           <div className="button" onClick={()=>{
 
-            let HOURS = (Number(hours) + (horary === '1'?0:12)) * 60;
+            let HOURS = (hours + (horary === '1'?0:12)) * 60;
 
-            if(hours === 12) HOURS = (Number(hours) + (horary === '1'?12:0))*60;
-              
+            if(hours === 12) HOURS = (horary === '1'?0:12)*60;
+
             overlordTime(minutes+HOURS)
 
             if(((minutes+HOURS) >= 480) && (((minutes + HOURS) <= 1200))) setLight(1);
@@ -404,6 +404,8 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
             if(executeAny.current.length === 0){
 
               executeAny.current.push(()=>{
+
+                if(!campanadas.current) return false;
 
                 campanadas.current.seekTo(8, 0);
           

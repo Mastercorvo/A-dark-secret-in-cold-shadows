@@ -238,7 +238,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
       if((superTime >= 360) && (superTime <= 480)){
 
         // if(!amanecer) setAmanecer(true)
-        
+        console.log(1);
         setAmanecerOpacity(((superTime-336)*(1/120) >= 1)?1:(superTime-336)*(1/120))
 
       }
@@ -246,20 +246,28 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
       if((superTime >= 1080) && (superTime <= 1200)){
 
         // if(!atardecer) setAtardecer(true);
-
+        console.log(2);
         setAtardecerOpacity((superTime-1080) * (1/120))
 
       }
 
-      if(superTime >= 1200 && superTime <= 1260){
+      if((superTime >= 1200) && (superTime <= 1260)){
 
         // if(!anochecer) setAnochecer(true);
-
+        console.log(3);
         setAtardecer(1-((superTime-1200) * (1/60)));
+
+        console.log(1-((superTime-1200)*(0.8/60)), 'Aquí');
 
         setAnochecerOpacity(1-((superTime-1200)*(0.8/60)));
 
       }
+
+      if((superTime <= 360) || (superTime >= 1260)){
+
+        if(anochecerOpacity !== 1) setAnochecerOpacity(1);
+
+      } else setAnochecerOpacity(0)
 
     }, [superTime])
 
@@ -401,7 +409,8 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
           stroke="none"
           preserveAspectRatio="none"
           href={ObjetImages.current['salaA']}
-          style={{display: amanecer, opacity: amanecerOpacity}}
+          style={{opacity: amanecerOpacity}}
+          // opacity={amanecerOpacity}
       ></image>
         <image
           id="image8602"
@@ -413,7 +422,8 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
           stroke="none"
           preserveAspectRatio="none"
           href={ObjetImages.current['salaT']}
-          style={{display: atardecer, opacity: atardecerOpacity}}
+          style={{opacity: atardecerOpacity}}
+          // opacity={atardecerOpacity}
       ></image>
         <image
           id="image8603"
@@ -426,6 +436,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
           preserveAspectRatio="none"
           href={ObjetImages.current['salaN']}
           style={{opacity: anochecerOpacity}}
+          // opacity={anochecerOpacity}
       ></image>
       <g
         id="layer1"
