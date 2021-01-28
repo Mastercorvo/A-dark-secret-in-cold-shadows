@@ -223,28 +223,32 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
     const [showCheck, setShowCheck] = useState(false);
 
     const [amanecerOpacity, setAmanecerOpacity] = useState(0);
-    const [amanecer, setAmanecer] = useState(true);
 
-    const [atardecerOpacity, setAtardecerOpacity] = useState(0)
-    const [atardecer, setAtardecer] = useState(true)
+    const [atardecerOpacity, setAtardecerOpacity] = useState(0);
 
-    const [anochecerOpacity, setAnochecerOpacity] = useState(0)
-    const [anochecer, setAnochecer] = useState(true)
+    const [anochecerOpacity, setAnochecerOpacity] = useState(0);
 
     useEffect(() => {
 
-      console.log(superTime);
-
       if((superTime >= 360) && (superTime <= 480)){
 
-        console.log(1);
-        setAmanecerOpacity(((superTime-336)*(1/120) >= 1)?1:(superTime-336)*(1/120))
+        setAnochecerOpacity(1-((superTime-1200)*(1/120)));
+        setAmanecerOpacity((superTime-360)*(1/120));
 
       }
 
+      if((superTime >= 480) && (superTime <= 540)){
+
+        if(anochecerOpacity !== 0) setAnochecerOpacity(0)
+
+        setAmanecerOpacity(1-((superTime-480)*(1/60)))
+
+      }
+
+      if((superTime >= 540) && (superTime <= 1080)) setAnochecerOpacity(0);
+
       if((superTime >= 1080) && (superTime <= 1200)){
 
-        console.log(2);
         setAtardecerOpacity((superTime-1080) * (1/120))
 
       }
@@ -253,13 +257,11 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
         setAtardecerOpacity(1-((superTime-1200) * (1/60)));
         
-        setAnochecerOpacity(((superTime-1200)*(1/60)));
+        setAnochecerOpacity((superTime-1200)*(1/60));
 
       }
 
-      if((superTime >= 1260) || (superTime <= 360)) setAtardecerOpacity(1);
-
-
+      if((superTime >= 1260) || (superTime <= 360)) setAnochecerOpacity(1);
 
     }, [superTime])
 
