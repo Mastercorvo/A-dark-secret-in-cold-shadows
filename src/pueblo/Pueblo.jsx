@@ -27,6 +27,8 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
       if(zone === 'pueblo') setZonesArrow(()=>['trono', undefined]);
     },[zone]);
 
+    const [showPersona, setShowPersona] = useState(true);
+
     const [modalChild, setModalChild] = useState('');
 
     const touchIglu = useRef(false);
@@ -107,6 +109,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
             setLight(((i-336)*(1/120) >= 1)?1:(i-336)*(1/120));
             setAmanecerOpacity((i-360)*(1/120));
+            setAnochecerOpacity(1-((i-360)*(1/120)));
 
           }
 
@@ -510,6 +513,18 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
               fill="none"
               stroke="none"
               preserveAspectRatio="none"
+              href={ObjetImages.current['puebloN']}
+              style={{opacity: anochecerOpacity}}
+        ></image>
+        <image
+              id="image860"
+              width="508"
+              height="285.75"
+              x="0"
+              y="0"
+              fill="none"
+              stroke="none"
+              preserveAspectRatio="none"
               href={ObjetImages.current['puebloA']}
               style={{opacity: amanecerOpacity}}
         ></image>
@@ -524,18 +539,6 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
               preserveAspectRatio="none"
               href={ObjetImages.current['puebloT']}
               style={{opacity: atardecerOpacity}}
-        ></image>
-        <image
-              id="image860"
-              width="508"
-              height="285.75"
-              x="0"
-              y="0"
-              fill="none"
-              stroke="none"
-              preserveAspectRatio="none"
-              href={ObjetImages.current['puebloN']}
-              style={{opacity: anochecerOpacity}}
         ></image>
               <g id="reloj" style={{userSelect:'none'}}>
           <circle
@@ -718,6 +721,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
       <g id="layer1" strokeOpacity="1">
         <path
           id="persona"
+          style={{display: showPersona?'block':'none'}}
           onClick={personaHandler}
           fill="red"
           fillOpacity="1"
