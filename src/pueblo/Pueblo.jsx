@@ -1,7 +1,7 @@
 
 import './pueblo.css';
 
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Reloj from './svg/reloj.svg';
 
@@ -21,7 +21,7 @@ let Rumore = ["¿Has visto al principe Nicolás? ¡Es muy agradable y carismáti
 
 Rumore = [...Rumore, Rumore[1], Rumore[1], Rumore[1]];
 
-function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAnyText, postText, setActions, setSuperTime}) {
+function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAnyText, postText, setActions, setSuperTime, salida}) {
 
     useEffect(() => {
       if(zone === 'pueblo') setZonesArrow(()=>['trono', undefined]);
@@ -374,6 +374,17 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
     const campanadas = useRef(undefined);
 
     const [campanasPlay, setCampanadasPlay] = useState(false);
+
+    useEffect(() => {
+
+      salida.current.push(()=>{
+
+        setShowModal(false);
+        setShowModal2(false);
+
+      });
+
+    }, [])
 
     if(zone !== 'pueblo') return false;
     

@@ -521,6 +521,22 @@ function App() {
 
   })
 
+  const salida = useRef([]);
+
+  useEffect(() => {
+
+    document.addEventListener('keydown',(r)=>{
+
+      salida.current.forEach((v)=>{
+
+        if(v) v();
+
+      })
+
+    });
+
+  }, [])
+
   function yesCheckZone(){
 
     setShowCheckZone(()=>false);
@@ -529,7 +545,19 @@ function App() {
 
   }
 
-  const [superTime, setSuperTime] = useState('')
+  const [superTime, setSuperTime] = useState(0);
+
+  useEffect(() => {
+
+    salida.current.push(()=>{
+
+      setShowCheckZone(false);
+
+      setShowInventario(false);
+
+    });
+
+  }, [])
 
   if(isLoad){
 
@@ -553,7 +581,7 @@ function App() {
 
   return (
 
-      <div className="App" >
+      <div className="App">
 
         <div className="check-zone" style={{display:showCheckZone?'flex':'none'}}>
 
@@ -607,9 +635,9 @@ function App() {
 
         </div>
         <Zone1 actions={actions} setZonesArrow={setZonesArrow} zone={zone} ObjetImages={ObjetImages} setFINAL={setFINAL} addItem={addItem} inputText={inputText} inventario={inventario} currentAnyText={currentAnyText}/>
-        <Sala superTime={superTime} actions={actions} inventario={inventario} postText={postText} setInventario={setInventario} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone} inputText={inputText} currentAnyText={currentAnyText} addItem={addItem}/>
-        <Pueblo setSuperTime={setSuperTime} setActions={setActions} postText={postText} inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
-        <CuartoZone postText={postText} inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
+        <Sala salida={salida} superTime={superTime} actions={actions} inventario={inventario} postText={postText} setInventario={setInventario} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone} inputText={inputText} currentAnyText={currentAnyText} addItem={addItem}/>
+        <Pueblo salida={salida} setSuperTime={setSuperTime} setActions={setActions} postText={postText} inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
+        <CuartoZone salida={salida} postText={postText} inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
         <div className="texto" onClick={textHandler} style={{display:showText?'grid':'none'}}>
         <div className='foto' onAnimationEnd={()=>{
           

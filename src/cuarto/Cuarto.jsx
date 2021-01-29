@@ -3,7 +3,7 @@ import './cuarto.css';
 
 import { useEffect, useRef, useState, useLayoutEffect } from 'react';
 
-function Cuarto({inputText, ObjetImages, zone, setZonesArrow, currentAnyText, inventario, addItem,postText}){
+function Cuarto({inputText, ObjetImages, zone, setZonesArrow, currentAnyText, inventario, addItem, postText, salida}){
 
     useEffect(() => {
         if(zone === 'cuarto') setZonesArrow(()=>[undefined, 'sala'])
@@ -209,6 +209,18 @@ function Cuarto({inputText, ObjetImages, zone, setZonesArrow, currentAnyText, in
       }
 
     }
+
+    useEffect(() => {
+
+      salida.current.push(()=>{
+
+        setShowQuestFoto(false);
+
+        setShowFoto(false);
+
+      });
+
+    }, [])
 
     if(zone !== 'cuarto') return false;
     
