@@ -525,7 +525,9 @@ function App() {
 
   useEffect(() => {
 
-    document.addEventListener('keydown',(r)=>{
+    document.addEventListener('keydown',({key})=>{
+
+      if(key !== 'Escape') return false;
 
       salida.current.forEach((v)=>{
 
