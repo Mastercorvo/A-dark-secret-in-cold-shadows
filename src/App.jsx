@@ -69,8 +69,12 @@ const SalaImg = 'https://i.ibb.co/jZSXYtD/sala-de-estar-full.png';
 const SalaA = 'https://i.ibb.co/Zc6j7Np/Pasillo-amanecer.png'
 const SalaN = 'https://i.ibb.co/sQ3QSjF/Pasillo-noche.png'
 const SalaT = 'https://i.ibb.co/R0wc2wd/Pasillo-atardecer.png'
+
 const PuebloImg = 'https://i.ibb.co/pbS6J14/fondo-sin-nubes.png';
 const PuebloSinSombraImg = 'https://i.ibb.co/60WL1cf/fondo-sin-nubes-y-sin-sombra-misteriosa.png';
+const PuebloImgAmanecer = 'https://i.ibb.co/v4s1s7F/pueblo-amanecer.png';
+const PuebloImgNoche = 'https://i.ibb.co/ftZQ8kv/pueblo-noche.png';
+const PuebloImgAtardecer = 'https://i.ibb.co/YBGJSR8/pueblo-atardecer.png';
 
 const Cuarto ="https://i.ibb.co/bgpJnpg/Cuarto-Nicolas.png"
 const CuartoSinLlave ="https://i.ibb.co/FD2yYXW/Sin-llave.png"
@@ -84,7 +88,7 @@ const Images =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeri
 [NicolasHabla, 'NicolasHabla'], [NicolasHablaFeliz,'NicolasHablaFeliz'],[SelenaFeliz, 'SelenaFeliz'],
 [Flecha, 'flecha'], [Espada, 'espada'], [Nota, 'nota'], [SalaImg, 'sala'], [PuebloImg, 'pueblo'], [Moment, 'moment'], [PuebloSinSombraImg, 'puebloSinSombra'],[Cuarto,'cuarto'],[CuartoSinDulces, 'cuartoSinDulces'],
 [CuartoSinLlave, 'cuartoSinLlave'], [CuartoSinNada, 'cuartoSinNada'], [imgKey, 'llave'], [imgCandy, 'dulces'], [MujerMisteriosa, 'MujerMisteriosa'], [imgKeyOther, 'otraLlave'], [Cofre, 'cofre'], [Separador, 'separador'],
-[Recibo, 'recibo'], [SmallKey, 'smallKey'], [Carta, 'carta'], [Notat, 'notat'], [chica, 'chica'], [SalaA, 'salaA'], [SalaN, 'salaN'], [SalaT, 'salaT']];
+[Recibo, 'recibo'], [SmallKey, 'smallKey'], [Carta, 'carta'], [Notat, 'notat'], [chica, 'chica'], [SalaA, 'salaA'], [SalaN, 'salaN'], [SalaT, 'salaT'], [PuebloImgAmanecer, 'puebloA'], [PuebloImgNoche, 'puebloN'], [PuebloImgAtardecer, 'puebloT']];
 
 function App() {
 

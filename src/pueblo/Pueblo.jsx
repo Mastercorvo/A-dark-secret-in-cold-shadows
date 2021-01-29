@@ -67,6 +67,10 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
     const [manecilla2, setManecilla2] = useState(-90);
     const [light, setLight] = useState(0.2);
 
+    const [atardecerOpacity, setAtardecerOpacity] = useState(0);
+    const [anochecerOpacity, setAnochecerOpacity] = useState(0);
+    const [amanecerOpacity, setAmanecerOpacity] = useState(0)
+
     function overlordTime(TIME){
 
       const time = Number(TIME)
@@ -102,12 +106,20 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
           if((i >= 360) && (i <= 480)){
 
             setLight(((i-336)*(1/120) >= 1)?1:(i-336)*(1/120));
+            setAmanecerOpacity((i-360)*(1/120));
+
+          }
+
+          if((i >= 480) && (i <= 540)){
+
+            setAmanecerOpacity(1-((i-480)*(1/60)));
 
           }
 
           if((i >= 1080) && (i <= 1140)){
 
-            setAtardecer((i-1080) * (1/60))
+            setAtardecer((i-1080) * (1/60));
+            setAtardecerOpacity((i-1080) * (1/60))
 
           }
 
@@ -124,6 +136,9 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
           if(i >= 1140 && i <= 1200){
 
             setAtardecer(1-((i-1140) * (1/60)));
+            setAtardecerOpacity(1-((i-1140) * (1/60)))
+
+            setAnochecerOpacity((i-1140)*(1/60));
 
             setLight(1-((i-1140)*(0.8/60)));
 
@@ -158,8 +173,18 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
     useEffect(() => {
 
-      if((defaultHour >= 480) && (defaultHour <= 1200)) setLight(1);
-        else setLight(0.2);
+      if((defaultHour >= 480) && (defaultHour <= 1200)){
+
+        setAnochecerOpacity(0);
+        
+        setLight(1);
+
+      }else{
+
+        setAnochecerOpacity(1);
+        setLight(0.2);
+        
+      } 
 
       overlordTime(defaultHour);
 
@@ -394,8 +419,17 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
             overlordTime(minutes+HOURS)
 
-            if(((minutes+HOURS) >= 480) && (((minutes + HOURS) <= 1200))) setLight(1);
-              else setLight(0.2);
+            if(((minutes+HOURS) >= 480) && (((minutes + HOURS) <= 1200))){
+
+              setLight(1);
+              setAnochecerOpacity(0);
+            
+            } else {
+
+              setLight(0.2);
+              setAnochecerOpacity(1);
+            
+            }
 
             setShowModal2(false);
             setShowWait(true);
@@ -449,6 +483,39 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
               stroke="none"
               preserveAspectRatio="none"
               href={ObjetImages.current[background]}
+        ></image>
+        <image
+              id="image860"
+              width="508"
+              height="285.75"
+              x="0"
+              y="0"
+              fill="none"
+              stroke="none"
+              preserveAspectRatio="none"
+              href={ObjetImages.current['puebloA']}
+        ></image>
+        <image
+              id="image860"
+              width="508"
+              height="285.75"
+              x="0"
+              y="0"
+              fill="none"
+              stroke="none"
+              preserveAspectRatio="none"
+              href={ObjetImages.current['PuebloT']}
+        ></image>
+        <image
+              id="image860"
+              width="508"
+              height="285.75"
+              x="0"
+              y="0"
+              fill="none"
+              stroke="none"
+              preserveAspectRatio="none"
+              href={ObjetImages.current['PuebloN']}
         ></image>
               <g id="reloj" style={{userSelect:'none'}}>
           <circle
