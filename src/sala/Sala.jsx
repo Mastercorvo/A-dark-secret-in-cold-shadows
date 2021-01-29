@@ -247,21 +247,21 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
       if((superTime >= 540) && (superTime <= 1080)) setAnochecerOpacity(0);
 
-      if((superTime >= 1080) && (superTime <= 1200)){
+      if((superTime >= 1080) && (superTime <= 1140)){
 
-        setAtardecerOpacity((superTime-1080) * (1/120))
+        setAtardecerOpacity((superTime-1080) * (1/60))
 
       }
 
-      if((superTime >= 1200) && (superTime <= 1260)){
+      if((superTime >= 1140) && (superTime <= 1200)){
 
-        setAtardecerOpacity(1-((superTime-1200) * (1/60)));
+        setAtardecerOpacity(1-((superTime-1140) * (1/60)));
         
-        setAnochecerOpacity((superTime-1200)*(1/60));
+        setAnochecerOpacity((superTime-1140) * (1/60));
 
       }
 
-      if((superTime >= 1260) || (superTime <= 360)) setAnochecerOpacity(1);
+      if((superTime >= 1200) || (superTime <= 360)) setAnochecerOpacity(1);
 
     }, [superTime])
 
