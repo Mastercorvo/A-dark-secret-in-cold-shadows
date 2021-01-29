@@ -407,8 +407,8 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
             <label>H<input type="text" placeholder="00" value={hours} onChange={hoursHandler}/></label>
             <label>m<input type="text" placeholder="00" value={minutes} onChange={minutesHandler}/></label>
 
-            <select name="select" onChange={prueba}>
-              <option value="1" selected >AM.</option>
+            <select name="select" defaultValue="1" onChange={prueba}>
+              <option value="1" >AM.</option>
               <option value="2" >PM.</option>
             </select>
 
@@ -500,6 +500,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
               stroke="none"
               preserveAspectRatio="none"
               href={ObjetImages.current['puebloA']}
+              style={{opacity: amanecerOpacity}}
         ></image>
         <image
               id="image860"
@@ -510,7 +511,8 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
               fill="none"
               stroke="none"
               preserveAspectRatio="none"
-              href={ObjetImages.current['PuebloT']}
+              href={ObjetImages.current['puebloT']}
+              style={{opacity: atardecerOpacity}}
         ></image>
         <image
               id="image860"
@@ -521,7 +523,8 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
               fill="none"
               stroke="none"
               preserveAspectRatio="none"
-              href={ObjetImages.current['PuebloN']}
+              href={ObjetImages.current['puebloN']}
+              style={{opacity: anochecerOpacity}}
         ></image>
               <g id="reloj" style={{userSelect:'none'}}>
           <circle

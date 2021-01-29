@@ -243,7 +243,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
         setAmanecerOpacity(1-((superTime-480)*(1/60)))
 
-      }
+      }else if(amanecerOpacity !== 0) setAmanecerOpacity(0)
 
       if((superTime >= 540) && (superTime <= 1080)) setAnochecerOpacity(0);
 
@@ -260,6 +260,8 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
         setAnochecerOpacity((superTime-1140) * (1/60));
 
       }
+
+      if((superTime <= 1080) && (superTime >= 1200)) setAtardecerOpacity(0);
 
       if((superTime >= 1200) || (superTime <= 360)) setAnochecerOpacity(1);
 
