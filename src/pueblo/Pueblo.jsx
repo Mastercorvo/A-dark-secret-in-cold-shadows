@@ -105,9 +105,9 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
           }
 
-          if((i >= 1080) && (i <= 1200)){
+          if((i >= 1080) && (i <= 1140)){
 
-            setAtardecer((i-1080) * (1/120))
+            setAtardecer((i-1080) * (1/60))
 
           }
 
@@ -121,11 +121,11 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
           }
 
-          if(i >= 1200 && i <= 1260){
+          if(i >= 1140 && i <= 1200){
 
-            setAtardecer(1-((i-1200) * (1/60)));
+            setAtardecer(1-((i-1140) * (1/60)));
 
-            setLight(1-((i-1200)*(0.8/60)));
+            setLight(1-((i-1140)*(0.8/60)));
 
           }
 
@@ -159,7 +159,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
     useEffect(() => {
 
       if((defaultHour >= 480) && (defaultHour <= 1200)) setLight(1);
-      else setLight(0.2);
+        else setLight(0.2);
 
       overlordTime(defaultHour);
 
