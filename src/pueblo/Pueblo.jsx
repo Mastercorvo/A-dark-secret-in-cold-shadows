@@ -148,6 +148,9 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
             overlordTime(0);
 
+            setAmanecerOpacity(0)
+            setAtardecerOpacity(0)
+
             if(executeAny.current.length === 0){
 
               executeAny.current.push(()=>{
@@ -430,6 +433,9 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
               setAnochecerOpacity(1);
             
             }
+
+            setAmanecerOpacity(0);
+            setAtardecerOpacity(0);
 
             setShowModal2(false);
             setShowWait(true);
