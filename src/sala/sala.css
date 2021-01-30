@@ -22,6 +22,17 @@
     z-index: 500;
 
 }
+
+.Sala .modal{
+
+    position: absolute;
+
+    z-index: 99999;
+
+    background-color: rgba(0, 0, 0, 0.418);
+
+}
+
 .Sala #libroEspecial{
 
     cursor: pointer;
@@ -280,5 +291,111 @@
     font-size: 1.3rem;
 
     color: greenyellow;
+
+}
+
+.caja-fuerte-container{
+
+    position: absolute;
+
+    top: 0;
+
+    background-color: rgba(0, 0, 0, 0.822);
+
+    z-index: 10000;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    width: 100%;
+
+    height: 100%;
+
+}
+
+.caja-fuerte-container .container{
+
+    position: relative;
+
+    width: 700px;
+
+    height: 400px;
+
+    border: 20px rgb(56, 56, 56) solid;
+
+    border-radius: 10px;
+
+}
+
+.caja-fuerte-container .container > .caja{
+
+    user-select: none;
+
+}
+
+.caja-fuerte-container .container input{
+
+    padding: 6px;
+
+    position: absolute;
+
+    right: 60px;
+
+    top: 60px;
+
+    outline: none;
+
+    border-radius: 0;
+
+    border: 0;
+
+    border-bottom: 2px greenyellow solid;
+
+    background-color: black;
+
+    color: greenyellow;
+
+    font-size: 1.5rem;
+
+    width: 15ex;
+
+}
+
+.caja-fuerte-container > .close{
+
+    position: absolute;
+
+    color: white;
+
+    background-color: red;
+
+    top: 30px;
+
+    right: 30px;
+
+    font-family: sans-serif;
+
+    padding: 10px;
+
+    border-radius: 6px;
+
+    font-weight: bold;
+
+    font-size: 2rem;
+
+    cursor: pointer;
+
+    user-select: none;
+
+}
+
+.caja-fuerte-container > .close:hover{
+
+    background-color: white;
+
+    color: red;
 
 }

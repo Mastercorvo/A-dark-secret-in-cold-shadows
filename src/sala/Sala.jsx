@@ -283,11 +283,558 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
       });
 
-    }, [])
+    }, []);
+
+    const [password, setPassword] = useState('');
+
+    function passwordHandler({target}){
+
+      const value = target.value;
+
+      setPassword(value);
+
+    }
+
+    const [showCaja, setShowCaja] = useState(true)
 
     if(zone !== 'sala') return false;
 
     return (<div className="Sala">
+
+      <div className="modal" style={{display: showModal?'flex':'none'}}>
+
+        <div className="container">
+
+          <h5>¿Quiere inspeccionar la caja?</h5>
+          <p>Sí.</p> <p>No.</p>
+        </div>
+
+      </div>
+
+      <div className="caja-fuerte-container" style={{display: showCaja?'flex':'none'}}>
+
+      <div className="close" onClick={()=>setShowCaja(false)}>
+
+        Cerrar
+
+      </div>
+      <div className="container">
+      <input type="text" placeholder="contraseña" value={password} onChange={passwordHandler}/>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      id="svg8"
+      width="700"
+      height="400"
+      version="1.1"
+      viewBox="0 0 185.208 105.833"
+      className="caja"
+    >
+      <g id="layer1" fillOpacity="1">
+        <path
+          id="rect833"
+          fill="#9c9c9c"
+          strokeDasharray="110.506, 110.506"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="4.604"
+          d="M0 0H185.208V105.833H0z"
+        ></path>
+        <g id="g1283" transform="matrix(1.91496 0 0 1.91496 -19.198 1.182)">
+          <g id="uno" onClick={()=>setPassword(v=>v+'1')} transform="matrix(.53763 0 0 .53763 49.634 -16.583)">
+            <path
+              id="rect837"
+              fill="#000"
+              strokeDasharray="59.0677, 59.0677"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.461"
+              d="M57.452 67.629H69.169V81.07600000000001H57.452z"
+            ></path>
+            <text
+              xmlSpace="preserve"
+              style={{
+                lineHeight: "1.25",
+                InkscapeFontSpecification: "Roboto",
+              }}
+              id="text949"
+              x="60.988"
+              y="78.133"
+              fill="#00ff39"
+              strokeWidth="0.265"
+              fontFamily="Roboto"
+              fontSize="10.583"
+            >
+              <tspan
+                id="tspan947"
+                x="60.988"
+                y="78.133"
+                fill="#00ff39"
+                fillOpacity="1"
+                strokeWidth="0.265"
+              >
+                1
+              </tspan>
+            </text>
+          </g>
+          <g id="dos" onClick={()=>setPassword(v=>v+'2')} transform="matrix(.53763 0 0 .53763 49.634 -16.583)">
+            <path
+              id="rect837-4"
+              fill="#000"
+              strokeDasharray="59.0677, 59.0677"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.461"
+              d="M69.17 67.629H80.887V81.07600000000001H69.17z"
+            ></path>
+            <text
+              xmlSpace="preserve"
+              style={{
+                lineHeight: "1.25",
+                InkscapeFontSpecification: "Roboto",
+              }}
+              id="text955"
+              x="72.01"
+              y="78.166"
+              fill="#00ff39"
+              strokeWidth="0.265"
+              fontFamily="Roboto"
+              fontSize="10.583"
+            >
+              <tspan
+                id="tspan953"
+                x="72.01"
+                y="78.166"
+                fill="#00ff39"
+                fillOpacity="1"
+                strokeWidth="0.265"
+              >
+                2
+              </tspan>
+            </text>
+          </g>
+          <g id="tres" onClick={()=>setPassword(v=>v+'3')} transform="matrix(.53763 0 0 .53763 16.002 14.915)">
+            <path
+              id="rect837-4-3"
+              fill="#000"
+              strokeDasharray="59.0677, 59.0677"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.461"
+              d="M143.442 9.043H155.15900000000002V22.49H143.442z"
+            ></path>
+            <text
+              xmlSpace="preserve"
+              style={{
+                lineHeight: "1.25",
+                InkscapeFontSpecification: "Roboto",
+              }}
+              id="text955-3"
+              x="146.43"
+              y="19.528"
+              fill="#00ff39"
+              strokeWidth="0.265"
+              fontFamily="Roboto"
+              fontSize="10.583"
+            >
+              <tspan
+                id="tspan953-2"
+                x="146.43"
+                y="19.528"
+                fill="#00ff39"
+                fillOpacity="1"
+                strokeWidth="0.265"
+              >
+                3
+              </tspan>
+            </text>
+          </g>
+          <g id="cuatro" onClick={()=>setPassword(v=>v+'4')} transform="matrix(.53763 0 0 .53763 16.002 14.915)">
+            <path
+              id="rect837-4-7"
+              fill="#000"
+              strokeDasharray="59.0677, 59.0677"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.461"
+              d="M120.007 22.49H131.72400000000002V35.937H120.007z"
+            ></path>
+            <text
+              xmlSpace="preserve"
+              style={{
+                lineHeight: "1.25",
+                InkscapeFontSpecification: "Roboto",
+              }}
+              id="text977"
+              x="122.877"
+              y="32.975"
+              fill="#00ff39"
+              strokeWidth="0.265"
+              fontFamily="Roboto"
+              fontSize="10.583"
+            >
+              <tspan
+                id="tspan975"
+                x="122.877"
+                y="32.975"
+                fill="#00ff39"
+                fillOpacity="1"
+                strokeWidth="0.265"
+              >
+                4
+              </tspan>
+            </text>
+          </g>
+          <g id="cinco" onClick={()=>setPassword(v=>v+'5')} transform="matrix(.53763 0 0 .53763 16.002 14.915)">
+            <path
+              id="rect837-5"
+              fill="#000"
+              strokeDasharray="59.0677, 59.0677"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.461"
+              d="M131.725 22.49H143.442V35.937H131.725z"
+            ></path>
+            <text
+              xmlSpace="preserve"
+              style={{
+                lineHeight: "1.25",
+                InkscapeFontSpecification: "Roboto",
+              }}
+              id="text981"
+              x="134.423"
+              y="32.923"
+              fill="#00ff39"
+              strokeWidth="0.265"
+              fontFamily="Roboto"
+              fontSize="10.583"
+            >
+              <tspan
+                id="tspan979"
+                x="134.423"
+                y="32.923"
+                fill="#00ff39"
+                fillOpacity="1"
+                strokeWidth="0.265"
+              >
+                5
+              </tspan>
+            </text>
+          </g>
+          <g id="seis" onClick={()=>setPassword(v=>v+'6')} transform="matrix(.53763 0 0 .53763 16.002 14.915)">
+            <path
+              id="rect837-5-3"
+              fill="#000"
+              strokeDasharray="59.0677, 59.0677"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.461"
+              d="M143.442 22.49H155.15900000000002V35.937H143.442z"
+            ></path>
+            <text
+              xmlSpace="preserve"
+              style={{
+                lineHeight: "1.25",
+                InkscapeFontSpecification: "Roboto",
+              }}
+              id="text985"
+              x="146.241"
+              y="32.926"
+              fill="#00ff39"
+              strokeWidth="0.265"
+              fontFamily="Roboto"
+              fontSize="10.583"
+            >
+              <tspan
+                id="tspan983"
+                x="146.241"
+                y="32.926"
+                fill="#00ff39"
+                fillOpacity="1"
+                strokeWidth="0.265"
+              >
+                6
+              </tspan>
+            </text>
+          </g>
+          <g id="siete" onClick={()=>setPassword(v=>v+'7')} transform="matrix(.53763 0 0 .53763 16.002 14.915)">
+            <path
+              id="rect837-5-9"
+              fill="#000"
+              strokeDasharray="59.0677, 59.0677"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.461"
+              d="M120.007 35.936H131.72400000000002V49.382999999999996H120.007z"
+            ></path>
+            <text
+              xmlSpace="preserve"
+              style={{
+                lineHeight: "1.25",
+                InkscapeFontSpecification: "Roboto",
+              }}
+              id="text989"
+              x="122.926"
+              y="46.422"
+              fill="#00ff39"
+              strokeWidth="0.265"
+              fontFamily="Roboto"
+              fontSize="10.583"
+            >
+              <tspan
+                id="tspan987"
+                x="122.926"
+                y="46.422"
+                fill="#00ff39"
+                fillOpacity="1"
+                strokeWidth="0.265"
+              >
+                7
+              </tspan>
+            </text>
+          </g>
+          <g id="ocho" onClick={()=>setPassword(v=>v+'8')} transform="matrix(.53763 0 0 .53763 16.002 14.915)">
+            <path
+              id="rect837-5-6"
+              fill="#000"
+              strokeDasharray="59.0677, 59.0677"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.461"
+              d="M131.725 35.936H143.442V49.382999999999996H131.725z"
+            ></path>
+            <text
+              xmlSpace="preserve"
+              style={{
+                lineHeight: "1.25",
+                InkscapeFontSpecification: "Roboto",
+              }}
+              id="text993"
+              x="134.612"
+              y="46.422"
+              fill="#00ff39"
+              strokeWidth="0.265"
+              fontFamily="Roboto"
+              fontSize="10.583"
+            >
+              <tspan
+                id="tspan991"
+                x="134.612"
+                y="46.422"
+                fill="#00ff39"
+                fillOpacity="1"
+                strokeWidth="0.265"
+              >
+                8
+              </tspan>
+            </text>
+          </g>
+          <g id="nueve" onClick={()=>setPassword(v=>v+'9')} transform="matrix(.53763 0 0 .53763 16.002 14.915)">
+            <path
+              id="rect837-5-2"
+              fill="#000"
+              strokeDasharray="59.0677, 59.0677"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.461"
+              d="M143.442 35.936H155.15900000000002V49.382999999999996H143.442z"
+            ></path>
+            <text
+              xmlSpace="preserve"
+              style={{
+                lineHeight: "1.25",
+                InkscapeFontSpecification: "Roboto",
+              }}
+              id="text997"
+              x="146.417"
+              y="46.471"
+              fill="#00ff39"
+              strokeWidth="0.265"
+              fontFamily="Roboto"
+              fontSize="10.583"
+            >
+              <tspan
+                id="tspan995"
+                x="146.417"
+                y="46.471"
+                fill="#00ff39"
+                fillOpacity="1"
+                strokeWidth="0.265"
+              >
+                9
+              </tspan>
+            </text>
+          </g>
+          <g id="cero" onClick={()=>setPassword(v=>v+'0')} transform="matrix(.53763 0 0 .53763 16.002 14.915)">
+            <path
+              id="rect837-5-6-1"
+              fill="#000"
+              strokeDasharray="59.0677, 59.0677"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.461"
+              d="M131.725 49.383H143.442V62.83H131.725z"
+            ></path>
+            <text
+              xmlSpace="preserve"
+              style={{
+                lineHeight: "1.25",
+                InkscapeFontSpecification: "Roboto",
+              }}
+              id="text1001"
+              x="134.615"
+              y="59.868"
+              fill="#00ff39"
+              strokeWidth="0.265"
+              fontFamily="Roboto"
+              fontSize="10.583"
+            >
+              <tspan
+                id="tspan999"
+                x="134.615"
+                y="59.868"
+                fill="#00ff39"
+                fillOpacity="1"
+                strokeWidth="0.265"
+              >
+                0
+              </tspan>
+            </text>
+          </g>
+        </g>
+        <g
+          id="g1240"
+          strokeLinecap="round"
+          transform="matrix(1.67135 0 0 1.67135 5.334 8.318)"
+        >
+          <g id="g1176" transform="translate(3.59 10.583)">
+            <g
+              id="g1126"
+              fill="#000"
+              strokeDasharray="36.0969, 36.0969"
+              strokeLinejoin="round"
+              strokeWidth="1.504"
+            >
+              <path
+                id="rect1085"
+                d="M-7.387 15.313H7.313V30.012999999999998H-7.387z"
+                transform="rotate(-45)"
+              ></path>
+              <path
+                id="rect1085-1"
+                d="M8.649 8.701H23.348999999999997V23.401H8.649z"
+              ></path>
+            </g>
+            <path
+              id="path1102"
+              fill="#474747"
+              stroke="#616161"
+              strokeDasharray="none"
+              strokeLinejoin="miter"
+              strokeMiterlimit="4"
+              strokeOpacity="1"
+              strokeWidth="3.234"
+              d="M16.08 12.376v7.677"
+            ></path>
+            <circle
+              id="path1112"
+              cx="17.959"
+              cy="18.583"
+              r="1.96"
+              fill="#616161"
+              stroke="none"
+              strokeDasharray="none"
+              strokeLinejoin="round"
+              strokeMiterlimit="4"
+              strokeOpacity="1"
+              strokeWidth="3.234"
+            ></circle>
+          </g>
+          <path
+            id="rect1178"
+            fill="none"
+            stroke="#000"
+            strokeDasharray="none"
+            strokeLinejoin="round"
+            strokeMiterlimit="4"
+            strokeOpacity="1"
+            strokeWidth="1.501"
+            d="M5.192 11.806H43.378V41.11H5.192z"
+          ></path>
+          <path
+            id="path1182"
+            fill="#9c9c9c"
+            stroke="#000"
+            strokeDasharray="none"
+            strokeLinejoin="round"
+            strokeMiterlimit="4"
+            strokeOpacity="1"
+            strokeWidth="1.323"
+            d="M37.325 24.19l19.378-5.192-19.378 12.563"
+          ></path>
+          <circle
+            id="path1180"
+            cx="37.325"
+            cy="27.876"
+            r="3.685"
+            fill="#9c9c9c"
+            stroke="#000"
+            strokeDasharray="none"
+            strokeLinejoin="round"
+            strokeMiterlimit="4"
+            strokeOpacity="1"
+            strokeWidth="1.323"
+          ></circle>
+        </g>
+        <g id="clear" onClick={()=>setPassword('')} strokeLinecap="round">
+          <path
+            id="rect837-5-6-1-5"
+            fill="#000"
+            fillOpacity="1"
+            strokeDasharray="60.813, 60.813"
+            strokeLinejoin="round"
+            strokeWidth="2.534"
+            d="M159.126 80.585H171.189V94.42899999999999H159.126z"
+          ></path>
+          <g
+            id="g970"
+            fill="none"
+            stroke="#00ff39"
+            strokeDasharray="none"
+            strokeLinejoin="miter"
+            strokeMiterlimit="4"
+            strokeOpacity="1"
+            strokeWidth="2.117"
+            transform="matrix(.47374 0 0 .47374 110.38 48.05)"
+          >
+            <path id="path951" d="M109.313 76.974l12.629 12.628"></path>
+            <path id="path951-1" d="M121.942 76.974l-12.629 12.628"></path>
+          </g>
+        </g>
+        <g id="delete" fillOpacity="1" onClick={()=>setPassword(v=>v.substr(0, v.length-1))}>
+          <path
+            id="rect837-5-6-1-5-2"
+            fill="#000"
+            strokeDasharray="60.8129, 60.8129"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2.534"
+            d="M134.999 80.585H147.06199999999998V94.42899999999999H134.999z"
+          ></path>
+          <path
+            id="path991"
+            fill="#00ff39"
+            stroke="none"
+            strokeLinecap="butt"
+            strokeLinejoin="miter"
+            strokeOpacity="1"
+            strokeWidth="0.079"
+            d="M137.268 84.932h4.351l3.174 2.575-3.174 2.575h-4.351v-5.15"
+          ></path>
+        </g>
+      </g>
+    </svg>
+    </div>
+      </div>
 
       <div className="check" style={{display:showCheck?'flex':'none'}}>
 
