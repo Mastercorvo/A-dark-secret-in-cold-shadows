@@ -302,6 +302,8 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
         setShowCheckChest(false);
 
+        setShowModal(false);
+
       });
 
     }, []);
