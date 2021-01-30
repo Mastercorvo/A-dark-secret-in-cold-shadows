@@ -245,7 +245,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
       }else if(amanecerOpacity !== 0) setAmanecerOpacity(0)
 
-      if((superTime >= 540) && (superTime <= 1080)) setAnochecerOpacity(0);
+      if((superTime >= 540) && (superTime <= 1200)) setAnochecerOpacity(0);
 
       if((superTime >= 1080) && (superTime <= 1140)){
 
