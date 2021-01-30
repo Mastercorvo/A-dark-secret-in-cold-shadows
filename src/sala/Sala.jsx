@@ -144,12 +144,33 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
       }
       
     }
+
+    const [showCaja, setShowCaja] = useState(false);
+    const [showModal, setShowModal] = useState(true);
+
+    const touchCajaFuerte = useRef(false);
     
     function marco(){
       
       if('cuadro' in actions){
 
-        alert('¡ALTO AHÍ HERMANO! ¿Eri gei?');
+        if(!touchCajaFuerte.current){
+
+          touchCajaFuerte.current = true;
+
+          inputText([{text:['— Selena: ','Escuché algo sobre la pintura en el pueblo, voy a revisar. '], img: 'SelenaHablaSeria'}, {text:['','— Selena se encuentra una caja fuerte bastante moderna '], img:'moment'}]);
+  
+          postText.current.push(()=>{
+  
+            setShowModal(true);
+  
+          });
+
+        }else{
+
+          setShowModal(true);
+
+        }
 
         return false;
 
@@ -291,11 +312,31 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
       const value = target.value;
 
+      if(value === '6967') {
+        
+        setPassword('DESBLOQUEADO')
+      
+          return false;
+
+      }
+
       setPassword(value);
 
     }
 
-    const [showCaja, setShowCaja] = useState(true)
+    const touchCloseCaja = useRef(false);
+
+    function closeCaja(){
+
+      setShowModal(false);
+
+      if(touchCloseCaja.current) return false;
+
+      touchCloseCaja.current = true;
+
+      inputText([{text:['— Selena: ','Una caja fuerte que solo pide 4 mineros y una llave.'], img: 'SelenaDesconfia'}]);
+
+    }
 
     if(zone !== 'sala') return false;
 
@@ -306,14 +347,19 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
         <div className="container">
 
           <h5>¿Quiere inspeccionar la caja?</h5>
-          <p>Sí.</p> <p>No.</p>
+          <p onClick={()=>{
+
+            setShowCaja(true);
+            setShowModal(false);
+
+          }}>Sí.</p> <p onClick={()=>setShowModal(false)}>No.</p>
         </div>
 
       </div>
 
       <div className="caja-fuerte-container" style={{display: showCaja?'flex':'none'}}>
 
-      <div className="close" onClick={()=>setShowCaja(false)}>
+      <div className="close" onClick={closeCaja}>
 
         Cerrar
 
