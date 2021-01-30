@@ -303,7 +303,9 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
       const numberX = Math.floor(Math.random() * Rumore.length);
 
-      if(numberX === 1) setActions(value=>{
+      if(Rumore[1] === Rumore[numberX]) setActions(value=>{
+
+        console.log(value);
 
         const copy = {...value};
 

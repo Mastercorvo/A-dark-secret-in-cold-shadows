@@ -1,5 +1,5 @@
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import './sala.css';
 
 const llaveData = ['otraLlave', 'Una llave misteriosa encontrada en la sala del castillo.', 'Una llave encontrada en la sala del castillo']
@@ -146,7 +146,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
     }
 
     const [showCaja, setShowCaja] = useState(false);
-    const [showModal, setShowModal] = useState(true);
+    const [showModal, setShowModal] = useState(false);
 
     const touchCajaFuerte = useRef(false);
     
@@ -318,7 +318,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
         
         setPassword('DESBLOQUEADO')
       
-          return false;
+        return false;
 
       }
 
@@ -326,11 +326,29 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
     }
 
+    const block = useRef(true)
+
+    useLayoutEffect(() => {
+
+      if(!block.current){
+
+        setPassword('DESBLOQUEADO')
+
+      }else if(password === '6967'){
+        
+        setPassword('DESBLOQUEADO');
+      
+        block.current = false
+
+      }
+
+    }, [password])
+
     const touchCloseCaja = useRef(false);
 
     function closeCaja(){
 
-      setShowModal(false);
+      setShowCaja(false);
 
       if(touchCloseCaja.current) return false;
 
@@ -367,7 +385,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
       </div>
       <div className="container">
-      <input type="text" placeholder="contraseña" value={password} onChange={passwordHandler}/>
+      <input type="text" placeholder="Contraseña de 4 dígitos" value={password} onChange={passwordHandler}/>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       id="svg8"
