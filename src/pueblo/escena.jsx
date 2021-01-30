@@ -1,6 +1,6 @@
 
 function Escena(){
 
-    return ()
 
+    
 }

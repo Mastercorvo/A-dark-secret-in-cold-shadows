@@ -447,7 +447,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
               setAnochecerOpacity(1);
             
             }
-
+            setAtardecer(0);
             setAmanecerOpacity(0);
             setAtardecerOpacity(0);
 

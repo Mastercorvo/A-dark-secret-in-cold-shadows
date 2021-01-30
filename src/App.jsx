@@ -590,7 +590,7 @@ function App() {
           <div className="container">
 
             <p className="first">{textCheckZone}</p>
-            <div className="option" onClick={yesCheckZone}><p >Sí.</p></div> <div className="option" onClick={()=>setShowCheckZone(()=>false)}><p >No.</p></div>
+            <div className="option" onClick={yesCheckZone}><p >Sí.</p></div> <div className="option" onClick={()=>setShowCheckZone(()=>false)}><p>No.</p></div>
 
           </div>
 
