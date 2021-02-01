@@ -147,7 +147,17 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
           }
 
-          if(i === (1440)){
+          if(i <= 360 || i >= 1200){
+
+            if(showPersona === true){
+
+              setShowPersona(false)
+
+            }
+
+          }else if(showPersona === false) setShowPersona(true);
+
+          if(i === 1440){
 
             overlordTime(0);
 
