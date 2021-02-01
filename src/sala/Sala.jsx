@@ -166,11 +166,11 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
   
           });
 
-        }else{
+        }else if(block.current){
 
           setShowModal(true);
 
-        }
+        }else setShowCorona(true);
 
         return false;
 
@@ -358,9 +358,47 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
     }
 
+    const [showCorona, setShowCorona] = useState(false);
+
+    function cerraduraHandler(){
+
+      if(block.current) return false;
+
+      setShowCaja(false);
+
+      setShowCorona(true);
+
+    }
+
+    const touchCorona = useRef(false);
+
+    function closeCorona(){
+
+      setShowCorona(false);
+
+      if(touchCorona.current) return false;
+
+      touchCorona.current = true;
+
+      inputText([{text:['— Selena: ','¿Una corona tan pequeña y delicada? Es tan similar a la de... Ella.'], img:'SelenaDesconfia'}, {text:['','— Selena también encontró una llave.'], img:'moment'}]);
+
+      addItem('ultimaLlave', 'Una llave encontrada en la caja fuerte de la sala.', 'Llave encontrada en la caja fuerte')
+
+    }
+
     if(zone !== 'sala') return false;
 
     return (<div className="Sala">
+
+      <div className="modal" onClick={closeCorona} style={{display:showCorona?'flex':'none'}}>
+
+        <div className="close">Cerrar</div>
+
+        <div className="container-foto">
+          <div className="foto" style={{backgroundImage:`url(${ObjetImages.current['corona']})`}}></div>
+        </div>
+
+      </div>
 
       <div className="modal" style={{display: showModal?'flex':'none'}}>
 
@@ -768,9 +806,10 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
           </g>
         </g>
         <g
-          id="g1240"
+          id="cerradura"
           strokeLinecap="round"
           transform="matrix(1.67135 0 0 1.67135 5.334 8.318)"
+          onClick={cerraduraHandler}
         >
           <g id="g1176" transform="translate(3.59 10.583)">
             <g

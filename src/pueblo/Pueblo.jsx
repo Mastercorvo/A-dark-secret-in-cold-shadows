@@ -19,7 +19,7 @@ let Rumore = ["¿Has visto al principe Nicolás? ¡Es muy agradable y carismáti
 "Ah... Cómo extraño a la reina... ¡Era tan hermosa! Es increíble como su hija se parece tanto a ella", "La herrería de al lado está hecha de hielo, no se le derrite con el horno?",
 "¡Me encanta oír las campanas de la tarde! Hmmm... ¿Cuantas veces es que sonaban?"];
 
-Rumore = [...Rumore, Rumore[1], Rumore[1], Rumore[1]];
+Rumore = [...Rumore, Rumore[1], Rumore[1], Rumore[1], Rumore[1], Rumore[1]];
 
 function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAnyText, postText, setActions, setSuperTime, salida}) {
 
