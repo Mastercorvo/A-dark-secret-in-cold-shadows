@@ -360,9 +360,27 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
     const [showCorona, setShowCorona] = useState(false);
 
+    const getUltimaLlave = useRef(false)
+
     function cerraduraHandler(){
 
+      if(getUltimaLlave.current) return false;
+
       if(block.current) return false;
+
+      if(!Object.keys(inventario).includes('Una llave encontrada en la sala del castillo')) return false;
+
+      getUltimaLlave.current = true;
+
+      setInventario(value=>{
+
+        const copy = {...value};
+
+        delete copy['Una llave encontrada en la sala del castillo'];
+
+        return copy;
+
+      });
 
       setShowCaja(false);
 
