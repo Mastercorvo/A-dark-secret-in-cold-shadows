@@ -32,12 +32,15 @@ function Menu({buttonPlayHandler, ObjetImages}){
     return (<div className="containerTop">
     <div className="backPoint" onMouseMove={moveSkew}></div>
     <div className="logo-menu">
+        <div className="container-menu-logo">
+            <div className="background" style={{backgroundImage:`url(${ObjetImages.current['logoP']})`}}></div>
+            <div className={"four " + endA}></div>
+            <div className={"three " + endA}></div>
+            <div className={"two " + endA}></div>
+            <div className={"one " + endA} onAnimationEnd={move}></div>
+        </div>
 
-      <div className="background" style={{backgroundImage:`url(${ObjetImages.current['logoP']})`}}></div>
-      <div className={"four " + endA}></div>
-      <div className={"three " + endA}></div>
-      <div className={"two " + endA}></div>
-      <div className={"one " + endA} onAnimationEnd={move}></div>
+    <div className="title">A dark secret in cold shadows</div>
 
     </div>
     <div className="menu">

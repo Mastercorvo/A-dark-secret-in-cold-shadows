@@ -23,6 +23,21 @@
     z-index: 99999;
     
   }
+
+    .containerTop .container-menu-logo{
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100%;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+  }
+
   .containerTop .logo-menu{
     
     position: absolute;
@@ -34,14 +49,42 @@
     top: 20px;
     
     z-index: 100;
-  
+
     border-radius: 10px;
   
-    overflow: hidden;
-  
     background-color: rgb(114, 0, 0);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
     
   }
+  .containerTop .logo-menu .title{
+
+    position: absolute;
+
+    top: calc(100% + 30px);
+
+    font-family: sans-serif;
+
+    font-style: italic;
+
+    font-weight: bold;
+
+    font-size: 2rem;
+
+    color: white;
+
+    background-image: linear-gradient(to right, rgb(0, 110, 255), rgb(0, 0, 145));
+
+    padding: 10px;
+
+    border-radius: 5px;
+
+  }
+
   .containerTop .logo-menu .background{
   
     width: 100%;
@@ -196,6 +239,10 @@
     gap: 10px;
   
     border-radius: 6px;
+
+    font-family: sans-serif;
+
+    font-weight: bold;
   
   }
   
