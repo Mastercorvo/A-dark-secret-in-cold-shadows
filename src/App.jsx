@@ -35,6 +35,8 @@ import SmallKey from './pueblo/svg/key.svg';
 
 import KeyUltima from './sala/svg/keyUltima.svg';
 
+import Menu from './menu/Menu';
+
 // Selena
 
 const SelenaHabla = 'https://i.ibb.co/4f6dxLH/selena1.png';
@@ -84,6 +86,13 @@ const CuartoSinLlave ="https://i.ibb.co/FD2yYXW/Sin-llave.png"
 const CuartoSinDulces ="https://i.ibb.co/TPWzYcq/sin-dulce.png"
 const CuartoSinNada ="https://i.ibb.co/8XFdhmP/Sin-dulce-y-sin-llave.png"
 
+//Menu
+
+const FondoMenu = 'https://i.ibb.co/Pjp6n6D/fondo-menu.png';
+const LogoP = 'https://i.ibb.co/RHY4xpb/logoconsombra.png';
+const nubesM = 'https://i.ibb.co/3WD9jgm/nubes-menu.png';
+const SelenaM = 'https://i.ibb.co/yNYs9zF/selena-menu.png';
+
 //Code
 
 const Images =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeria'],[SelenaHablaTriste,'SelenaHablaTriste'], [SelenaDesconfia, 'SelenaDesconfia'], [SelenaAvergonzada, 'SelenaAvergonzada'],
@@ -91,7 +100,7 @@ const Images =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeri
 [NicolasHabla, 'NicolasHabla'], [NicolasHablaFeliz,'NicolasHablaFeliz'],[SelenaFeliz, 'SelenaFeliz'],
 [Flecha, 'flecha'], [Espada, 'espada'], [Nota, 'nota'], [SalaImg, 'sala'], [PuebloImg, 'pueblo'], [Moment, 'moment'], [PuebloSinSombraImg, 'puebloSinSombra'],[Cuarto,'cuarto'],[CuartoSinDulces, 'cuartoSinDulces'],
 [CuartoSinLlave, 'cuartoSinLlave'], [CuartoSinNada, 'cuartoSinNada'], [imgKey, 'llave'], [imgCandy, 'dulces'], [MujerMisteriosa, 'MujerMisteriosa'], [imgKeyOther, 'otraLlave'], [Cofre, 'cofre'], [Separador, 'separador'],
-[Recibo, 'recibo'], [SmallKey, 'smallKey'], [Carta, 'carta'], [Notat, 'notat'], [chica, 'chica'], [SalaA, 'salaA'], [SalaN, 'salaN'], [SalaT, 'salaT'], [PuebloImgAmanecer, 'puebloA'], [PuebloImgNoche, 'puebloN'], [PuebloImgAtardecer, 'puebloT'], [Corona, 'corona'], [KeyUltima, 'ultimaLlave']];
+[Recibo, 'recibo'], [SmallKey, 'smallKey'], [Carta, 'carta'], [Notat, 'notat'], [chica, 'chica'], [SalaA, 'salaA'], [SalaN, 'salaN'], [SalaT, 'salaT'], [PuebloImgAmanecer, 'puebloA'], [PuebloImgNoche, 'puebloN'], [PuebloImgAtardecer, 'puebloT'], [Corona, 'corona'], [KeyUltima, 'ultimaLlave'], [FondoMenu, 'fondoMenu'], [LogoP, 'logoP'], [nubesM, 'nubesM'], [SelenaM, 'selenaM']];
 
 function App() {
 
@@ -568,7 +577,7 @@ function App() {
 
     return <div className="load">
 
-      <h1>Unfinished Selena Game (Protoptipe)</h1>
+      <h1>A dark secret in cold shadows</h1>
 
       <span>Un juego original del estudio:</span>
       <div className="container-logos">
@@ -618,9 +627,8 @@ function App() {
         <div className="left arrow" hidden={!zonesArrow[0]} onClick={leftHandler}></div>
         <div className="right arrow" hidden={!zonesArrow[1]} onClick={rightHandler}></div>
 
-        <div className="play"style={{display:showPlayScreen?'flex':'none'}} onClick={buttonPlayHandler}><p hidden={!onPlay} onMouseOut={()=>setTextPlay('READY?')} onMouseOver={()=>setTextPlay('GO!')} >{textPlay}</p>
+        <Menu ObjetImages={ObjetImages} style={{display:showPlayScreen?'flex':'none'}} buttonPlayHandler={buttonPlayHandler}/>
   
-        </div>
         <div className="inventario-icon" onClick={showInventoryHandler}></div>
         <div className="inventario" style={{display:showInventario?'flex':'none'}}>
 
