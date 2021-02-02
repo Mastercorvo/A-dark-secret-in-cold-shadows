@@ -627,7 +627,7 @@ function App() {
         <div className="left arrow" hidden={!zonesArrow[0]} onClick={leftHandler}></div>
         <div className="right arrow" hidden={!zonesArrow[1]} onClick={rightHandler}></div>
 
-        <Menu ObjetImages={ObjetImages} style={{display:showPlayScreen?'flex':'none'}} buttonPlayHandler={buttonPlayHandler}/>
+        <Menu ObjetImages={ObjetImages} showPlayScreen={showPlayScreen} buttonPlayHandler={buttonPlayHandler}/>
   
         <div className="inventario-icon" onClick={showInventoryHandler}></div>
         <div className="inventario" style={{display:showInventario?'flex':'none'}}>

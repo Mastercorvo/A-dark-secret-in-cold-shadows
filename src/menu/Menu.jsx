@@ -3,7 +3,7 @@ import './menu.css';
 
 import { useState } from 'react'
 
-function Menu({buttonPlayHandler, ObjetImages}){
+function Menu({buttonPlayHandler, ObjetImages, showPlayScreen}){
 
     const [x, setX] = useState(0)
     const [y, setY] = useState(0)
@@ -29,7 +29,7 @@ function Menu({buttonPlayHandler, ObjetImages}){
       setEndA(v=>v==='part'?'reverse':'part')
   
     }
-    return (<div className="containerTop">
+    return (<div className="containerTop" style={{display:showPlayScreen?'flex':'none'}}>
     <div className="backPoint" onMouseMove={moveSkew}></div>
     <div className="logo-menu">
         <div className="container-menu-logo">
