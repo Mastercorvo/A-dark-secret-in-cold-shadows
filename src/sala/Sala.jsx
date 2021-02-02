@@ -166,7 +166,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
   
           });
 
-        }else if(block.current){
+        }else if(block.current || blockCerradura.current){
 
           setShowModal(true);
 
@@ -362,6 +362,8 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
     const getUltimaLlave = useRef(false)
 
+    const blockCerradura = useRef(true);
+
     function cerraduraHandler(){
 
       if(getUltimaLlave.current) return false;
@@ -371,6 +373,8 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
       if(!Object.keys(inventario).includes('Una llave encontrada en la sala del castillo')) return false;
 
       getUltimaLlave.current = true;
+
+      blockCerradura.current = true;
 
       setInventario(value=>{
 
