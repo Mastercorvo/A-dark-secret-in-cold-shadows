@@ -1,6 +1,8 @@
 
 import './menu.css';
 
+import ReactPlayer from 'react-player';
+
 import { useState } from 'react'
 
 function Menu({buttonPlayHandler, ObjetImages, showPlayScreen}){
@@ -30,17 +32,16 @@ function Menu({buttonPlayHandler, ObjetImages, showPlayScreen}){
   
     }
     return (<div className="containerTop" style={{display:showPlayScreen?'flex':'none'}}>
-    <div className="backPoint" onMouseMove={moveSkew}></div>
-    <div className="logo-menu">
+        {showPlayScreen && <ReactPlayer width="0" height="0" loop={true} url="https://www.youtube.com/watch?v=UxOW4hBKU3A&feature=youtu.be" playing={true}/>}
+    <div className="backPoint" ></div>
+    <div className="logo-menu" style={{backgroundImage:`url(${ObjetImages.current['logoGame']})`}}>
+
+    <div className="title-container"></div>
+    <div className="title"><p>Un juego original de</p>         
         <div className="container-menu-logo">
             <div className="background" style={{backgroundImage:`url(${ObjetImages.current['logoP']})`}}></div>
-            <div className={"four " + endA}></div>
-            <div className={"three " + endA}></div>
-            <div className={"two " + endA}></div>
-            <div className={"one " + endA} onAnimationEnd={move}></div>
         </div>
-
-    <div className="title">A dark secret in cold shadows</div>
+    </div>
 
     </div>
     <div className="menu">
@@ -50,8 +51,8 @@ function Menu({buttonPlayHandler, ObjetImages, showPlayScreen}){
     </div>
     <div className="container" style={{transform:`rotateX(${y}deg) rotateY(${x}deg)`, backgroundImage:`url(${ObjetImages.current['fondoMenu']})`}}>
       <div className="nube" style={{transform:`rotateX(${y}deg) rotateY(${x}deg)`, backgroundImage:`url(${ObjetImages.current['nubesM']})`}}></div>
-      <div className="selena" style={{transform:`skewX(${y}deg) skewY(${x}deg)`, backgroundImage:`url(${ObjetImages.current['selenaM']})`}}></div>
     </div>
+      <div className="selena" style={{backgroundImage:`url(${ObjetImages.current['selenaM']})`}}></div>
   </div>)
 
 }
