@@ -40,7 +40,7 @@ function Menu({buttonPlayHandler, ObjetImages, showPlayScreen}){
 
     return (<div className="containerTop" style={{display:showPlayScreen?'flex':'none'}}>
         <p className="recommendation">Se recomienda jugar en pantalla completa para una mejor experiencia, presione f11.</p>
-        {showPlayScreen && <ReactPlayer volume={castilloSongVolumen} url='https://soundcloud.com/shadry-xeaton/nier-automata-vague-hope-karaoke/s-7wtC81gHCNS' playing={castilloSong} width="0" height="0" onEnded={()=>{
+        {showPlayScreen && <ReactPlayer volume={castilloSongVolumen} url='https://soundcloud.com/shadry-xeaton/nier-automata-vague-hope-karaoke' playing={castilloSong} width="0" height="0" onEnded={()=>{
           castilloSongElement.current.seekTo(0, 0);
 
             setCastilloSong(false)

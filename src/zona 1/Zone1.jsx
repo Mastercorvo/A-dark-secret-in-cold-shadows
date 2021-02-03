@@ -99,9 +99,17 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
     },[zone])
 
+    const [fin, setFin] = useState('');
+
+    const one = useRef(false)
+
     function animationEnd() {
       
       if(dark !== 'dark') return false;
+
+      if(one.current) return false;
+
+      one.current = true;
 
       inputText([{text:['','— Selena entra por el pasillo secreto, un recorrido oscuro y largo, después de caminar un poco puede escuchar voces al fondo, tomando cuidado y escondiéndose.'], img:'moment'},
       {text:['','Al asomarse solo puede ver tres siluetas, intentar inspeccionar más de cerca seria peligroso.'], img:'moment'},
@@ -115,6 +123,12 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
       {text:['— Selena: ','Toda esta información... ¡Nicolás debe saberlo!'], img:'SelenaEnojada'},
       {text:['','— Selena escapa con cautela y de dirige a ver a Nicolás con todas las pruebas en mano, decidida a desenmascarar la verdad.'], img:'moment'}
     ])
+
+    postText.current.push(()=>{
+
+      setFin('fin')
+
+    });
 
     }
 
@@ -135,7 +149,26 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
       </div>
 
-      <div className={"oscuro " + dark} hidden={dark !== 'dark'}></div>
+      <div className={"oscuro " + dark} style={{display:(dark === 'dark')?'flex':'none'}}>
+        <p className={fin}>Fin</p>
+      </div>
+
+      <div className="credits">
+
+        <p><span>Dirección:</span> <br/>
+        ZouponFox - @ZouponFox <br/>
+        Ed Farcevol - @Ed_Farcevol <br/>
+        Mastercorvo - Facebook: GIGA KIWI FRUITPALACE <br/> </p>
+
+        <p><span>Artistas involucrados:</span> <br/>
+        ZouponFox - @ZouponFox <br/>
+        Ed Farcevol - @Ed_Farcevol <br/>
+        PlzKillMe - @plzkillme_plz <br/></p>
+
+        <p><span>Canciones usadas</span> <br/>
+        <a href="https://soundcloud.com/breitkopf-haertel/1-movement-from-brandenburg-concerto-no-3-in-g-major-bwv-1048-by-johann-sebastian-bach">Música del castillo</a></p>
+
+      </div>
 
       <div className="nota" onClick={closeNota} style={{display:showNota?'flex':'none'}}>
 
