@@ -576,6 +576,10 @@ function App() {
 
   }, [])
 
+  const [stop, setStop] = useState(false);
+
+  const [bloque, setBloque] = useState(false);
+
   if(isLoad){
 
     return <div className="load">
@@ -598,7 +602,7 @@ function App() {
 
   return (
 
-      <div className={"App " + aparece} onAnimationEnd={first}>
+      <div className="App">
 
         <div className="check-zone" style={{display:showCheckZone?'flex':'none'}}>
 
@@ -611,24 +615,44 @@ function App() {
 
         </div>
 
-        <ReactPlayer volume={castilloSongVolumen} url='https://soundcloud.com/breitkopf-haertel/1-movement-from-brandenburg-concerto-no-3-in-g-major-bwv-1048-by-johann-sebastian-bach' playing={castilloSong} width="0" height="0" onEnded={()=>{
+        {!stop && <ReactPlayer volume={castilloSongVolumen} url='https://soundcloud.com/breitkopf-haertel/1-movement-from-brandenburg-concerto-no-3-in-g-major-bwv-1048-by-johann-sebastian-bach' playing={castilloSong} width="0" height="0" onEnded={()=>{
           castilloSongElement.current.seekTo(0, 0);
 
             setCastilloSong(false)
-            setTimeout(()=>setCastilloSong(true), 0)
+            setTimeout(()=>{
+
+              if(stop) return false;
+              
+              setCastilloSong(true)
+            
+            }, 0)
           
-          }} ref={castilloSongElement}/>
+          }} ref={castilloSongElement}/>}
         
-        <ReactPlayer url='https://soundcloud.com/video-background-music/cold-isolation-sad-dramatic-background-music-piano-and-violin' playing={afueraSong} width="0" height="0" onEnded={()=>{
+        {!stop && <ReactPlayer url='https://soundcloud.com/video-background-music/cold-isolation-sad-dramatic-background-music-piano-and-violin' playing={afueraSong} width="0" height="0" onEnded={()=>{
           castilloSongElement.current.seekTo(0, 0);
 
             setAfueraSong(false)
-            setTimeout(()=>setAfueraSong(true), 0)
+            setTimeout(()=>{
+
+              if(stop) return false;
+              
+              setAfueraSong(true)
+            
+            }, 0)
           
-          }} ref={afueraSongElement}/>
+          }} ref={afueraSongElement}/>}
 
         <div className="left arrow" hidden={!zonesArrow[0]} onClick={leftHandler}></div>
         <div className="right arrow" hidden={!zonesArrow[1]} onClick={rightHandler}></div>
+
+        <div className={"bloque " + aparece} hidden={bloque} onAnimationEnd={()=>{
+
+          first();
+
+          setBloque(true);
+
+        }}></div>
 
         <Menu ObjetImages={ObjetImages} showPlayScreen={showPlayScreen} buttonPlayHandler={buttonPlayHandler}/>
   
@@ -650,8 +674,9 @@ function App() {
           </div>
 
         </div>
+
         <Zone1 actions={actions} setZonesArrow={setZonesArrow} zone={zone} ObjetImages={ObjetImages} setFINAL={setFINAL} addItem={addItem} inputText={inputText} inventario={inventario} currentAnyText={currentAnyText}/>
-        <Sala salida={salida} superTime={superTime} actions={actions} inventario={inventario} postText={postText} setInventario={setInventario} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone} inputText={inputText} currentAnyText={currentAnyText} addItem={addItem}/>
+        <Sala setStop={setStop} salida={salida} superTime={superTime} actions={actions} inventario={inventario} postText={postText} setInventario={setInventario} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone} inputText={inputText} currentAnyText={currentAnyText} addItem={addItem}/>
         <Pueblo salida={salida} setSuperTime={setSuperTime} setActions={setActions} postText={postText} inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
         <CuartoZone salida={salida} postText={postText} inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
         <div className="texto" onClick={textHandler} style={{display:showText?'grid':'none'}}>

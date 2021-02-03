@@ -4,7 +4,7 @@ import './sala.css';
 
 const llaveData = ['otraLlave', 'Una llave misteriosa encontrada en la sala del castillo.', 'Una llave encontrada en la sala del castillo']
 
-function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addItem, inventario, setInventario, postText, actions, superTime, salida}) {
+function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addItem, inventario, setInventario, postText, actions, superTime, salida, setStop}) {
 
     useEffect(() => {
         if(zone === 'sala') setZonesArrow(()=>['cuarto', 'trono'])
@@ -399,6 +399,8 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
       setShowCorona(false);
 
       if(touchCorona.current) return false;
+
+      setStop(true)
 
       touchCorona.current = true;
 
