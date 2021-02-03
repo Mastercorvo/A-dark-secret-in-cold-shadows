@@ -91,7 +91,7 @@ const CuartoSinNada ="https://i.ibb.co/8XFdhmP/Sin-dulce-y-sin-llave.png"
 const FondoMenu = 'https://i.ibb.co/Pjp6n6D/fondo-menu.png';
 const LogoP = 'https://i.ibb.co/RHY4xpb/logoconsombra.png';
 const nubesM = 'https://i.ibb.co/3WD9jgm/nubes-menu.png';
-const SelenaM = 'https://i.ibb.co/yNYs9zF/selena-menu.png';
+const SelenaM = 'https://i.ibb.co/PrtRGvH/Selena-XD.png';
 const LogoGame = 'https://i.ibb.co/cXf1vXN/Logo-del-juego.png'
 
 //Code
@@ -404,11 +404,13 @@ function App() {
 
   }
 
+  const [aparece, setAparece] = useState('')
+
   function buttonPlayHandler(){
 
     setShowPlayScreen(false);
-          
-    first();
+
+    setAparece('aparece');
 
   }
 
@@ -596,14 +598,14 @@ function App() {
 
   return (
 
-      <div className="App">
+      <div className={"App " + aparece} onAnimationEnd={first}>
 
         <div className="check-zone" style={{display:showCheckZone?'flex':'none'}}>
 
           <div className="container">
 
             <p className="first">{textCheckZone}</p>
-            <div className="option" onClick={yesCheckZone}><p >Sí.</p></div> <div className="option" onClick={()=>setShowCheckZone(()=>false)}><p>No.</p></div>
+            <div className="option" onClick={yesCheckZone}><p>Sí.</p></div> <div className="option" onClick={()=>setShowCheckZone(()=>false)}><p>No.</p></div>
 
           </div>
 

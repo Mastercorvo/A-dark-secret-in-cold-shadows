@@ -54,9 +54,9 @@
 
     position: relative;
 
-    width: 350px;
+    width: 320px;
 
-    height: 150px;
+    height: 120px;
 
     border-radius: 10px;
 
@@ -270,7 +270,7 @@
   
     z-index: 1000;
   
-    width: 400px;
+    width: 500px;
   
     height: 500px;
   
@@ -449,9 +449,15 @@
   
   .containerTop .selena{
   
-    width: 100%;
+    width: calc((25vh/900)*1440);
   
-    height: 100%;
+    height: calc((60vw/1440)*900);
+
+    position: absolute;
+
+    right: 0;
+
+    bottom: 0;
   
     /* background-image: url(./menu\ selena/selena\ menu.png); */
   

@@ -17,6 +17,38 @@ p, h2, h3{
 
 }
 
+@keyframes AP{
+
+  from{
+
+    filter: brightness(0);
+
+  }
+
+  to{
+
+    filter: brightness(1);
+
+  }
+
+}
+
+.aparece{
+
+  animation-name: AP;
+
+  animation-duration: 2s;
+
+  animation-fill-mode: forwards;
+
+  animation-delay: 2s;
+
+  animation-timing-function: linear;
+
+  filter:  brightness(0);
+
+}
+
 .center{
 
   display: flex;
