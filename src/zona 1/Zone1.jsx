@@ -155,30 +155,30 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
       <div className="credits">
 
-        <div className="container-credits">
+          <div className="container-credits"> 
 
           <p><span>Dirección:</span> <br/>
           ZouponFox - @ZouponFox <br/>
           Ed Farcevol - @Ed_Farcevol <br/>
-          Mastercorvo - Facebook: GIGA KIWI FRUITPALACE <br/> </p>
+          Mastercorvo - Facebook: GIGA KIWI FRUITPALACE <br/> <br/> </p>
 
           <p><span>Artistas involucrados:</span> <br/>
           ZouponFox - @ZouponFox <br/>
           Ed Farcevol - @Ed_Farcevol <br/>
-          PlzKillMe - @plzkillme_plz <br/></p>
+          PlzKillMe - @plzkillme_plz <br/> <br/></p>
 
           <p><span>Canciones usadas:</span> <br/>
           <a href="https://soundcloud.com/breitkopf-haertel/1-movement-from-brandenburg-concerto-no-3-in-g-major-bwv-1048-by-johann-sebastian-bach">Música del castillo</a> <br/>
           <a href="https://soundcloud.com/video-background-music/cold-isolation-sad-dramatic-background-music-piano-and-violin">Música del pueblo</a> <br/>
           <a href="https://www.youtube.com/watch?v=UxOW4hBKU3A">Música del menu</a><br/>
-          <a href="https://www.youtube.com/watch?v=Gm-X7KBBacM">Música de los créditos</a> <br/></p>
+          <a href="https://www.youtube.com/watch?v=Gm-X7KBBacM">Música de los créditos</a> <br/> <br/></p>
 
           <p><span>Programador:</span> <br/>
-          Mastercorvo - Facebook: GIGA KIWI FRUITPALACE <br/></p>
+          Mastercorvo - Facebook: GIGA KIWI FRUITPALACE <br/> <br/></p>
 
           <p> <span>Guionistas y escritores:</span> <br/>
           ZouponFox - @ZouponFox <br/>
-          Ed Farcevol - @Ed_Farcevol <br/></p>
+          Ed Farcevol - @Ed_Farcevol <br/> <br/></p>
 
           <p> <span>Personajes nombrados:</span> <br/>
           Selena Mulciber <br/>
@@ -187,16 +187,27 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
           Nicole Borea <br/>
           Guardia genérico <br/>
           Waiber Hayan Borea <br/>
-          Eduar Telem Sinn <br/></p>
+          Eduar Telem Sinn <br/>
+          Noel Borea III <br/>
+          Namellia de Borea <br/> <br/></p>
 
           <p><span>Programas usados:</span> <br/>
           Visual Studio Code <br/>
-          React Js (Sin librerías complementarias)<br/>
+          React Js (Con la unica librería "react-player")<br/>
           Inkscape <br/>
           Clip Studio Paint <br/> <br/> <br/></p>
 
-          <p> <span>Gracias por jugar. Volveremos con más :)</span> </p>
-      </div>
+          <p><span>Libro de Pertenecientes al Fuego</span> <br/>
+          <a href="https://www.wattpad.com/story/217737997-pertenecientes-al-fuego">https://www.wattpad.com/story/217737997-pertenecientes-al-fuego</a>
+          <br/> <br/></p>
+
+          <p><span>Canal de Telegram</span> <br/> 
+          <a href="t.me/PertenecientesAlFuego">t.me/PertenecientesAlFuego</a>
+          <br/> <br/></p>
+
+          <p> <span>Gracias por jugar. Volveremos con más :)</span> <br/> <br/> </p>
+          <p> <span>Recarga la pagina para jugar de nuevo</span> </p>
+        </div>
 
       </div>
 
