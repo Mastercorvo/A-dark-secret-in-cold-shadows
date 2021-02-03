@@ -5,7 +5,7 @@ import { useRef, useEffect, useState } from 'react';
 
 const NOTA_TEXT = 'Para que no se me olvide los números son... La cantidad de libros amarillos en el librero. El segundo número de mi cumpleaños. La cantidad de árboles en el pueblo. Y un número que solo yo sé  >:)'
 
-function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetImages, zone, setZonesArrow}) {
+function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetImages, zone, setZonesArrow, postText, disableAll}) {
 
     function tronoHandler(){
 
@@ -15,10 +15,55 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
     }
 
+    const [showModal, setShowModal] = useState(false);
+
+    const touchCompuerta = useRef(false);;
+
     function alfombraHandler(){
 
-      inputText([{
-        text:['— Selena: ','El suelo debajo de esta alfombra se siente hueco, revisaré más tarde.'], img:'SelenaHablaSeria'}])
+      // inputText([{
+      //   text:['— Selena: ','El suelo debajo de esta alfombra se siente hueco, revisaré más tarde.'], img:'SelenaHablaSeria'}])
+
+      if(currentAnyText.current) return false;
+
+      if(!touchCompuerta.current){
+
+        inputText([{
+          text:['— Selena: ',' No encuentro una cerradura para esta llave...'], img:'SelenaHablaTriste'}, 
+          {text:['— Selena: ','Creo que ya es hora de revisar que hay debajo de la alfombra.'], img:'SelenaHablaTriste'},{text:['','— Selena revisa debajo de la alfombras sigilosamente, encontrando una compuerta bastante escondida.'], img: 'moment'},
+          {text:['— Selena: ','¿Eh? ¿Que se supone que hace esto aquí?'], img:'SelenaDesconfia'},
+          {text:['','— Selena introduce la llave, parece encajar a la perfección.'], img: 'moment'}
+        ]);
+  
+        postText.current.push(()=>{
+  
+          showModal(true);
+  
+        });
+
+      }else{
+
+        showModal(true);
+
+      }
+
+    }
+
+    const [dark, setDark] = useState('');
+
+    function yesModal(){
+
+      showModal(false);
+
+      inputText([{text:['','— Selena entra por la compuerta, con cuidado de que nadie la vea.'], img:'SelenaHablaSeria'}])
+
+      postText.current.push(()=>{
+
+        setDark('dark');
+
+        disableAll()
+
+      });
 
     }
 
@@ -42,8 +87,7 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
       addItem('nota', NOTA_TEXT, name)
 
-      inputText([{
-        text:['— Selena: ','Tal ves esta información me sirva luego.'], img:'SelenaHablaSeria'}])
+      inputText([{text:['— Selena: ','Tal ves esta información me sirva luego.'], img:'SelenaHablaSeria'}])
 
     }
 
@@ -53,9 +97,42 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
     },[zone])
 
+    function animationEnd() {
+      
+      if(dark !== 'dark') return false;
+
+      inputText([{text:['','— Selena entra por el pasillo secreto, un recorrido oscuro y largo, después de caminar un poco puede escuchar voces al fondo, tomando cuidado y escondiéndose.'], img:'moment'},
+      {text:['','Al asomarse solo puede ver tres siluetas, intentar inspeccionar más de cerca seria peligroso.'], img:'moment'},
+      {text:['','Las siluetas hablan, al concentrarse Selena puede distinguir la voz de... ¡Nicole! Acompañada de dos hombres.'], img:'moment'},
+      {text:['','— Te hemos estado ayudando a conseguir la corona y aún así no nos has entregado a ninguno de los elementales de fuego'], img:'quien'},
+      {text:['','— ¡Si, aún no nos has dado a esa traidora de Selena!'], img:'quien'},
+      {text:['','— Nicole: Paciencia caballeros, es necesario que todo vaya a la perfección, una vez sea la reina del reino de hielo mi hermano no podrá liberar a esos dos entrometido como ha hecho antes.'], img:'quien'},
+      {text:['','— ¿Así que lo harás? ¿Finalmente acabar con tu hermano?'], img:'quien'},
+      {text:['','— Nicole: Ese ha sido el plan desde el principio, ¡Si tan solo mi padre entendiera a razones o la corte pudiera entender que soy la más digna para este trabajo!'], img:'quien'},
+      {text:['','— Las reunión continua hablando sobre sus planes y especialmente sobre lo que harán al conseguir el poder, revelando que habrá un nuevo intento de asesinato muy pronto.'], img:'moment'},
+      {text:['— Selena','— Las reunión continua hablando sobre sus planes y especialmente sobre lo que harán al conseguir el poder, revelando que habrá un nuevo intento de asesinato muy pronto.'], img:'moment'}
+    ])
+
+    }
+
     if(zone !== 'trono') return false;
 
-    return (<div className="Zone1">
+    return (<div className={"Zone1 " + dark} onAnimationEnd={animationEnd}>
+
+      <div className="modal" style={{display:showModal?'flex':'none'}}>
+
+        <div className="container">
+
+          <h5>¿Quieres entrar por la compuerta?</h5>
+
+          <p onClick={yesModal}>Sí.</p> <p onClick={()=>setShowModal(false)}>No.</p>
+
+        </div>
+
+
+      </div>
+
+      <div className={"oscuro " + dark} hidden={dark === 'dark'}></div>
 
       <div className="nota" onClick={closeNota} style={{display:showNota?'flex':'none'}}>
 

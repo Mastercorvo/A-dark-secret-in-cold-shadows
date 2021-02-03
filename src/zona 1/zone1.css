@@ -13,6 +13,52 @@
 
 }
 
+@keyframes dark{
+
+    from{
+
+        background-color: rgba(0, 0, 0, 0);
+
+    }
+
+    to{
+
+        background-color: black;
+
+    }
+
+}
+
+.Zone1 .oscuro{
+
+    position: absolute;
+
+    top: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    z-index: 1000;
+
+    background-color: rgba(0, 0, 0, 0);
+
+}
+
+.dark{
+
+    filter: brightness(1);
+
+    animation-name: dark;
+
+    animation-duration: 2s;
+
+    animation-fill-mode: forwards;
+
+    animation-timing-function: linear;
+
+}
+
 .Zone1 .main-svg{
 
     width: 100%;
@@ -20,6 +66,84 @@
     height: 100%;
 
     z-index: 500;
+
+}
+
+.Zone1 .modal{
+
+    position: absolute;
+
+    top: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.534);
+
+    z-index: 6000;
+
+    width: 100%;
+
+    height: 100%;
+
+}
+
+.Zone1 .modal .container{
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    grid-auto-rows: 100px;
+
+    background-color: black;
+
+    color: white;
+
+    font-family: sans-serif;
+
+    font-weight: bold;
+
+    padding: 20px;
+
+    gap: 10px;
+
+    font-size: 2rem;
+
+    border-radius: 10px;
+
+}
+
+.Zone1 .modal .container h5{
+
+    grid-column: 1/3;
+
+}
+
+.Zone1 .modal .container p{
+
+    width: 100%;
+    
+    height: 100%;
+
+    border-radius: 5px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    cursor: pointer;
+
+}
+
+.Zone1 .modal .container p:hover{
+
+    background-color: darkblue;
 
 }
 

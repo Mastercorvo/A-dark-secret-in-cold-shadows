@@ -37,6 +37,8 @@ import KeyUltima from './sala/svg/keyUltima.svg';
 
 import Menu from './menu/Menu';
 
+import Quien from "./quien.svg";
+
 // Selena
 
 const SelenaHabla = 'https://i.ibb.co/4f6dxLH/selena1.png';
@@ -101,7 +103,7 @@ const Images =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeri
 [NicolasHabla, 'NicolasHabla'], [NicolasHablaFeliz,'NicolasHablaFeliz'],[SelenaFeliz, 'SelenaFeliz'],
 [Flecha, 'flecha'], [Espada, 'espada'], [Nota, 'nota'], [SalaImg, 'sala'], [PuebloImg, 'pueblo'], [Moment, 'moment'], [PuebloSinSombraImg, 'puebloSinSombra'],[Cuarto,'cuarto'],[CuartoSinDulces, 'cuartoSinDulces'],
 [CuartoSinLlave, 'cuartoSinLlave'], [CuartoSinNada, 'cuartoSinNada'], [imgKey, 'llave'], [imgCandy, 'dulces'], [MujerMisteriosa, 'MujerMisteriosa'], [imgKeyOther, 'otraLlave'], [Cofre, 'cofre'], [Separador, 'separador'],
-[Recibo, 'recibo'], [SmallKey, 'smallKey'], [Carta, 'carta'], [Notat, 'notat'], [chica, 'chica'], [SalaA, 'salaA'], [SalaN, 'salaN'], [SalaT, 'salaT'], [PuebloImgAmanecer, 'puebloA'], [PuebloImgNoche, 'puebloN'], [PuebloImgAtardecer, 'puebloT'], [Corona, 'corona'], [KeyUltima, 'ultimaLlave'], [FondoMenu, 'fondoMenu'], [LogoP, 'logoP'], [nubesM, 'nubesM'], [SelenaM, 'selenaM'], [LogoGame, 'logoGame']];
+[Recibo, 'recibo'], [SmallKey, 'smallKey'], [Carta, 'carta'], [Notat, 'notat'], [chica, 'chica'], [SalaA, 'salaA'], [SalaN, 'salaN'], [SalaT, 'salaT'], [PuebloImgAmanecer, 'puebloA'], [PuebloImgNoche, 'puebloN'], [PuebloImgAtardecer, 'puebloT'], [Corona, 'corona'], [KeyUltima, 'ultimaLlave'], [FondoMenu, 'fondoMenu'], [LogoP, 'logoP'], [nubesM, 'nubesM'], [SelenaM, 'selenaM'], [LogoGame, 'logoGame'], [Quien, 'quien']];
 
 function App() {
 
@@ -580,6 +582,8 @@ function App() {
 
   const [bloque, setBloque] = useState(false);
 
+  const [showIconInventory, setShowIconInventory] = useState(true)
+
   if(isLoad){
 
     return <div className="load">
@@ -597,6 +601,14 @@ function App() {
       <div className="bar"><div style={{width:`${(100*countImagesLoad)/countImages}%`}}></div></div>
       
     </div>
+
+  }
+
+  function disableAll() {
+    
+    setZonesArrow([]);
+
+    setShowIconInventory(false);
 
   }
 
@@ -656,7 +668,7 @@ function App() {
 
         <Menu ObjetImages={ObjetImages} showPlayScreen={showPlayScreen} buttonPlayHandler={buttonPlayHandler}/>
   
-        <div className="inventario-icon" onClick={showInventoryHandler}></div>
+        {showIconInventory && <div className="inventario-icon" onClick={showInventoryHandler}></div>}
         <div className="inventario" style={{display:showInventario?'flex':'none'}}>
 
           <div className="description" style={{display:showInventoryDescription?'grid':'none'}} onClick={inventoryDescriptionHandler}>
@@ -675,7 +687,7 @@ function App() {
 
         </div>
 
-        <Zone1 actions={actions} setZonesArrow={setZonesArrow} zone={zone} ObjetImages={ObjetImages} setFINAL={setFINAL} addItem={addItem} inputText={inputText} inventario={inventario} currentAnyText={currentAnyText}/>
+        <Zone1 disableAll={disableAll} postText={postText} actions={actions} setZonesArrow={setZonesArrow} zone={zone} ObjetImages={ObjetImages} setFINAL={setFINAL} addItem={addItem} inputText={inputText} inventario={inventario} currentAnyText={currentAnyText}/>
         <Sala setStop={setStop} salida={salida} superTime={superTime} actions={actions} inventario={inventario} postText={postText} setInventario={setInventario} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone} inputText={inputText} currentAnyText={currentAnyText} addItem={addItem}/>
         <Pueblo salida={salida} setSuperTime={setSuperTime} setActions={setActions} postText={postText} inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
         <CuartoZone salida={salida} postText={postText} inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>

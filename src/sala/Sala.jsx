@@ -151,6 +151,8 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
     const touchCajaFuerte = useRef(false);
     
     function marco(){
+
+      if(currentAnyText.current) return false;
       
       if('cuadro' in actions){
 
