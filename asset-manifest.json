@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/unfinished-selena-game/static/css/main.5c59afc9.chunk.css",
+    "main.css": "/unfinished-selena-game/static/css/main.a2eacc70.chunk.css",
     "main.js": "/unfinished-selena-game/static/js/main.4e4033cb.chunk.js",
     "main.js.map": "/unfinished-selena-game/static/js/main.4e4033cb.chunk.js.map",
     "runtime-main.js": "/unfinished-selena-game/static/js/runtime-main.fe26c7ae.js",
@@ -10,7 +10,7 @@
     "static/js/3.9a33b54b.chunk.js": "/unfinished-selena-game/static/js/3.9a33b54b.chunk.js",
     "static/js/3.9a33b54b.chunk.js.map": "/unfinished-selena-game/static/js/3.9a33b54b.chunk.js.map",
     "index.html": "/unfinished-selena-game/index.html",
-    "static/css/main.5c59afc9.chunk.css.map": "/unfinished-selena-game/static/css/main.5c59afc9.chunk.css.map",
+    "static/css/main.a2eacc70.chunk.css.map": "/unfinished-selena-game/static/css/main.a2eacc70.chunk.css.map",
     "static/js/2.565232e8.chunk.js.LICENSE.txt": "/unfinished-selena-game/static/js/2.565232e8.chunk.js.LICENSE.txt",
     "static/media/App.css": "/unfinished-selena-game/static/media/icono de inventario.9aed8b52.svg",
     "static/media/cofre.86fb6d67.svg": "/unfinished-selena-game/static/media/cofre.86fb6d67.svg",
@@ -29,7 +29,7 @@
   "entrypoints": [
     "static/js/runtime-main.fe26c7ae.js",
     "static/js/2.565232e8.chunk.js",
-    "static/css/main.5c59afc9.chunk.css",
+    "static/css/main.a2eacc70.chunk.css",
     "static/js/main.4e4033cb.chunk.js"
   ]
 }
