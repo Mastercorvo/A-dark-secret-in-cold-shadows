@@ -155,18 +155,48 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
       <div className="credits">
 
-        <p><span>Dirección:</span> <br/>
-        ZouponFox - @ZouponFox <br/>
-        Ed Farcevol - @Ed_Farcevol <br/>
-        Mastercorvo - Facebook: GIGA KIWI FRUITPALACE <br/> </p>
+        <div className="container-credits">
 
-        <p><span>Artistas involucrados:</span> <br/>
-        ZouponFox - @ZouponFox <br/>
-        Ed Farcevol - @Ed_Farcevol <br/>
-        PlzKillMe - @plzkillme_plz <br/></p>
+          <p><span>Dirección:</span> <br/>
+          ZouponFox - @ZouponFox <br/>
+          Ed Farcevol - @Ed_Farcevol <br/>
+          Mastercorvo - Facebook: GIGA KIWI FRUITPALACE <br/> </p>
 
-        <p><span>Canciones usadas</span> <br/>
-        <a href="https://soundcloud.com/breitkopf-haertel/1-movement-from-brandenburg-concerto-no-3-in-g-major-bwv-1048-by-johann-sebastian-bach">Música del castillo</a></p>
+          <p><span>Artistas involucrados:</span> <br/>
+          ZouponFox - @ZouponFox <br/>
+          Ed Farcevol - @Ed_Farcevol <br/>
+          PlzKillMe - @plzkillme_plz <br/></p>
+
+          <p><span>Canciones usadas:</span> <br/>
+          <a href="https://soundcloud.com/breitkopf-haertel/1-movement-from-brandenburg-concerto-no-3-in-g-major-bwv-1048-by-johann-sebastian-bach">Música del castillo</a> <br/>
+          <a href="https://soundcloud.com/video-background-music/cold-isolation-sad-dramatic-background-music-piano-and-violin">Música del pueblo</a> <br/>
+          <a href="https://www.youtube.com/watch?v=UxOW4hBKU3A">Música del menu</a><br/>
+          <a href="https://www.youtube.com/watch?v=Gm-X7KBBacM">Música de los créditos</a> <br/></p>
+
+          <p><span>Programador:</span> <br/>
+          Mastercorvo - Facebook: GIGA KIWI FRUITPALACE <br/></p>
+
+          <p> <span>Guionistas y escritores:</span> <br/>
+          ZouponFox - @ZouponFox <br/>
+          Ed Farcevol - @Ed_Farcevol <br/></p>
+
+          <p> <span>Personajes nombrados:</span> <br/>
+          Selena Mulciber <br/>
+          Vulnos Alejandrino <br/>
+          Nicolás Borea <br/>
+          Nicole Borea <br/>
+          Guardia genérico <br/>
+          Waiber Hayan Borea <br/>
+          Eduar Telem Sinn <br/></p>
+
+          <p><span>Programas usados:</span> <br/>
+          Visual Studio Code <br/>
+          React Js (Sin librerías complementarias)<br/>
+          Inkscape <br/>
+          Clip Studio Paint <br/> <br/> <br/></p>
+
+          <p> <span>Gracias por jugar. Volveremos con más :)</span> </p>
+      </div>
 
       </div>
 
