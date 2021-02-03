@@ -3,7 +3,7 @@ import './menu.css';
 
 import ReactPlayer from 'react-player';
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 function Menu({buttonPlayHandler, ObjetImages, showPlayScreen}){
 
@@ -31,8 +31,23 @@ function Menu({buttonPlayHandler, ObjetImages, showPlayScreen}){
       setEndA(v=>v==='part'?'reverse':'part')
   
     }
+
+    const [castilloSongVolumen, setCastilloSongVolumen] = useState(1);
+
+    const [castilloSong, setCastilloSong] = useState(true);
+  
+    const castilloSongElement = useRef(undefined);
+
     return (<div className="containerTop" style={{display:showPlayScreen?'flex':'none'}}>
-        {showPlayScreen && <ReactPlayer width="0" height="0" loop={true} url="https://www.youtube.com/watch?v=UxOW4hBKU3A&feature=youtu.be" playing={true}/>}
+        <p className="recommendation">Se recomienda jugar en pantalla completa para una mejor experiencia, presione f11.</p>
+        {showPlayScreen && <ReactPlayer volume={castilloSongVolumen} url='https://soundcloud.com/shadry-xeaton/nier-automata-vague-hope-karaoke/s-7wtC81gHCNS' playing={castilloSong} width="0" height="0" onEnded={()=>{
+          castilloSongElement.current.seekTo(0, 0);
+
+            setCastilloSong(false)
+            setTimeout(()=>setCastilloSong(true), 0)
+          
+          }} ref={castilloSongElement}/>
+        }
     <div className="backPoint" ></div>
     <div className="logo-menu" style={{backgroundImage:`url(${ObjetImages.current['logoGame']})`}}>
 

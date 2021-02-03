@@ -50,7 +50,25 @@
     
   }
 
-    .containerTop .container-menu-logo{
+  .containerTop .recommendation{
+
+    position: absolute;
+
+    top: 10px;
+
+    z-index: 100;
+
+    font-weight: bold;
+
+    font-style: italic;
+
+    font-family: monospace;
+
+    color: rgb(0, 0, 128);
+
+  }
+
+  .containerTop .container-menu-logo{
 
     position: relative;
 
@@ -449,9 +467,9 @@
   
   .containerTop .selena{
   
-    width: calc((25vh/900)*1440);
+    width: 450px;
   
-    height: calc((60vw/1440)*900);
+    height: 550px;
 
     position: absolute;
 
