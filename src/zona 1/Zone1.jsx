@@ -28,6 +28,8 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
       if(!touchCompuerta.current){
 
+        touchCompuerta.current = true;
+
         inputText([{
           text:['— Selena: ',' No encuentro una cerradura para esta llave...'], img:'SelenaHablaTriste'}, 
           {text:['— Selena: ','Creo que ya es hora de revisar que hay debajo de la alfombra.'], img:'SelenaHablaTriste'},{text:['','— Selena revisa debajo de la alfombras sigilosamente, encontrando una compuerta bastante escondida.'], img: 'moment'},
@@ -37,13 +39,13 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
   
         postText.current.push(()=>{
   
-          showModal(true);
+          setShowModal(true);
   
         });
 
       }else{
 
-        showModal(true);
+        setShowModal(true);
 
       }
 
@@ -53,9 +55,9 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
     function yesModal(){
 
-      showModal(false);
+      setShowModal(false);
 
-      inputText([{text:['','— Selena entra por la compuerta, con cuidado de que nadie la vea.'], img:'SelenaHablaSeria'}])
+      inputText([{text:['','— Selena entra por la compuerta, con cuidado de que nadie la vea.'], img:'moment'}])
 
       postText.current.push(()=>{
 
@@ -110,7 +112,8 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
       {text:['','— ¿Así que lo harás? ¿Finalmente acabar con tu hermano?'], img:'quien'},
       {text:['','— Nicole: Ese ha sido el plan desde el principio, ¡Si tan solo mi padre entendiera a razones o la corte pudiera entender que soy la más digna para este trabajo!'], img:'quien'},
       {text:['','— Las reunión continua hablando sobre sus planes y especialmente sobre lo que harán al conseguir el poder, revelando que habrá un nuevo intento de asesinato muy pronto.'], img:'moment'},
-      {text:['— Selena','— Las reunión continua hablando sobre sus planes y especialmente sobre lo que harán al conseguir el poder, revelando que habrá un nuevo intento de asesinato muy pronto.'], img:'moment'}
+      {text:['— Selena: ','Toda esta información... ¡Nicolás debe saberlo!'], img:'SelenaEnojada'},
+      {text:['','— Selena escapa con cautela y de dirige a ver a Nicolás con todas las pruebas en mano, decidida a desenmascarar la verdad.'], img:'moment'}
     ])
 
     }
@@ -132,7 +135,7 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
       </div>
 
-      <div className={"oscuro " + dark} hidden={dark === 'dark'}></div>
+      <div className={"oscuro " + dark} hidden={dark !== 'dark'}></div>
 
       <div className="nota" onClick={closeNota} style={{display:showNota?'flex':'none'}}>
 

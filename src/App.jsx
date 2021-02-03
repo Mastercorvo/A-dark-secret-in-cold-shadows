@@ -47,6 +47,7 @@ const SelenaHablaTriste = 'https://i.ibb.co/6RWdPkq/selena7.png';
 const SelenaDesconfia = 'https://i.ibb.co/vYX4mcJ/selena9.png';
 const SelenaAvergonzada = 'https://i.ibb.co/jRD33qx/selena2.png';
 const SelenaFeliz = 'https://i.ibb.co/zZPGCFG/selena3.png';
+const SelenaEnojada = 'https://i.ibb.co/FXW20k0/selena6.png'
 
 // Nicolas
 
@@ -103,7 +104,7 @@ const Images =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeri
 [NicolasHabla, 'NicolasHabla'], [NicolasHablaFeliz,'NicolasHablaFeliz'],[SelenaFeliz, 'SelenaFeliz'],
 [Flecha, 'flecha'], [Espada, 'espada'], [Nota, 'nota'], [SalaImg, 'sala'], [PuebloImg, 'pueblo'], [Moment, 'moment'], [PuebloSinSombraImg, 'puebloSinSombra'],[Cuarto,'cuarto'],[CuartoSinDulces, 'cuartoSinDulces'],
 [CuartoSinLlave, 'cuartoSinLlave'], [CuartoSinNada, 'cuartoSinNada'], [imgKey, 'llave'], [imgCandy, 'dulces'], [MujerMisteriosa, 'MujerMisteriosa'], [imgKeyOther, 'otraLlave'], [Cofre, 'cofre'], [Separador, 'separador'],
-[Recibo, 'recibo'], [SmallKey, 'smallKey'], [Carta, 'carta'], [Notat, 'notat'], [chica, 'chica'], [SalaA, 'salaA'], [SalaN, 'salaN'], [SalaT, 'salaT'], [PuebloImgAmanecer, 'puebloA'], [PuebloImgNoche, 'puebloN'], [PuebloImgAtardecer, 'puebloT'], [Corona, 'corona'], [KeyUltima, 'ultimaLlave'], [FondoMenu, 'fondoMenu'], [LogoP, 'logoP'], [nubesM, 'nubesM'], [SelenaM, 'selenaM'], [LogoGame, 'logoGame'], [Quien, 'quien']];
+[Recibo, 'recibo'], [SmallKey, 'smallKey'], [Carta, 'carta'], [Notat, 'notat'], [chica, 'chica'], [SalaA, 'salaA'], [SalaN, 'salaN'], [SalaT, 'salaT'], [PuebloImgAmanecer, 'puebloA'], [PuebloImgNoche, 'puebloN'], [PuebloImgAtardecer, 'puebloT'], [Corona, 'corona'], [KeyUltima, 'ultimaLlave'], [FondoMenu, 'fondoMenu'], [LogoP, 'logoP'], [nubesM, 'nubesM'], [SelenaM, 'selenaM'], [LogoGame, 'logoGame'], [Quien, 'quien'], [SelenaEnojada, 'SelenaEnojada']];
 
 function App() {
 
