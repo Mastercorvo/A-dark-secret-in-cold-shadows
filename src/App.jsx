@@ -97,6 +97,10 @@ const nubesM = 'https://i.ibb.co/3WD9jgm/nubes-menu.png';
 const SelenaM = 'https://i.ibb.co/PrtRGvH/Selena-XD.png';
 const LogoGame = 'https://i.ibb.co/cXf1vXN/Logo-del-juego.png'
 
+// Credits
+
+const Credits = 'https://i.ibb.co/qn4X5Gk/Fondo-para-los-creditos.png';
+
 //Code
 
 const Images =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeria'],[SelenaHablaTriste,'SelenaHablaTriste'], [SelenaDesconfia, 'SelenaDesconfia'], [SelenaAvergonzada, 'SelenaAvergonzada'],
@@ -104,7 +108,7 @@ const Images =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeri
 [NicolasHabla, 'NicolasHabla'], [NicolasHablaFeliz,'NicolasHablaFeliz'],[SelenaFeliz, 'SelenaFeliz'],
 [Flecha, 'flecha'], [Espada, 'espada'], [Nota, 'nota'], [SalaImg, 'sala'], [PuebloImg, 'pueblo'], [Moment, 'moment'], [PuebloSinSombraImg, 'puebloSinSombra'],[Cuarto,'cuarto'],[CuartoSinDulces, 'cuartoSinDulces'],
 [CuartoSinLlave, 'cuartoSinLlave'], [CuartoSinNada, 'cuartoSinNada'], [imgKey, 'llave'], [imgCandy, 'dulces'], [MujerMisteriosa, 'MujerMisteriosa'], [imgKeyOther, 'otraLlave'], [Cofre, 'cofre'], [Separador, 'separador'],
-[Recibo, 'recibo'], [SmallKey, 'smallKey'], [Carta, 'carta'], [Notat, 'notat'], [chica, 'chica'], [SalaA, 'salaA'], [SalaN, 'salaN'], [SalaT, 'salaT'], [PuebloImgAmanecer, 'puebloA'], [PuebloImgNoche, 'puebloN'], [PuebloImgAtardecer, 'puebloT'], [Corona, 'corona'], [KeyUltima, 'ultimaLlave'], [FondoMenu, 'fondoMenu'], [LogoP, 'logoP'], [nubesM, 'nubesM'], [SelenaM, 'selenaM'], [LogoGame, 'logoGame'], [Quien, 'quien'], [SelenaEnojada, 'SelenaEnojada']];
+[Recibo, 'recibo'], [SmallKey, 'smallKey'], [Carta, 'carta'], [Notat, 'notat'], [chica, 'chica'], [SalaA, 'salaA'], [SalaN, 'salaN'], [SalaT, 'salaT'], [PuebloImgAmanecer, 'puebloA'], [PuebloImgNoche, 'puebloN'], [PuebloImgAtardecer, 'puebloT'], [Corona, 'corona'], [KeyUltima, 'ultimaLlave'], [FondoMenu, 'fondoMenu'], [LogoP, 'logoP'], [nubesM, 'nubesM'], [SelenaM, 'selenaM'], [LogoGame, 'logoGame'], [Quien, 'quien'], [SelenaEnojada, 'SelenaEnojada'], [Credits, 'credits']];
 
 function App() {
 

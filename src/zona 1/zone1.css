@@ -92,13 +92,11 @@
     position: absolute;
     
     top: 0;
-
+    
     left: 0;
     display: flex;
     
     color: white;
-    
-    background-color: yellowgreen;
     
     z-index: 5000;
     
@@ -107,8 +105,24 @@
     
     flex-direction: column;
 
-    overflow-y: scroll;
+    background-color: black;
     
+}
+
+
+.Zone1 .credits .background{
+
+    width: 100%;
+
+    height: 100vh;
+
+    background-size: 100% 100%;
+
+    z-index: -100;
+    position: fixed;
+
+    top: 0;
+
 }
 
 .Zone1 .credits span{
@@ -126,10 +140,48 @@
 
     display: flex;
     
-    justify-content: center;
-    
     align-items: center;
     flex-direction: column;
+
+    width: 100%;
+
+    height: 100%;
+
+    padding-top: 50px;
+
+    padding-bottom: 50px;
+
+}
+
+.Zone1 .credits .container-credits p{
+
+    transition: all 0.3s;
+
+}
+
+.Zone1 .credits .container-credits p:hover{
+
+    transition: all 0.3s;
+
+    transform: scale(1.2);
+
+}
+
+.Zone1 .credits .container-credits a{
+
+    color: white;
+
+    transition: all 0.4s;
+
+    display: inline-block;
+}
+
+.Zone1 .credits .container-credits a:hover{
+
+
+    transition: all 0.4s;
+
+    transform: scale(1.1);
 
 }
 

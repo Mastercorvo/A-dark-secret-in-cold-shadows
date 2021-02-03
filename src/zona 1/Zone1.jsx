@@ -132,6 +132,48 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
     }
 
+    const maxScroll = useRef(0);
+
+    const credits = useRef(undefined);
+
+    useEffect(()=>{
+
+      credits.current.scrollTo(0, credits.current.scrollHeight);
+
+      maxScroll.current = credits.current.scrollTop;
+
+      credits.current.scrollTo(0, 0);
+
+    }, []);
+
+    const [overflow, setOverflow] = useState('hidden')
+
+    function scrolling() {
+      
+      for(let i = credits.current.scrollTop; i <= maxScroll.current; i++){
+
+        setTimeout(()=>{
+
+          credits.current.scrollTo(0, i)
+
+          if(i === maxScroll.current){
+
+            setOverflow('scroll')
+
+          }
+
+        }, (i-credits.current.scrollTop) * 10);
+
+      }
+
+    }
+
+    useEffect(() => {
+
+      scrolling()
+
+    }, [])
+
     if(zone !== 'trono') return false;
 
     return (<div className={"Zone1 " + dark} onAnimationEnd={animationEnd}>
@@ -155,12 +197,14 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
       <div className="credits">
 
-          <div className="container-credits"> 
+        <div className="background" style={{backgroundImage: `url(${ObjetImages.current['credits']})`}}></div>
+
+          <div className="container-credits" style={{overflowY:overflow}} ref={credits}> 
 
           <p><span>Dirección:</span> <br/>
           ZouponFox - @ZouponFox <br/>
           Ed Farcevol - @Ed_Farcevol <br/>
-          Mastercorvo - Facebook: GIGA KIWI FRUITPALACE <br/> <br/> </p>
+          Mastercorvo - <a href="https://www.facebook.com/GIGA.KIWI.FRUITPALACE/">Facebook</a> <br/> <br/> </p>
 
           <p><span>Artistas involucrados:</span> <br/>
           ZouponFox - @ZouponFox <br/>
@@ -174,7 +218,7 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
           <a href="https://www.youtube.com/watch?v=Gm-X7KBBacM">Música de los créditos</a> <br/> <br/></p>
 
           <p><span>Programador:</span> <br/>
-          Mastercorvo - Facebook: GIGA KIWI FRUITPALACE <br/> <br/></p>
+          Mastercorvo - <a href="https://www.facebook.com/GIGA.KIWI.FRUITPALACE/">Facebook</a> <br/> <br/></p>
 
           <p> <span>Guionistas y escritores:</span> <br/>
           ZouponFox - @ZouponFox <br/>
