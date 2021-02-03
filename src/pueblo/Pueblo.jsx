@@ -130,6 +130,8 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
             if(executeAny.current.length === 1){
 
+              if(!executeAny.current) return false;
+
               executeAny.current.shift()()
 
             }

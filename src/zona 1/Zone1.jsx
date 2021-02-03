@@ -126,7 +126,7 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
     postText.current.push(()=>{
 
-      setFin('fin')
+      setFin('fin');
 
     });
 
@@ -168,11 +168,13 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
     }
 
-    useEffect(() => {
+    function finHandler(){
 
-      scrolling()
+      setEle('elevation');
 
-    }, [])
+    }
+
+    const [ele, setEle] = useState('');
 
     if(zone !== 'trono') return false;
 
@@ -192,14 +194,16 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
       </div>
 
       <div className={"oscuro " + dark} style={{display:(dark === 'dark')?'flex':'none'}}>
-        <p className={fin}>Fin</p>
+        <p className={fin} onAnimationEnd={finHandler}>Fin</p>
       </div>
 
-      <div className="credits">
+      <div className={"credits " + ele} onAnimationEnd={scrolling}>
 
         <div className="background" style={{backgroundImage: `url(${ObjetImages.current['credits']})`}}></div>
 
-          <div className="container-credits" style={{overflowY:overflow}} ref={credits}> 
+          <div className="container-credits" style={{overflowY:overflow}} ref={credits}>
+
+          <div className="Daria-Cohen"></div>
 
           <p><span>Dirección:</span> <br/>
           ZouponFox - @ZouponFox <br/>
@@ -250,7 +254,7 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
           <br/> <br/></p>
 
           <p> <span>Gracias por jugar. Volveremos con más :)</span> <br/> <br/> </p>
-          <p> <span>Recarga la pagina para jugar de nuevo</span> </p>
+          <p> <span>Recarga la pagina para jugar de nuevo</span> <br/> <br/> </p>
         </div>
 
       </div>
