@@ -38,7 +38,26 @@ function Menu({buttonPlayHandler, ObjetImages, showPlayScreen}){
   
     const castilloSongElement = useRef(undefined);
 
+    const [showModal, setShowModal] = useState(false)
+
     return (<div className="containerTop" style={{display:showPlayScreen?'flex':'none'}}>
+      <div className="modal" style={{display: showModal?'flex':'none'}}>
+
+        <div className="container">
+
+          <div className="box"></div>
+
+          <h5>Todo el equipo conformado por:</h5>
+
+          <p>ZouponFox - <a href="https://twitter.com/ZouponFox?s=09">@ZouponFox</a> </p>
+          <p>Ed Farcevol - <a href="https://twitter.com/Ed_Farcevol?s=09">@Ed_Farcevol</a></p>
+          <p>Mastercorvo - <a href="https://www.facebook.com/GIGA.KIWI.FRUITPALACE">Facebook</a></p>
+          <p>PlzKillMe - <a href="https://twitter.com/plzkillme_plz?s=09">@plzkillme_plz</a></p>
+          <span onClick={()=>setShowModal(false)}>Click para cerrar.</span>
+
+        </div>
+
+      </div>
         <p className="recommendation">Se recomienda jugar en pantalla completa para una mejor experiencia, presione f11.</p>
         {showPlayScreen && <ReactPlayer volume={castilloSongVolumen} url='https://soundcloud.com/shadry-xeaton/nier-automata-vague-hope-karaoke' muted={false} playing={castilloSong} width="0" height="0" onEnded={()=>{
           castilloSongElement.current.seekTo(0, 0);
@@ -61,8 +80,7 @@ function Menu({buttonPlayHandler, ObjetImages, showPlayScreen}){
     </div>
     <div className="menu">
       <div className="option" onClick={buttonPlayHandler}><p>Jugar</p></div>
-      <div className="option"><p>Tutorial</p> </div>
-      <div className="option"><p>Créditos</p></div>
+      <div className="option" onClick={()=>setShowModal(true)}><p>Créditos</p></div>
     </div>
     <div className="container" style={{transform:`rotateX(${y}deg) rotateY(${x}deg)`, backgroundImage:`url(${ObjetImages.current['fondoMenu']})`}}>
       <div className="nube" style={{transform:`rotateX(${y}deg) rotateY(${x}deg)`, backgroundImage:`url(${ObjetImages.current['nubesM']})`}}></div>
