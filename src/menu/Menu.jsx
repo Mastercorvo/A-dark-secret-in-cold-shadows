@@ -52,7 +52,6 @@ function Menu({buttonPlayHandler, ObjetImages, showPlayScreen}){
           <p>ZouponFox - <a href="https://twitter.com/ZouponFox?s=09">@ZouponFox</a> </p>
           <p>Ed Farcevol - <a href="https://twitter.com/Ed_Farcevol?s=09">@Ed_Farcevol</a></p>
           <p>Mastercorvo - <a href="https://www.facebook.com/GIGA.KIWI.FRUITPALACE">Facebook</a></p>
-          <p>PlzKillMe - <a href="https://twitter.com/plzkillme_plz?s=09">@plzkillme_plz</a></p>
           <span onClick={()=>setShowModal(false)}>Click para cerrar.</span>
 
         </div>
