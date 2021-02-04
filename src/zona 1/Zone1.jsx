@@ -190,7 +190,7 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
     return (<div className={"Zone1 " + dark} onAnimationEnd={animationEnd}>
 
-        <ReactPlayer volume={castilloSongVolumen} url='https://soundcloud.com/shadry-xeaton/nier-ost-grandma' playing={castilloSong} width="0" height="0" onEnded={()=>{
+        <ReactPlayer volume={castilloSongVolumen} muted={false} url='https://soundcloud.com/shadry-xeaton/nier-ost-grandma' playing={castilloSong} width="0" height="0" onEnded={()=>{
           castilloSongElement.current.seekTo(0, 0);
 
             setCastilloSong(false)
