@@ -23,8 +23,13 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
     function alfombraHandler(){
 
-      // inputText([{
-      //   text:['— Selena: ','El suelo debajo de esta alfombra se siente hueco, revisaré más tarde.'], img:'SelenaHablaSeria'}])
+      if(!Object.keys(inventario).includes('Llave encontrada en la caja fuerte')) {
+
+        inputText([{text:['— Selena: ','El suelo debajo de esta alfombra se siente hueco, revisaré más tarde.'], img:'SelenaHablaSeria'}]);
+
+        return false
+
+      }
 
       if(currentAnyText.current) return false;
 
