@@ -39,6 +39,8 @@ import Menu from './menu/Menu';
 
 import Quien from "./quien.svg";
 
+import MiLogo from "./fotos/logoMaster.svg"
+
 // Selena
 
 const SelenaHabla = 'https://i.ibb.co/4f6dxLH/selena1.png';
@@ -598,6 +600,7 @@ function App() {
       <span>Un juego original del estudio:</span>
       <div className="container-logos">
         <div className="logo"></div>
+        <div className="logo3" style={{backgroundImage:`url(${MiLogo})`}}></div>
         <div className="logo2"></div>
       </div>
 

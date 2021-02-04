@@ -100,6 +100,9 @@ p, h2, h3{
 .load .container-logos{
 
   display: flex;
+  justify-content: center;
+
+  align-items: center;
 
 }
 
@@ -112,6 +115,18 @@ p, h2, h3{
   background-size: 100% 100%;
 
   background-image: url(https://i.ibb.co/Wcf414t/zou-logo-con-sombra.png);
+
+}
+
+.load .logo3{
+
+  width: 250px;
+
+  height: 250px;
+
+  background-size: 100% 100%;
+
+  border-radius: 20px;
 
 }
 
