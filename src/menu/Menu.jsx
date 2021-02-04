@@ -3,7 +3,7 @@ import './menu.css';
 
 import ReactPlayer from 'react-player';
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect, useLayoutEffect } from 'react'
 
 function Menu({buttonPlayHandler, ObjetImages, showPlayScreen}){
 
@@ -32,15 +32,33 @@ function Menu({buttonPlayHandler, ObjetImages, showPlayScreen}){
   
     }
 
-    const [castilloSongVolumen, setCastilloSongVolumen] = useState(1);
-
-    const [castilloSong, setCastilloSong] = useState(true);
+    const [castilloSong, setCastilloSong] = useState(false);
   
     const castilloSongElement = useRef(undefined);
 
     const [showModal, setShowModal] = useState(false)
 
-    return (<div className="containerTop" style={{display:showPlayScreen?'flex':'none'}}>
+    function empezar(){
+
+      setCastilloSong(true);
+      setShowPlay(false)
+
+    }
+
+    const [showPlay, setShowPlay] = useState(true)
+
+    return (<div className={"containerTop " + (showPlay?'':'luz')} style={{display:showPlayScreen?'flex':'none'}} onClick={empezar}>
+
+      <div className="empezar" style={{display:showPlay?'flex':'none'}}>
+
+        <div className="container">
+
+          <h1 onClick={empezar}>Click Para empezar</h1>
+
+        </div>
+
+      </div>
+
       <div className="modal" style={{display: showModal?'flex':'none'}}>
 
         <div className="container">
@@ -58,14 +76,13 @@ function Menu({buttonPlayHandler, ObjetImages, showPlayScreen}){
 
       </div>
         <p className="recommendation">Se recomienda jugar en pantalla completa para una mejor experiencia, presione f11.</p>
-        {showPlayScreen && <ReactPlayer volume={castilloSongVolumen} url='https://soundcloud.com/shadry-xeaton/nier-automata-vague-hope-karaoke' muted={false} playing={castilloSong} width="0" height="0" onEnded={()=>{
+        {showPlayScreen && <ReactPlayer url='https://soundcloud.com/shadry-xeaton/nier-automata-vague-hope-karaoke' muted={false} playing={castilloSong} width="0" height="0" onEnded={()=>{
           castilloSongElement.current.seekTo(0, 0);
 
             setCastilloSong(false)
             setTimeout(()=>setCastilloSong(true), 0)
           
-          }} ref={castilloSongElement}/>
-        }
+          }} ref={castilloSongElement}/>}
     <div className="backPoint" ></div>
     <div className="logo-menu" style={{backgroundImage:`url(${ObjetImages.current['logoGame']})`}}>
 

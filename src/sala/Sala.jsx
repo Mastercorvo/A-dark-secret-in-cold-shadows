@@ -356,7 +356,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
       touchCloseCaja.current = true;
 
-      inputText([{text:['— Selena: ','Una caja fuerte que solo pide 4 mineros y una llave.'], img: 'SelenaDesconfia'}]);
+      inputText([{text:['— Selena: ','Una caja fuerte que solo pide 4 números y una llave.'], img: 'SelenaDesconfia'}]);
 
     }
 
