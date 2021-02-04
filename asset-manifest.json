@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/A-dark-secret-in-cold-shadows/static/css/main.edd9010f.chunk.css",
-    "main.js": "/A-dark-secret-in-cold-shadows/static/js/main.7598f003.chunk.js",
-    "main.js.map": "/A-dark-secret-in-cold-shadows/static/js/main.7598f003.chunk.js.map",
+    "main.css": "/A-dark-secret-in-cold-shadows/static/css/main.a14d6ec1.chunk.css",
+    "main.js": "/A-dark-secret-in-cold-shadows/static/js/main.39a9b5eb.chunk.js",
+    "main.js.map": "/A-dark-secret-in-cold-shadows/static/js/main.39a9b5eb.chunk.js.map",
     "runtime-main.js": "/A-dark-secret-in-cold-shadows/static/js/runtime-main.35ee48bd.js",
     "runtime-main.js.map": "/A-dark-secret-in-cold-shadows/static/js/runtime-main.35ee48bd.js.map",
     "static/js/2.e44ed108.chunk.js": "/A-dark-secret-in-cold-shadows/static/js/2.e44ed108.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.9a33b54b.chunk.js": "/A-dark-secret-in-cold-shadows/static/js/3.9a33b54b.chunk.js",
     "static/js/3.9a33b54b.chunk.js.map": "/A-dark-secret-in-cold-shadows/static/js/3.9a33b54b.chunk.js.map",
     "index.html": "/A-dark-secret-in-cold-shadows/index.html",
-    "static/css/main.edd9010f.chunk.css.map": "/A-dark-secret-in-cold-shadows/static/css/main.edd9010f.chunk.css.map",
+    "static/css/main.a14d6ec1.chunk.css.map": "/A-dark-secret-in-cold-shadows/static/css/main.a14d6ec1.chunk.css.map",
     "static/js/2.e44ed108.chunk.js.LICENSE.txt": "/A-dark-secret-in-cold-shadows/static/js/2.e44ed108.chunk.js.LICENSE.txt",
     "static/media/App.css": "/A-dark-secret-in-cold-shadows/static/media/icono de inventario.9aed8b52.svg",
     "static/media/cofre.86fb6d67.svg": "/A-dark-secret-in-cold-shadows/static/media/cofre.86fb6d67.svg",
@@ -30,7 +30,7 @@
   "entrypoints": [
     "static/js/runtime-main.35ee48bd.js",
     "static/js/2.e44ed108.chunk.js",
-    "static/css/main.edd9010f.chunk.css",
-    "static/js/main.7598f003.chunk.js"
+    "static/css/main.a14d6ec1.chunk.css",
+    "static/js/main.39a9b5eb.chunk.js"
   ]
 }
