@@ -53,7 +53,7 @@ function Menu({buttonPlayHandler, ObjetImages, showPlayScreen}){
 
         <div className="container">
 
-          <h1 onClick={empezar}>Click Para empezar</h1>
+          <h1 onClick={empezar}>Click para empezar</h1>
 
         </div>
 
