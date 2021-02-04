@@ -113,6 +113,8 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
       one.current = true;
 
+      setMisterio(true);
+
       inputText([{text:['','— Selena entra por el pasillo secreto, un recorrido oscuro y largo, después de caminar un poco puede escuchar voces al fondo, tomando cuidado y escondiéndose.'], img:'moment'},
       {text:['','Al asomarse solo puede ver tres siluetas, intentar inspeccionar más de cerca seria peligroso.'], img:'moment'},
       {text:['','Las siluetas hablan, al concentrarse Selena puede distinguir la voz de... ¡Nicole! Acompañada de dos hombres.'], img:'moment'},
@@ -129,6 +131,8 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
     postText.current.push(()=>{
 
       setFin('fin');
+
+      setMisterio(false);
 
     });
 
@@ -186,6 +190,10 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
   
     const castilloSongElement = useRef(undefined);
 
+    const [misterio, setMisterio] = useState(false);
+
+    const misterioElement = useRef(undefined);
+
     if(zone !== 'trono') return false;
 
     return (<div className={"Zone1 " + dark} onAnimationEnd={animationEnd}>
@@ -201,6 +209,18 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
             }, 0)
           
           }} ref={castilloSongElement}/>
+        
+        <ReactPlayer muted={false} url='https://soundcloud.com/jayvarton/silent-castle' playing={misterio} width="0" height="0" onEnded={()=>{
+          misterioElement.current.seekTo(0, 0);
+
+            setMisterio(false)
+            setTimeout(()=>{
+              
+              setMisterio(true)
+            
+            }, 0)
+          
+          }} ref={misterioElement}/>
 
       <div className="modal" style={{display:showModal?'flex':'none'}}>
 
@@ -211,7 +231,6 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
           <p onClick={yesModal}>Sí.</p> <p onClick={()=>setShowModal(false)}>No.</p>
 
         </div>
-
 
       </div>
 
@@ -241,6 +260,7 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
           <a href="https://soundcloud.com/breitkopf-haertel/1-movement-from-brandenburg-concerto-no-3-in-g-major-bwv-1048-by-johann-sebastian-bach">Música del castillo</a> <br/>
           <a href="https://soundcloud.com/video-background-music/cold-isolation-sad-dramatic-background-music-piano-and-violin">Música del pueblo</a> <br/>
           <a href="https://www.youtube.com/watch?v=UxOW4hBKU3A">Música del menu</a><br/>
+          <a href="https://www.youtube.com/watch?v=LNqXd8UHfmc">Música de suspenso</a>
           <a href="https://www.youtube.com/watch?v=Gm-X7KBBacM">Música de los créditos</a> <br/> <br/></p>
 
           <p><span>Programador:</span> <br/>
