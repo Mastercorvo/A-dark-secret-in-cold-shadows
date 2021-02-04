@@ -615,6 +615,8 @@ function App() {
 
     setShowIconInventory(false);
 
+    setCastilloSong(false)
+
   }
 
   return (

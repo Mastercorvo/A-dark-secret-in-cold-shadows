@@ -3,6 +3,8 @@ import './zone1.css';
 
 import { useRef, useEffect, useState } from 'react';
 
+import ReactPlayer from "react-player";
+
 const NOTA_TEXT = 'Para que no se me olvide los números son... La cantidad de libros amarillos en el librero. El segundo número de mi cumpleaños. La cantidad de árboles en el pueblo. Y un número que solo yo sé  >:)'
 
 function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetImages, zone, setZonesArrow, postText, disableAll}) {
@@ -149,6 +151,8 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
     const [overflow, setOverflow] = useState('hidden')
 
     function scrolling() {
+
+      setCastilloSong(true)
       
       for(let i = credits.current.scrollTop; i <= maxScroll.current; i++){
 
@@ -162,7 +166,7 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
           }
 
-        }, (i-credits.current.scrollTop) * 10);
+        }, (i-credits.current.scrollTop) * 40);
 
       }
 
@@ -176,9 +180,27 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
     const [ele, setEle] = useState('');
 
+    const [castilloSongVolumen, setCastilloSongVolumen] = useState(1);
+
+    const [castilloSong, setCastilloSong] = useState(false);
+  
+    const castilloSongElement = useRef(undefined);
+
     if(zone !== 'trono') return false;
 
     return (<div className={"Zone1 " + dark} onAnimationEnd={animationEnd}>
+
+        <ReactPlayer volume={castilloSongVolumen} url='https://soundcloud.com/shadry-xeaton/nier-ost-grandma' playing={castilloSong} width="0" height="0" onEnded={()=>{
+          castilloSongElement.current.seekTo(0, 0);
+
+            setCastilloSong(false)
+            setTimeout(()=>{
+              
+              setCastilloSong(true)
+            
+            }, 0)
+          
+          }} ref={castilloSongElement}/>
 
       <div className="modal" style={{display:showModal?'flex':'none'}}>
 
