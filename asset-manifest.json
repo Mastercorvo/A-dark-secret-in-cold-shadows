@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/A-dark-secret-in-cold-shadows/static/css/main.edd9010f.chunk.css",
-    "main.js": "/A-dark-secret-in-cold-shadows/static/js/main.29dcdc25.chunk.js",
-    "main.js.map": "/A-dark-secret-in-cold-shadows/static/js/main.29dcdc25.chunk.js.map",
+    "main.js": "/A-dark-secret-in-cold-shadows/static/js/main.4b3b07e4.chunk.js",
+    "main.js.map": "/A-dark-secret-in-cold-shadows/static/js/main.4b3b07e4.chunk.js.map",
     "runtime-main.js": "/A-dark-secret-in-cold-shadows/static/js/runtime-main.35ee48bd.js",
     "runtime-main.js.map": "/A-dark-secret-in-cold-shadows/static/js/runtime-main.35ee48bd.js.map",
     "static/js/2.e44ed108.chunk.js": "/A-dark-secret-in-cold-shadows/static/js/2.e44ed108.chunk.js",
@@ -31,6 +31,6 @@
     "static/js/runtime-main.35ee48bd.js",
     "static/js/2.e44ed108.chunk.js",
     "static/css/main.edd9010f.chunk.css",
-    "static/js/main.29dcdc25.chunk.js"
+    "static/js/main.4b3b07e4.chunk.js"
   ]
 }
