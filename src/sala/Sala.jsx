@@ -427,7 +427,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
       setShowSocial(false);
 
       inputText([{text:['— Selena: ','¿De que es este libro? ¿Socialismo?'], img:'SelenaDesconfia'},
-      {text:['', 'Algo se añadió a a tu inventario.'], img:'moment'}])
+      {text:['', '— Algo se añadió a a tu inventario.'], img:'moment'}])
 
       addItem('flecha', 'Un comandante que estará siempre en nuestro corazones.', 'Un Chavez');
 
