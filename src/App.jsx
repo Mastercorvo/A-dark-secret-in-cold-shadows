@@ -320,7 +320,6 @@ function App() {
 
   function first(){
 
-    addItem('flecha', 'Un comandante que estará siempre en nuestro corazones.', 'Un Chavez');
     addItem('espada', '¡La legendaria espada de tungsteno! Este objeto no puede ser utilizado aquí.', 'Maekir');
 
     inputText([{text:['— Nicolás:',' Es un gusto tenerte por aquí Selena, me alegra mucho que vengas a visitar el castillo. '], img: 'NicolasHabla'},

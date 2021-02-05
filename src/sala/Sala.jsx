@@ -412,6 +412,27 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
 
     }
 
+    const [showSocial, setShowSocial] = useState(true);
+
+    const touchSocial = useRef(false);
+
+    function social(){
+
+      if(touchSocial.current) return false;
+
+      if(currentAnyText.current) return false;
+
+      touchSocial.current = true;
+
+      setShowSocial(false);
+
+      inputText([{text:['— Selena: ','¿De que es este libro? ¿Socialismo?'], img:'SelenaDesconfia'},
+      {text:['', 'Algo se añadió a a tu inventario.'], img:'moment'}])
+
+      addItem('flecha', 'Un comandante que estará siempre en nuestro corazones.', 'Un Chavez');
+
+    }
+
     if(zone !== 'sala') return false;
 
     return (<div className="Sala">
@@ -1222,6 +1243,17 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
           opacity="0"
         ></path>
       </g>
+      <path
+          id="social"
+          onClick={social}
+          style={{display:showSocial?'block':'none'}}
+          fill="#fff"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2.307"
+          d="M4.944 110.65H11.492V126.152H4.944z"
+          opacity="0"
+        ></path>
     </svg>
 
     </div>)
