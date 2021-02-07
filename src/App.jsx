@@ -75,7 +75,7 @@ const Flecha = 'https://i.ibb.co/2ZFSfRC/Chavez-Official-portrait-photo.jpg';
 const Corona = 'https://i.ibb.co/C7fdkzf/Corona-Nicole.png'
 const MujerMisteriosa = 'https://i.ibb.co/6N3Pv5k/foto.png';
 const Carta = 'https://i.ibb.co/MCLBQSW/carta.png'
-const Notat = 'https://i.ibb.co/cXbZp2M/notat.png';
+const Notat = 'https://i.ibb.co/6yJ84YT/notat.png';
 const chica = 'https://i.ibb.co/ZXmYDVS/foto-dentro-del-cuaderno-azul-con-candado.png';
 
 //Escenarios
@@ -694,7 +694,7 @@ function App() {
               
               setCastilloSong(true)
             
-            }, 0)
+            }, 1)
           
           }} ref={castilloSongElement}/>}
         
@@ -708,7 +708,7 @@ function App() {
               
               setAfueraSong(true)
             
-            }, 0)
+            }, 1)
           
           }} ref={afueraSongElement}/>}
 
@@ -746,7 +746,7 @@ function App() {
 
         <Zone1 globalVolumen={globalVolumen} disableAll={disableAll} postText={postText} actions={actions} setZonesArrow={setZonesArrow} zone={zone} ObjetImages={ObjetImages} setFINAL={setFINAL} addItem={addItem} inputText={inputText} inventario={inventario} currentAnyText={currentAnyText}/>
         <Sala setStop={setStop} salida={salida} superTime={superTime} actions={actions} inventario={inventario} postText={postText} setInventario={setInventario} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone} inputText={inputText} currentAnyText={currentAnyText} addItem={addItem}/>
-        <Pueblo salida={salida} setSuperTime={setSuperTime} setActions={setActions} postText={postText} inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
+        <Pueblo globalVolumen={globalVolumen} salida={salida} setSuperTime={setSuperTime} setActions={setActions} postText={postText} inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
         <CuartoZone salida={salida} postText={postText} inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
         <div className="texto" onClick={textHandler} style={{display:showText?'grid':'none'}}>
         <div className='foto' onAnimationEnd={()=>{

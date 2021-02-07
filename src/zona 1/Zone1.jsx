@@ -5,7 +5,7 @@ import { useRef, useEffect, useState } from 'react';
 
 import ReactPlayer from "react-player";
 
-const NOTA_TEXT = 'Para que no se me olvide los números son... La cantidad de libros amarillos y naranjas en el librero. El segundo número de mi cumpleaños. La cantidad de árboles en el pueblo. Y un número que solo yo sé  >:)'
+const NOTA_TEXT = 'Para que no se me olvide los números son... La cantidad de libros de tonalidad amarilla en el librero. El segundo número de mi cumpleaños. La cantidad de árboles en el pueblo. Y un número que solo yo sé  >:)'
 
 function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetImages, zone, setZonesArrow, postText, disableAll, globalVolumen}) {
 
@@ -90,7 +90,7 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
       setShowNota(()=>false);
 
-      const name = 'Nota de la sala del trono'
+      const name = 'Nota de la sala del trono anotada en un papel'
 
       if(Object.keys(inventario).includes(name)) return false;
 
@@ -189,8 +189,6 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
     const [ele, setEle] = useState('');
 
-    const [castilloSongVolumen, setCastilloSongVolumen] = useState(1);
-
     const [castilloSong, setCastilloSong] = useState(false);
   
     const castilloSongElement = useRef(undefined);
@@ -203,7 +201,7 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
     return (<div className={"Zone1 " + dark} onAnimationEnd={animationEnd}>
 
-        <ReactPlayer volume={castilloSongVolumen} volume={globalVolumen} muted={false} url='https://soundcloud.com/shadry-xeaton/nier-ost-grandma' playing={castilloSong} width="0" height="0" onEnded={()=>{
+        <ReactPlayer volume={globalVolumen} muted={false} url='https://soundcloud.com/shadry-xeaton/nier-ost-grandma' playing={castilloSong} width="0" height="0" onEnded={()=>{
           castilloSongElement.current.seekTo(0, 0);
 
             setCastilloSong(false)
@@ -211,7 +209,7 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
               
               setCastilloSong(true)
             
-            }, 0)
+            }, 1)
           
           }} ref={castilloSongElement}/>
         
@@ -223,7 +221,7 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
               
               setMisterio(true)
             
-            }, 0)
+            }, 1)
           
           }} ref={misterioElement}/>
 

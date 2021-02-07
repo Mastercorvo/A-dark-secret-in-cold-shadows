@@ -21,7 +21,7 @@ let Rumore = ["¿Has visto al principe Nicolás? ¡Es muy agradable y carismáti
 
 Rumore = [...Rumore, Rumore[1], Rumore[1], Rumore[1], Rumore[1], Rumore[1]];
 
-function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAnyText, postText, setActions, setSuperTime, salida}) {
+function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAnyText, postText, setActions, setSuperTime, salida, globalVolumen}) {
 
     useEffect(() => {
       if(zone === 'pueblo') setZonesArrow(()=>['trono', undefined]);
@@ -409,7 +409,7 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
     
     return (<div className="Pueblo">
 
-      <ReactPlayer url="https://www.youtube.com/watch?v=Oc_b8hy6L7E" playing={campanasPlay} width="0" height="0" ref={campanadas} onPlay={()=>{
+      <ReactPlayer url="https://www.youtube.com/watch?v=Oc_b8hy6L7E" volume={globalVolumen} playing={campanasPlay} width="0" height="0" ref={campanadas} onPlay={()=>{
 
         setTimeout(()=>{
 

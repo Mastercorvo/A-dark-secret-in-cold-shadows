@@ -205,7 +205,7 @@ p, h2, h3{
 
   background-position: center;
 
-  z-index: 1000;
+  z-index: 5000;
 
   background-repeat: no-repeat;
 
@@ -424,6 +424,8 @@ p, h2, h3{
   border-radius: 5px;
 
   bottom: 20%;
+
+  cursor: pointer;
 
 }
 

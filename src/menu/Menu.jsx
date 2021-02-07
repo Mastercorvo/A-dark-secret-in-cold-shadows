@@ -80,7 +80,7 @@ function Menu({buttonPlayHandler, ObjetImages, showPlayScreen, globalVolumen, se
           castilloSongElement.current.seekTo(0, 0);
 
             setCastilloSong(false)
-            setTimeout(()=>setCastilloSong(true), 0)
+            setTimeout(()=>setCastilloSong(true), 1)
           
           }} ref={castilloSongElement}/>}
     <div className="backPoint" ></div>
