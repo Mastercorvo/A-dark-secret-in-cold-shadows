@@ -5,7 +5,7 @@ import ReactPlayer from 'react-player';
 
 import { useState, useRef, useEffect, useLayoutEffect } from 'react'
 
-function Menu({buttonPlayHandler, ObjetImages, showPlayScreen}){
+function Menu({buttonPlayHandler, ObjetImages, showPlayScreen, globalVolumen, setShowVolumenControl}){
 
     const [x, setX] = useState(0)
     const [y, setY] = useState(0)
@@ -76,7 +76,7 @@ function Menu({buttonPlayHandler, ObjetImages, showPlayScreen}){
 
       </div>
         <p className="recommendation">Se recomienda jugar en pantalla completa para una mejor experiencia, presione f11.</p>
-        {showPlayScreen && <ReactPlayer url='https://soundcloud.com/shadry-xeaton/nier-automata-vague-hope-karaoke' muted={false} playing={castilloSong} width="0" height="0" onEnded={()=>{
+        {showPlayScreen && <ReactPlayer volume={globalVolumen} url='https://soundcloud.com/shadry-xeaton/nier-automata-vague-hope-karaoke' muted={false} playing={castilloSong} width="0" height="0" onEnded={()=>{
           castilloSongElement.current.seekTo(0, 0);
 
             setCastilloSong(false)
@@ -96,6 +96,7 @@ function Menu({buttonPlayHandler, ObjetImages, showPlayScreen}){
     </div>
     <div className="menu">
       <div className="option" onClick={buttonPlayHandler}><p>Jugar</p></div>
+      <div className="option" onClick={()=>setShowVolumenControl(true)}><p>Configuración</p></div>
       <div className="option" onClick={()=>setShowModal(true)}><p>Créditos</p></div>
     </div>
     <div className="container" style={{transform:`rotateX(${y}deg) rotateY(${x}deg)`, backgroundImage:`url(${ObjetImages.current['fondoMenu']})`}}>

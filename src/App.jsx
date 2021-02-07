@@ -41,6 +41,12 @@ import Quien from "./quien.svg";
 
 import MiLogo from "./fotos/logoMaster.svg"
 
+import AudioSvg from './fotos/audio.svg';
+
+import 'react-rangeslider/lib/index.css';
+
+import Slider from 'react-rangeslider'
+
 // Selena
 
 const SelenaHabla = 'https://i.ibb.co/4f6dxLH/selena1.png';
@@ -110,7 +116,7 @@ const Images =[[SelenaHabla, 'SelenaHabla'], [SelenaHablaSeria, 'SelenaHablaSeri
 [NicolasHabla, 'NicolasHabla'], [NicolasHablaFeliz,'NicolasHablaFeliz'],[SelenaFeliz, 'SelenaFeliz'],
 [Flecha, 'flecha'], [Espada, 'espada'], [Nota, 'nota'], [SalaImg, 'sala'], [PuebloImg, 'pueblo'], [Moment, 'moment'], [PuebloSinSombraImg, 'puebloSinSombra'],[Cuarto,'cuarto'],[CuartoSinDulces, 'cuartoSinDulces'],
 [CuartoSinLlave, 'cuartoSinLlave'], [CuartoSinNada, 'cuartoSinNada'], [imgKey, 'llave'], [imgCandy, 'dulces'], [MujerMisteriosa, 'MujerMisteriosa'], [imgKeyOther, 'otraLlave'], [Cofre, 'cofre'], [Separador, 'separador'],
-[Recibo, 'recibo'], [SmallKey, 'smallKey'], [Carta, 'carta'], [Notat, 'notat'], [chica, 'chica'], [SalaA, 'salaA'], [SalaN, 'salaN'], [SalaT, 'salaT'], [PuebloImgAmanecer, 'puebloA'], [PuebloImgNoche, 'puebloN'], [PuebloImgAtardecer, 'puebloT'], [Corona, 'corona'], [KeyUltima, 'ultimaLlave'], [FondoMenu, 'fondoMenu'], [LogoP, 'logoP'], [nubesM, 'nubesM'], [SelenaM, 'selenaM'], [LogoGame, 'logoGame'], [Quien, 'quien'], [SelenaEnojada, 'SelenaEnojada'], [Credits, 'credits']];
+[Recibo, 'recibo'], [SmallKey, 'smallKey'], [Carta, 'carta'], [Notat, 'notat'], [chica, 'chica'], [SalaA, 'salaA'], [SalaN, 'salaN'], [SalaT, 'salaT'], [PuebloImgAmanecer, 'puebloA'], [PuebloImgNoche, 'puebloN'], [PuebloImgAtardecer, 'puebloT'], [Corona, 'corona'], [KeyUltima, 'ultimaLlave'], [FondoMenu, 'fondoMenu'], [LogoP, 'logoP'], [nubesM, 'nubesM'], [SelenaM, 'selenaM'], [LogoGame, 'logoGame'], [Quien, 'quien'], [SelenaEnojada, 'SelenaEnojada'], [Credits, 'credits'], [AudioSvg, 'audio']];
 
 function App() {
 
@@ -527,9 +533,13 @@ function App() {
 
     if(zone === 'cuarto'){
 
-      setCastilloSongVolumen(0.1);
+      setCastilloSongVolumen(((0.1 *(globalVolumen*100))/100));
 
-    }else setCastilloSongVolumen(1);
+    }else {
+      
+      setCastilloSongVolumen(globalVolumen);
+    
+    }
 
   });
 
@@ -590,6 +600,38 @@ function App() {
 
   const [showIconInventory, setShowIconInventory] = useState(true)
 
+  const [currentVolumen, setCurrentVolumen] = useState(40);
+
+  const [globalVolumen, setGlobalVolumen] = useState(0.4);
+
+  const [showIconVolumen, setShowIconVolumen]= useState(true);
+  
+  function disableAll() {
+    
+    setZonesArrow([]);
+
+    setShowIconInventory(false);
+
+    setCastilloSong(false);
+
+    setShowIconVolumen(false);
+
+  }
+
+  function volumenHandler(value) {
+
+    if(currentAnyText.current) return false;
+   
+      console.log(value);
+
+      setCurrentVolumen(value)
+
+      setGlobalVolumen(value/100)
+
+  }
+
+  const [showVolumenControl, setShowVolumenControl] = useState(false);
+
   if(isLoad){
 
     return <div className="load">
@@ -611,19 +653,25 @@ function App() {
 
   }
 
-  function disableAll() {
-    
-    setZonesArrow([]);
-
-    setShowIconInventory(false);
-
-    setCastilloSong(false)
-
-  }
-
   return (
 
       <div className="App">
+
+        <div className="audio-icon" onClick={()=>setShowVolumenControl(true)} style={{backgroundImage:`url(${ObjetImages.current['audio']})`, display:showIconVolumen?'block':'none'}}></div>
+
+        <div className="volumen" style={{display:showVolumenControl?'flex':'none'}}>
+
+          <div className="container">
+
+            <h2>Volumen General</h2>
+
+            <Slider value={currentVolumen} min={0} max={100} className="control" onChange={volumenHandler}/>
+
+            <div className="close" onClick={()=>setShowVolumenControl(false)}>Cerrar.</div>
+
+          </div>
+
+        </div>
 
         <div className="check-zone" style={{display:showCheckZone?'flex':'none'}}>
 
@@ -650,7 +698,7 @@ function App() {
           
           }} ref={castilloSongElement}/>}
         
-        {!stop && <ReactPlayer url='https://soundcloud.com/video-background-music/cold-isolation-sad-dramatic-background-music-piano-and-violin' playing={afueraSong} width="0" height="0" onEnded={()=>{
+        {!stop && <ReactPlayer url='https://soundcloud.com/video-background-music/cold-isolation-sad-dramatic-background-music-piano-and-violin' volume={globalVolumen} playing={afueraSong} width="0" height="0" onEnded={()=>{
           castilloSongElement.current.seekTo(0, 0);
 
             setAfueraSong(false)
@@ -675,7 +723,7 @@ function App() {
 
         }}></div>
 
-        <Menu ObjetImages={ObjetImages} showPlayScreen={showPlayScreen} buttonPlayHandler={buttonPlayHandler}/>
+        <Menu globalVolumen={globalVolumen} setShowVolumenControl={setShowVolumenControl} ObjetImages={ObjetImages} showPlayScreen={showPlayScreen} buttonPlayHandler={buttonPlayHandler}/>
   
         {showIconInventory && <div className="inventario-icon" onClick={showInventoryHandler}></div>}
         <div className="inventario" style={{display:showInventario?'flex':'none'}}>
@@ -696,7 +744,7 @@ function App() {
 
         </div>
 
-        <Zone1 disableAll={disableAll} postText={postText} actions={actions} setZonesArrow={setZonesArrow} zone={zone} ObjetImages={ObjetImages} setFINAL={setFINAL} addItem={addItem} inputText={inputText} inventario={inventario} currentAnyText={currentAnyText}/>
+        <Zone1 globalVolumen={globalVolumen} disableAll={disableAll} postText={postText} actions={actions} setZonesArrow={setZonesArrow} zone={zone} ObjetImages={ObjetImages} setFINAL={setFINAL} addItem={addItem} inputText={inputText} inventario={inventario} currentAnyText={currentAnyText}/>
         <Sala setStop={setStop} salida={salida} superTime={superTime} actions={actions} inventario={inventario} postText={postText} setInventario={setInventario} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone} inputText={inputText} currentAnyText={currentAnyText} addItem={addItem}/>
         <Pueblo salida={salida} setSuperTime={setSuperTime} setActions={setActions} postText={postText} inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>
         <CuartoZone salida={salida} postText={postText} inputText={inputText} addItem={addItem} inventario={inventario} currentAnyText={currentAnyText} setZonesArrow={setZonesArrow} ObjetImages={ObjetImages} zone={zone}/>

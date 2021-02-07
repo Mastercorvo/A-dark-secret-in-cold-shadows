@@ -7,7 +7,7 @@ import ReactPlayer from "react-player";
 
 const NOTA_TEXT = 'Para que no se me olvide los números son... La cantidad de libros amarillos y naranjas en el librero. El segundo número de mi cumpleaños. La cantidad de árboles en el pueblo. Y un número que solo yo sé  >:)'
 
-function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetImages, zone, setZonesArrow, postText, disableAll}) {
+function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetImages, zone, setZonesArrow, postText, disableAll, globalVolumen}) {
 
     function tronoHandler(){
 
@@ -27,7 +27,7 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
         inputText([{text:['— Selena: ','El suelo debajo de esta alfombra se siente hueco, revisaré más tarde.'], img:'SelenaHablaSeria'}]);
 
-        return false
+        return false;
 
       }
 
@@ -203,7 +203,7 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
 
     return (<div className={"Zone1 " + dark} onAnimationEnd={animationEnd}>
 
-        <ReactPlayer volume={castilloSongVolumen} muted={false} url='https://soundcloud.com/shadry-xeaton/nier-ost-grandma' playing={castilloSong} width="0" height="0" onEnded={()=>{
+        <ReactPlayer volume={castilloSongVolumen} volume={globalVolumen} muted={false} url='https://soundcloud.com/shadry-xeaton/nier-ost-grandma' playing={castilloSong} width="0" height="0" onEnded={()=>{
           castilloSongElement.current.seekTo(0, 0);
 
             setCastilloSong(false)
@@ -215,7 +215,7 @@ function Zone1({inputText, addItem, currentAnyText, inventario, salida, ObjetIma
           
           }} ref={castilloSongElement}/>
         
-        <ReactPlayer muted={false} url='https://soundcloud.com/jayvarton/silent-castle' playing={misterio} width="0" height="0" onEnded={()=>{
+        <ReactPlayer muted={false} volume={globalVolumen} url='https://soundcloud.com/jayvarton/silent-castle' playing={misterio} width="0" height="0" onEnded={()=>{
           misterioElement.current.seekTo(0, 0);
 
             setMisterio(false)

@@ -35,6 +35,8 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
     const executeAny = useRef([()=>{
 
+      if(!campanadas.current) return false;
+
       campanadas.current.seekTo(8, 0);
 
       setCampanadasPlay(true);
