@@ -343,13 +343,11 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
     function hoursHandler({target}){
 
-      const value = target.value;
+      const value = Number(target.value);
 
       if(/\D/.test(value)) return false;
 
-      if(value[1] === '0') return false;
-
-      if(Number(value) >= 12) return setHour(12);
+      if( value >= 12) return setHour(12);
 
       setHour(Number(value))
 
@@ -359,11 +357,11 @@ function Pueblo({ObjetImages, zone, setZonesArrow, inputText, addItem, currentAn
 
     function minutesHandler({target}){
 
-      const value = target.value;
+      const value = Number(target.value);
 
       if(/\D/.test(value)) return false;
 
-      if(Number(value) >= 60) return setMinutes(60);
+      if(value >= 60) return setMinutes(60);
 
       setMinutes(Number(value))
 

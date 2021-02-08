@@ -414,6 +414,38 @@
 
 }
 
+@keyframes need{
+
+    from{
+
+        fill: transparent;
+
+    }
+
+    to{
+
+        fill: rgba(255, 0, 0, 0.692);
+
+    }
+
+}
+
+.caja-fuerte-container .container > .caja #cerradura .need{
+
+    fill: rgba(255, 0, 0, 0);
+
+    animation-name: need;
+
+    animation-iteration-count: infinite;
+
+    animation-direction: alternate;
+
+    animation-timing-function: linear;
+
+    animation-duration: 4s;
+
+}
+
 .caja-fuerte-container .container input{
 
     padding: 6px;

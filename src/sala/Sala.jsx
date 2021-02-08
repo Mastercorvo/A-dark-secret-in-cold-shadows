@@ -858,6 +858,18 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
           transform="matrix(1.67135 0 0 1.67135 5.334 8.318)"
           onClick={cerraduraHandler}
         >
+          <path
+            id="rect1178"
+            className="need"
+            fill="none"
+            stroke="#000"
+            strokeDasharray="none"
+            strokeLinejoin="round"
+            strokeMiterlimit="4"
+            strokeOpacity="1"
+            strokeWidth="1.501"
+            d="M5.192 11.806H43.378V41.11H5.192z"
+          ></path>
           <g id="g1176" transform="translate(3.59 10.583)">
             <g
               id="g1126"
@@ -901,17 +913,6 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
               strokeWidth="3.234"
             ></circle>
           </g>
-          <path
-            id="rect1178"
-            fill="none"
-            stroke="#000"
-            strokeDasharray="none"
-            strokeLinejoin="round"
-            strokeMiterlimit="4"
-            strokeOpacity="1"
-            strokeWidth="1.501"
-            d="M5.192 11.806H43.378V41.11H5.192z"
-          ></path>
           <path
             id="path1182"
             fill="#9c9c9c"
