@@ -418,13 +418,29 @@
 
     from{
 
-        fill: transparent;
+        stroke: rgb(97, 97, 97);
 
     }
 
     to{
 
-        fill: rgba(255, 0, 0, 0.692);
+        stroke: rgb(255, 0, 0);
+
+    }
+
+}
+
+@keyframes need2{
+
+    from{
+
+        fill: rgb(97, 97, 97);
+
+    }
+
+    to{
+
+        fill: rgb(255, 0, 0);
 
     }
 
@@ -435,6 +451,19 @@
     fill: rgba(255, 0, 0, 0);
 
     animation-name: need;
+
+    animation-iteration-count: infinite;
+
+    animation-direction: alternate;
+
+    animation-timing-function: linear;
+
+    animation-duration: 2s;
+
+}
+.caja-fuerte-container .container > .caja #cerradura .need2{
+
+    animation-name: need2;
 
     animation-iteration-count: infinite;
 

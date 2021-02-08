@@ -860,7 +860,6 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
         >
           <path
             id="rect1178"
-            className="need"
             fill="none"
             stroke="#000"
             strokeDasharray="none"
@@ -891,6 +890,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
             <path
               id="path1102"
               fill="#474747"
+              className="need"
               stroke="#616161"
               strokeDasharray="none"
               strokeLinejoin="miter"
@@ -901,6 +901,7 @@ function Sala({ObjetImages, zone, setZonesArrow, inputText, currentAnyText, addI
             ></path>
             <circle
               id="path1112"
+              className="need2"
               cx="17.959"
               cy="18.583"
               r="1.96"
